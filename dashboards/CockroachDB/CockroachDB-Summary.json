@@ -30,8 +30,8 @@
     },
     {
       "type": "panel",
-      "id": "table",
-      "name": "Table",
+      "id": "text",
+      "name": "Text",
       "version": "5.0.0"
     }
   ],
@@ -50,9 +50,9 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 1,
+  "graphTooltip": 0,
   "id": null,
-  "iteration": 1543231414977,
+  "iteration": 1543231787426,
   "links": [
     {
       "icon": "external link",
@@ -76,17 +76,6 @@
       "type": "dashboards"
     },
     {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "dc/os",
-        "summary",
-        "cockroachdb"
-      ],
-      "type": "dashboards"
-    },
-    {
       "asDropdown": true,
       "icon": "external link",
       "includeVars": true,
@@ -96,12 +85,140 @@
         "detail",
         "cockroachdb"
       ],
-      "targetBlank": false,
       "title": "CockroachDB Details",
       "type": "dashboards"
     }
   ],
   "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "editable": true,
+      "error": false,
+      "fill": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 16,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Live nodes",
+          "yaxis": 1
+        },
+        {
+          "alias": "All nodes",
+          "yaxis": 1
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "count(up{dcos_component_name=\"CockroachDB\",instance=~\"$node\"})",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "All nodes",
+          "metric": "",
+          "refId": "A",
+          "step": 120
+        },
+        {
+          "expr": "count(up{dcos_component_name=\"CockroachDB\",instance=~\"$node\"} == 1)",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Running nodes (prometheus)",
+          "metric": "",
+          "refId": "B",
+          "step": 120
+        },
+        {
+          "expr": "min(liveness_livenodes{dcos_component_name=\"CockroachDB\",instance=~\"$node\"})",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "Number of live nodes (node liveness heartbeats)",
+          "refId": "C",
+          "step": 120
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Nodes: $node",
+      "tooltip": {
+        "msResolution": true,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "content": "Number of live instances in the CockroachDB cluster determined via the CockroachDB internal heartbeat mechanism. Since DC/OS deploys one CockroachDB instance per DC/OS master node this is number must always match the number of expected master nodes in the DC/OS cluster.",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 14,
+      "links": [],
+      "mode": "markdown",
+      "title": "CockroachDB Live Node Count",
+      "type": "text"
+    },
     {
       "aliasColors": {},
       "bars": false,
@@ -116,9 +233,316 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 0
+        "y": 7
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sys_uptime{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "{{host}}",
+          "refId": "A",
+          "step": 120
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Uptime: $node",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 10,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "content": "Uptime reported by each CockroachDB node process. This indicates for how long each CockroachDB node process has been running since its last launch. It gives insight into unavailability due to downtime and unexpected restarts by the DC/OS bootstrap mechanism.",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 7
+      },
+      "id": 15,
+      "links": [],
+      "mode": "markdown",
+      "title": "CockroachDB Uptime",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "Mean clock offset with other nodes as measured by cockroach.",
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 16,
+        "x": 0,
+        "y": 14
       },
       "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "clock_offset_meannanos{dcos_component_name=\"CockroachDB\", host=~\"$node\"}",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "{{host}}",
+          "refId": "A",
+          "step": 120
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Mean RPC Clock Offset: $node",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ns",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "content": "Mean RPC Clock Offset measures the clock drift between CockroachDB nodes. CockroachDB relies on clock synchronization to guarantee serializability. When a node detects that its clock is out of synch with at least half of the other nodes in the cluster by 80% of the maximum offset allowed (500ms), it spontaneously shuts down.",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 14
+      },
+      "id": 16,
+      "links": [],
+      "mode": "markdown",
+      "title": "CockroachDB RPC Clock Offset",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 16,
+        "x": 0,
+        "y": 21
+      },
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(sum(capacity{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host)) - sum(sum(capacity_available{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Used",
+          "refId": "A",
+          "step": 2
+        },
+        {
+          "expr": "sum(sum(capacity{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "Storage capacity",
+          "metric": "",
+          "refId": "B",
+          "step": 2
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Storage capacity: $node",
+      "tooltip": {
+        "msResolution": false,
+        "shared": true,
+        "sort": 0,
+        "value_type": "cumulative"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "content": "Amount of total storage capacity in Gigabytes versus amount of storage currently in use.",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 21
+      },
+      "id": 17,
+      "links": [],
+      "mode": "markdown",
+      "title": "CockroachDB Storage Capacity",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 16,
+        "x": 0,
+        "y": 28
+      },
+      "id": 10,
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -143,185 +567,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(sql_conns{dcos_component_name=\"CockroachDB\",host=~\"$node\"})",
+          "expr": "sum(sum(livebytes{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Connections",
+          "legendFormat": "DC/OS",
           "metric": "",
           "refId": "A",
-          "step": 240
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "SQL Connections: $node",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": 0,
-          "show": true
+          "step": 2
         },
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "columns": [
-        {
-          "text": "Current",
-          "value": "current"
-        },
-        {
-          "text": "Avg",
-          "value": "avg"
-        },
-        {
-          "text": "Min",
-          "value": "min"
-        },
-        {
-          "text": "Max",
-          "value": "max"
-        }
-      ],
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fontSize": "90%",
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 0
-      },
-      "id": 12,
-      "links": [],
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": false
-      },
-      "styles": [
-        {
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 0,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "sql_conns{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
+          "expr": "sum(sum(sysbytes{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{host}}",
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "title": "Connections: $node",
-      "transform": "timeseries_aggregations",
-      "type": "table"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 16,
-        "x": 0,
-        "y": 7
-      },
-      "id": 7,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(sql_bytesin{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "In",
+          "legendFormat": "CockroachDB internal",
           "metric": "",
-          "refId": "A",
-          "step": 240
-        },
-        {
-          "expr": "sum(rate(sql_bytesout{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Out",
-          "metric": "",
-          "refId": "B",
-          "step": 240
+          "refId": "C",
+          "step": 2
         }
       ],
       "thresholds": [],
@@ -344,7 +608,7 @@
       },
       "yaxes": [
         {
-          "format": "Bps",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -362,598 +626,18 @@
       ]
     },
     {
-      "columns": [
-        {
-          "text": "Current",
-          "value": "current"
-        },
-        {
-          "text": "Avg",
-          "value": "avg"
-        },
-        {
-          "text": "Min",
-          "value": "min"
-        },
-        {
-          "text": "Max",
-          "value": "max"
-        }
-      ],
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fontSize": "90%",
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 7
-      },
-      "hideTimeOverride": false,
-      "id": 13,
-      "links": [],
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "Bps"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "rate(sql_bytesin{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval])",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "{{host}} - in",
-          "refId": "A",
-          "step": 240
-        },
-        {
-          "expr": "rate(sql_bytesout{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval])",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "{{host}} - out",
-          "metric": "",
-          "refId": "B",
-          "step": 240
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Bytes in/out: $node",
-      "transform": "timeseries_aggregations",
-      "type": "table"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 16,
-        "x": 0,
-        "y": 14
-      },
-      "id": 9,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(rate(sql_select_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "select",
-          "metric": "",
-          "refId": "A",
-          "step": 240
-        },
-        {
-          "expr": "sum(rate(sql_insert_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "insert",
-          "metric": "",
-          "refId": "B",
-          "step": 240
-        },
-        {
-          "expr": "sum(rate(sql_update_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "update",
-          "metric": "",
-          "refId": "C",
-          "step": 240
-        },
-        {
-          "expr": "sum(rate(sql_delete_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "delete",
-          "metric": "",
-          "refId": "D",
-          "step": 240
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Queries: $node",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": 0,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "columns": [
-        {
-          "text": "Current",
-          "value": "current"
-        },
-        {
-          "text": "Avg",
-          "value": "avg"
-        },
-        {
-          "text": "Min",
-          "value": "min"
-        },
-        {
-          "text": "Max",
-          "value": "max"
-        }
-      ],
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fontSize": "90%",
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 14
-      },
-      "id": 14,
-      "links": [],
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "rate(sql_select_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]) + rate(sql_insert_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]) + rate(sql_update_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]) + rate(sql_delete_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval])",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "{{host}}",
-          "metric": "",
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "title": "Queries: $node",
-      "transform": "timeseries_aggregations",
-      "type": "table"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 16,
-        "x": 0,
-        "y": 21
-      },
-      "id": 17,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sql_exec_latency:rate1m:quantile_99{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "{{host}}",
-          "metric": "exec_latency:rate1m:quantile_99",
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "SQL Exec Latency: 99th percentile",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ns",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "columns": [
-        {
-          "text": "Current",
-          "value": "current"
-        },
-        {
-          "text": "Avg",
-          "value": "avg"
-        },
-        {
-          "text": "Min",
-          "value": "min"
-        },
-        {
-          "text": "Max",
-          "value": "max"
-        }
-      ],
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fontSize": "90%",
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 21
-      },
-      "id": 15,
-      "links": [],
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "rate(sql_txn_begin_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]) + rate(sql_txn_commit_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]) + rate(sql_txn_abort_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]) + rate(sql_txn_rollback_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval])",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "{{host}}",
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "title": "Transactions: $node",
-      "transform": "timeseries_aggregations",
-      "type": "table"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 16,
-        "x": 0,
-        "y": 28
-      },
-      "id": 18,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sql_exec_latency:rate1m:quantile_95{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "{{host}}",
-          "metric": "exec_latency:rate1m:quantile_99",
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "SQL Exec Latency: 95th percentile",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "ns",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ]
-    },
-    {
-      "columns": [
-        {
-          "text": "Current",
-          "value": "current"
-        },
-        {
-          "text": "Avg",
-          "value": "avg"
-        },
-        {
-          "text": "Min",
-          "value": "min"
-        },
-        {
-          "text": "Max",
-          "value": "max"
-        }
-      ],
-      "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fontSize": "90%",
+      "content": "Number of bytes of system data stored for CockroachDB internal purposes versus number of bytes of live data from DC/OS.",
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
         "y": 28
       },
-      "id": 16,
+      "id": 18,
       "links": [],
-      "pageSize": null,
-      "scroll": true,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "date"
-        },
-        {
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
-      "targets": [
-        {
-          "expr": "rate(sql_ddl_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval])",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "{{host}}",
-          "metric": "",
-          "refId": "A",
-          "step": 240
-        }
-      ],
-      "title": "Schema Changes: $node",
-      "transform": "timeseries_aggregations",
-      "type": "table"
+      "mode": "markdown",
+      "title": "CockroachDB Bytes",
+      "type": "text"
     },
     {
       "aliasColors": {},
@@ -961,17 +645,14 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
       "fill": 1,
-      "grid": {},
       "gridPos": {
         "h": 7,
         "w": 16,
         "x": 0,
         "y": 35
       },
-      "id": 10,
+      "id": 12,
       "legend": {
         "avg": false,
         "current": false,
@@ -982,9 +663,9 @@
         "values": false
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -995,52 +676,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(sql_txn_begin_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
+          "expr": "rocksdb_block_cache_hits{dcos_component_name=\"CockroachDB\",host=~\"$node\"} / (rocksdb_block_cache_hits{dcos_component_name=\"CockroachDB\",host=~\"$node\"} + rocksdb_block_cache_misses{dcos_component_name=\"CockroachDB\",host=~\"$node\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "begin",
-          "metric": "",
+          "legendFormat": "{{host}}:{{store}}",
           "refId": "A",
-          "step": 240
-        },
-        {
-          "expr": "sum(rate(sql_txn_commit_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "commit",
-          "refId": "B",
-          "step": 240
-        },
-        {
-          "expr": "sum(rate(sql_txn_abort_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "abort",
-          "refId": "C",
-          "step": 240
-        },
-        {
-          "expr": "sum(rate(sql_txn_rollback_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "rollback",
-          "refId": "D",
-          "step": 240
+          "step": 2
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Transactions: $node",
+      "title": "RocksDB cache hit rate: $node",
       "tooltip": {
-        "msResolution": false,
         "shared": true,
         "sort": 0,
-        "value_type": "cumulative"
+        "value_type": "individual"
       },
       "type": "graph",
       "xaxis": {
@@ -1052,11 +704,11 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": 0,
+          "min": null,
           "show": true
         },
         {
@@ -1068,6 +720,20 @@
           "show": true
         }
       ]
+    },
+    {
+      "content": "Cache hit rate of the underlying key-value store RocksDB per CockrochDB node. The cache hit rate is calculated as the number of Cache hits divided by the number of Cache accesses.",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 35
+      },
+      "id": 22,
+      "links": [],
+      "mode": "markdown",
+      "title": "CockroachDB RocksDB cache hit rate",
+      "type": "text"
     },
     {
       "aliasColors": {},
@@ -1085,7 +751,7 @@
         "x": 0,
         "y": 42
       },
-      "id": 11,
+      "id": 23,
       "legend": {
         "avg": false,
         "current": false,
@@ -1103,26 +769,79 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "unavailable",
+          "yaxis": 2
+        },
+        {
+          "alias": "raft leaders not lease holders",
+          "yaxis": 2
+        },
+        {
+          "alias": "under-replicated",
+          "yaxis": 1
+        },
+        {
+          "alias": "raft log behind",
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(sql_ddl_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
+          "expr": "sum(sum(ranges{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "ranges",
+          "refId": "D",
+          "step": 10
+        },
+        {
+          "expr": "sum(sum(replicas_leaders{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "DDL",
+          "legendFormat": "raft leaders",
           "metric": "",
           "refId": "A",
-          "step": 240
+          "step": 10
+        },
+        {
+          "expr": "sum(sum(replicas_leaders_not_leaseholders{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "raft leaders not lease holders",
+          "metric": "",
+          "refId": "C",
+          "step": 10
+        },
+        {
+          "expr": "sum(sum(ranges_unavailable{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "unavailable",
+          "metric": "",
+          "refId": "B",
+          "step": 10
+        },
+        {
+          "expr": "sum(sum(ranges_underreplicated{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "format": "time_series",
+          "intervalFactor": 2,
+          "legendFormat": "under-replicated",
+          "refId": "E",
+          "step": 10
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Schema changes: $node",
+      "title": "Ranges: $node",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -1151,10 +870,24 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": 0,
           "show": true
         }
       ]
+    },
+    {
+      "content": "Number of CockroachDB ranges in the cluster. In order to guarantee that no data is lost, before doing an upgrade of a DC/OS master node the number of underreplicated ranges must be zero.",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 42
+      },
+      "id": 24,
+      "links": [],
+      "mode": "markdown",
+      "title": "CockroachDB Ranges",
+      "type": "text"
     }
   ],
   "refresh": false,
@@ -1162,7 +895,7 @@
   "style": "dark",
   "tags": [
     "dc/os",
-    "detail",
+    "summary",
     "cockroachdb"
   ],
   "templating": {
@@ -1180,7 +913,7 @@
         "query": "label_values(sys_uptime{dcos_component_name=\"CockroachDB\"},host)",
         "refresh": 1,
         "regex": "",
-        "sort": 3,
+        "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -1196,11 +929,8 @@
           "text": "10m",
           "value": "10m"
         },
-        "datasource": null,
         "hide": 0,
-        "includeAll": false,
         "label": "Rate Interval",
-        "multi": false,
         "name": "rate_interval",
         "options": [
           {
@@ -1284,8 +1014,8 @@
       "30d"
     ]
   },
-  "timezone": "utc",
-  "title": "CockroachDB Details SQL",
-  "uid": "000000004",
-  "version": 3
+  "timezone": "",
+  "title": "CockroachDB Summary",
+  "uid": "mSSvRcBiz",
+  "version": 5
 }
