@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1543231765038,
+  "iteration": 1543247955470,
   "links": [
     {
       "icon": "external link",
@@ -787,10 +787,12 @@
       },
       "id": 14,
       "legend": {
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": false
@@ -814,7 +816,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(sys_gc_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[30s]))",
+          "expr": "sum(rate(sys_gc_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -831,12 +833,6 @@
           "metric": "",
           "refId": "B",
           "step": 120
-        },
-        {
-          "expr": "sys_gc_count{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -1917,7 +1913,6 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "selected": true,
           "text": "10m",
           "value": "10m"
         },
@@ -2013,5 +2008,5 @@
   "timezone": "utc",
   "title": "CockroachDB Details Runtime",
   "uid": "000000001",
-  "version": 3
+  "version": 5
 }
