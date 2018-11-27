@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1543247955470,
+  "iteration": 1543311328597,
   "links": [
     {
       "icon": "external link",
@@ -183,7 +183,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Nodes: $node",
+      "title": "Live Node Count: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -2008,5 +2008,5 @@
   "timezone": "utc",
   "title": "CockroachDB Details Runtime",
   "uid": "000000001",
-  "version": 5
+  "version": 6
 }
