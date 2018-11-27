@@ -421,7 +421,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Approximate Data Size: $node",
+      "title": "Data Size: $node",
       "tooltip": {
         "shared": true,
         "sort": 0,
