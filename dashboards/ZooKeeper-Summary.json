@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1543328049792,
+  "iteration": 1543411050122,
   "links": [
     {
       "icon": "external link",
@@ -223,7 +223,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Outstanding requests: $node",
+      "title": "Outstanding Requests: $node",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -466,7 +466,7 @@
       "id": 40,
       "links": [],
       "mode": "markdown",
-      "title": "ZooKeeper Approximate Data Size",
+      "title": "ZooKeeper Data Size",
       "type": "text"
     },
     {
@@ -1185,6 +1185,6 @@
   },
   "timezone": "utc",
   "title": "ZooKeeper Summary",
-  "uid": "mSSvRcBiz",
-  "version": 16
+  "uid": "M_b16TYiz",
+  "version": 18
 }
