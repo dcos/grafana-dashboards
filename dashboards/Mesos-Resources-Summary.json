@@ -94,7 +94,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_master_allocator_resources_cpus{type=\"total\"})",
+          "expr": "sum(mesos_allocator_mesos_resources_cpus_total)",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
@@ -102,7 +102,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(mesos_master_allocator_resources_cpus{type=\"offered_or_allocated\"})",
+          "expr": "sum(mesos_allocator_mesos_resources_cpus_offered_or_allocated)",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
@@ -110,12 +110,12 @@
           "refId": "B"
         },
         {
-          "expr": "sum(mesos_master_allocator_role_quota_guarantee{resource=\"cpus\"})",
+          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"cpus\"})",
           "format": "time_series",
           "instant": false,
           "interval": "5m",
           "intervalFactor": 1,
-          "legendFormat": "Quota {{resource}}",
+          "legendFormat": "Quota",
           "refId": "C"
         }
       ],
@@ -154,7 +154,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "content": "When an offer is sent to a framework, it is counted as allocated until the framework rejects it. Hence one may see oscillation.\n\nCPU Quota is occasionally reported at 2x it's actual value. This _may_ be because `mesos_exporter` is too slow and reports multiple times within a polling interval causing a double count. TBC.",
@@ -208,21 +212,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_master_allocator_resources_disk{type=\"total\"})",
+          "expr": "sum(mesos_allocator_mesos_resources_disk_total)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Total",
           "refId": "A"
         },
         {
-          "expr": "sum(mesos_master_allocator_resources_disk{type=\"offered_or_allocated\"})",
+          "expr": "sum(mesos_allocator_mesos_resources_disk_offered_or_allocated)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Offered or allocated ",
           "refId": "B"
         },
         {
-          "expr": "sum(mesos_master_allocator_role_quota_guarantee{resource=\"disk\"})",
+          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"disk\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Quota",
@@ -264,7 +268,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {},
@@ -304,21 +312,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_master_allocator_resources_mem{type=\"total\"})",
+          "expr": "sum(mesos_allocator_mesos_resources_mem_total)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Total",
           "refId": "A"
         },
         {
-          "expr": "sum(mesos_master_allocator_resources_mem{type=\"offered_or_allocated\"})",
+          "expr": "sum(mesos_allocator_mesos_resources_mem_offered_or_allocated)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Offered or allocated ",
           "refId": "B"
         },
         {
-          "expr": "sum(mesos_master_allocator_role_quota_guarantee{resource=\"mem\"})",
+          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"mem\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Quota",
@@ -360,7 +368,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "collapsed": false,
@@ -476,7 +488,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {},
@@ -579,7 +595,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": "1m",
@@ -626,5 +646,5 @@
   "timezone": "",
   "title": "Mesos Resources Summary",
   "uid": "cNfIPq1iz",
-  "version": 10
+  "version": 11
 }
