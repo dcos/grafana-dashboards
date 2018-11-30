@@ -34,7 +34,7 @@
       "name": "Text",
       "version": "5.0.0"
     }
-  ],
+  ], 
   "annotations": {
     "list": [
       {
@@ -130,7 +130,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "absent(mesos_master_messages)",
+          "expr": "absent({__name__ =~ \"mesos_master_messages_.+\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "mesos_master_messages absent",
@@ -179,7 +179,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "content": "If we are not receiving `mesos_master_messages` via `mesos_exporter` or `dcos-telegraf`'s `mesos` input plugin, we assume some failure condition within the cluster.\n\nWith the current stack (SDK team maintained package with combined Grafana & Prometheus) this can often indicate DNS resolution issues within the cluster.",
@@ -237,7 +241,7 @@
     ]
   },
   "timezone": "",
-  "title": "Mesos Alerts",
+  "title": "Mesos Masters Alerts",
   "uid": "0RPcD61mk",
-  "version": 6
+  "version": 7
 }
