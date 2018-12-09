@@ -47,7 +47,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1544327714552,
+  "iteration": 1544332110710,
   "links": [],
   "panels": [
     {
@@ -510,7 +510,8 @@
   "style": "dark",
   "tags": [
     "dc/os",
-    "mesos"
+    "mesos",
+    "detail"
   ],
   "templating": {
     "list": [
@@ -613,7 +614,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -642,7 +643,7 @@
     ]
   },
   "timezone": "utc",
-  "title": "/Mesos-Container-Metrics",
+  "title": "/Mesos-Container-Details",
   "uid": "mpivSaYiz",
-  "version": 55
+  "version": 60
 }
