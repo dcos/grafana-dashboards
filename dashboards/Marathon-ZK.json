@@ -46,7 +46,6 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1539648801565,
   "links": [],
   "panels": [
     {
@@ -62,7 +61,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 12,
+      "id": 2,
       "legend": {
         "avg": false,
         "current": false,
@@ -82,120 +81,21 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": true,
-      "steppedLine": true,
-      "targets": [
-        {
-          "expr": "max by (task_name) (marathon_jvm_memory_heap_used_gauge_bytes{task_name=~\".+\"})",
-          "format": "time_series",
-          "interval": "$min_interval",
-          "intervalFactor": 1,
-          "legendFormat": "{{task_name}}",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Heap (GB)",
-      "tooltip": {
-        "shared": false,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "decbytes",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "decimals": null,
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 1,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "id": 16,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "max by (task_name) (marathon_deployments_dismissed_counter{task_name=~\".+\"})",
+          "expr": "max by (task_name) (marathon_debug_persistence_operations_get_duration_timer_seconds_p999{task_name=~\".+\"})",
           "format": "time_series",
-          "interval": "$min_interval",
           "intervalFactor": 1,
-          "legendFormat": "dismissed {{task_name}}",
+          "legendFormat": "{{task_name}} p999",
           "refId": "A"
-        },
-        {
-          "expr": "max by (task_name) (marathon_deployments_active_gauge{task_name=~\".+\"})",
-          "format": "time_series",
-          "interval": "$min_interval",
-          "intervalFactor": 1,
-          "legendFormat": "current {{task_name}}",
-          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Deployments",
+      "title": "get (ms)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -226,11 +126,7 @@
           "min": null,
           "show": true
         }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      ]
     },
     {
       "aliasColors": {},
@@ -242,10 +138,10 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 0,
-        "y": 9
+        "x": 12,
+        "y": 0
       },
-      "id": 20,
+      "id": 6,
       "legend": {
         "avg": false,
         "current": false,
@@ -266,22 +162,100 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(marathon_tasks_launched_counter{task_name=~\".+\"}[$min_interval])",
+          "expr": "max by (task_name) (marathon_debug_persistence_operations_delete_duration_timer_seconds_p999{task_name=~\".+\"})",
           "format": "time_series",
-          "hide": false,
-          "interval": "$min_interval",
           "intervalFactor": 1,
-          "legendFormat": "{{task_name}}",
+          "legendFormat": "{{task_name}} p999",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Task Launch ($min_interval)",
+      "title": "delete (ms)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ]
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "max by (task_name) (marathon_debug_persistence_operations_store_duration_timer_seconds_p999{task_name=~\".+\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{task_name}} p999",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "store (ms)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -348,21 +322,20 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "max by (task_name) (marathon_jvm_threads_active_gauge{task_name=~\".+\"})",
+          "expr": "max by (task_name) (marathon_debug_persistence_operations_versions_duration_timer_seconds_p999{task_name=~\".+\"})",
           "format": "time_series",
-          "interval": "$min_interval",
           "intervalFactor": 1,
-          "legendFormat": "{{task_name}}",
+          "legendFormat": "{{task_name}} p999",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Thread count",
+      "title": "versions (ms)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -393,11 +366,7 @@
           "min": null,
           "show": true
         }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      ]
     },
     {
       "aliasColors": {},
@@ -412,7 +381,7 @@
         "x": 0,
         "y": 18
       },
-      "id": 4,
+      "id": 8,
       "legend": {
         "avg": false,
         "current": false,
@@ -436,24 +405,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max by (task_name) (marathon_http_requests_size_counter_bytes{task_name=~\".+\"}) / 1024 / 1024",
+          "expr": "max by (task_name) (marathon_debug_persistence_operations_ids_duration_timer_seconds_p999{task_name=~\".+\"})",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "read {{task_name}}",
+          "legendFormat": "{{task_name}} p999",
           "refId": "A"
-        },
-        {
-          "expr": "max by (task_name) (marathon_http_responses_size_counter_bytes{task_name=~\".+\"}) / 1024 / 1024",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "written {{task_name}}",
-          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP traffic (MB)",
+      "title": "ids (ms)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -484,232 +446,17 @@
           "min": null,
           "show": true
         }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 18
-      },
-      "id": 18,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "max by (task_name) (marathon_tasks_launched_counter{task_name=~\".+\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{task_name}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Launched tasks",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 27
-      },
-      "id": 2,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "max by (task_name) (marathon_uptime_gauge_seconds{task_name=~\".+\"}) / 60",
-          "format": "time_series",
-          "instant": false,
-          "intervalFactor": 1,
-          "legendFormat": "{{task_name}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Uptime (m)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      ]
     }
   ],
   "schemaVersion": 16,
   "style": "dark",
-  "tags": [
-    "marathon",
-    "detail",
-    "dc/os"
-  ],
+  "tags": [],
   "templating": {
-    "list": [
-      {
-        "auto": true,
-        "auto_count": 30,
-        "auto_min": "10s",
-        "current": {
-          "text": "10m",
-          "value": "10m"
-        },
-        "hide": 0,
-        "label": "Interval",
-        "name": "min_interval",
-        "options": [
-          {
-            "selected": false,
-            "text": "auto",
-            "value": "$__auto_interval_min_interval"
-          },
-          {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": true,
-            "text": "10m",
-            "value": "10m"
-          },
-          {
-            "selected": false,
-            "text": "30m",
-            "value": "30m"
-          }
-        ],
-        "query": "1m,10m,30m",
-        "refresh": 2,
-        "type": "interval"
-      }
-    ]
+    "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -738,7 +485,7 @@
     ]
   },
   "timezone": "",
-  "title": "Marathon Detail",
-  "uid": "VOkrFq1mk",
-  "version": 5
+  "title": "Marathon: ZK",
+  "uid": "wR1J-l7mz",
+  "version": 2
 }
