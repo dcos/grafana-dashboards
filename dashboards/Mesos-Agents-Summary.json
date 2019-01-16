@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1547665619726,
+  "iteration": 1547665619735,
   "links": [],
   "panels": [
     {
@@ -1103,14 +1103,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_executors_terminated{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_executors_terminated{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Terminated",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_executors_preempted{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_executors_preempted{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Preempted",
@@ -1120,7 +1120,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Terminal executors",
+      "title": "Terminal executors, rate over $rate window",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1209,28 +1209,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_tasks_staging{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_staging{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Staging",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_tasks_starting{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_starting{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Starting",
           "refId": "B"
         },
         {
-          "expr": "mesos_slave_tasks_running{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_running{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Running",
           "refId": "C"
         },
         {
-          "expr": "mesos_slave_tasks_killing{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_killing{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Killing",
@@ -1240,7 +1240,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Active tasks",
+      "title": "Active tasks, rate over $rate window",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1316,35 +1316,35 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_tasks_finished{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_finished{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Finished",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_tasks_failed{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_failed{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Failed",
           "refId": "B"
         },
         {
-          "expr": "mesos_slave_tasks_gone{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_gone{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Gone",
           "refId": "C"
         },
         {
-          "expr": "mesos_slave_tasks_killed{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_killed{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Killed",
           "refId": "D"
         },
         {
-          "expr": "mesos_slave_tasks_lost{host=~\"$host\"}",
+          "expr": "rate(mesos_slave_tasks_lost{host=~\"$host\"}[$rate])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Lost",
@@ -1354,7 +1354,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Terminal tasks",
+      "title": "Terminal tasks, rate over $rate window",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1422,6 +1422,89 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "auto": false,
+        "auto_count": 30,
+        "auto_min": "10s",
+        "current": {
+          "text": "1h",
+          "value": "1h"
+        },
+        "hide": 0,
+        "label": "Rate interval",
+        "name": "rate",
+        "options": [
+          {
+            "selected": false,
+            "text": "1s",
+            "value": "1s"
+          },
+          {
+            "selected": false,
+            "text": "5s",
+            "value": "5s"
+          },
+          {
+            "selected": false,
+            "text": "10s",
+            "value": "10s"
+          },
+          {
+            "selected": false,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "15m",
+            "value": "15m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": true,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "2h",
+            "value": "2h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          }
+        ],
+        "query": "1s,5s,10s,30s,1m,5m,15m,30m,1h,2h,6h,1d,7d",
+        "refresh": 2,
+        "skipUrlSync": false,
+        "type": "interval"
       }
     ]
   },
@@ -1457,5 +1540,5 @@
   "timezone": "",
   "title": "/Mesos-Agents-Summary",
   "uid": "b7b4c454b",
-  "version": 13
+  "version": 14
 }
