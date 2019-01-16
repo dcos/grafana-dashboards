@@ -642,7 +642,7 @@
       "30d"
     ]
   },
-  "timezone": "utc",
+  "timezone": "",
   "title": "/Mesos-Container-Details",
   "uid": "mpivSaYiz",
   "version": 60
