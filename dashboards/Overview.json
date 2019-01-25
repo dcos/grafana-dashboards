@@ -9,44 +9,6 @@
       "pluginName": "Prometheus"
     }
   ],
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "alertlist",
-      "name": "Alert List",
-      "version": "5.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "dashlist",
-      "name": "Dashboard list",
-      "version": "5.0.0"
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "5.0.1"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "5.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "singlestat",
-      "name": "Singlestat",
-      "version": "5.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "text",
-      "name": "Text",
-      "version": "5.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -63,135 +25,10 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1539648773344,
+  "id": 27,
+  "iteration": 1548397162679,
   "links": [],
   "panels": [
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 8,
-      "panels": [],
-      "title": "Components",
-      "type": "row"
-    },
-    {
-      "content": "# Admin Router Health\n\nplaceholder",
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 1
-      },
-      "id": 10,
-      "links": [],
-      "mode": "markdown",
-      "title": "",
-      "transparent": false,
-      "type": "text"
-    },
-    {
-      "content": "# DC/OS Checks\n\nplaceholder",
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 1
-      },
-      "id": 13,
-      "links": [],
-      "mode": "markdown",
-      "title": "DC/OS Checks",
-      "transparent": false,
-      "type": "text"
-    },
-    {
-      "content": "# Admin Router Health\n\nplaceholder",
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 8,
-        "y": 1
-      },
-      "id": 14,
-      "links": [],
-      "mode": "markdown",
-      "title": "Admin Router Health",
-      "transparent": false,
-      "type": "text"
-    },
-    {
-      "content": "# Admin Router Health\n\nplaceholder",
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 1
-      },
-      "id": 15,
-      "links": [],
-      "mode": "markdown",
-      "title": "Admin Router Health",
-      "transparent": false,
-      "type": "text"
-    },
-    {
-      "folderId": 0,
-      "gridPos": {
-        "h": 10,
-        "w": 8,
-        "x": 16,
-        "y": 1
-      },
-      "headings": true,
-      "id": 25,
-      "limit": 10,
-      "links": [],
-      "query": "",
-      "recent": false,
-      "search": true,
-      "starred": true,
-      "tags": [
-        "dc/os"
-      ],
-      "title": "DC/OS Dashboards",
-      "type": "dashlist"
-    },
-    {
-      "gridPos": {
-        "h": 6,
-        "w": 16,
-        "x": 0,
-        "y": 5
-      },
-      "id": 27,
-      "limit": 10,
-      "links": [],
-      "onlyAlertsOnDashboard": false,
-      "show": "current",
-      "sortOrder": 1,
-      "stateFilter": [],
-      "title": "DC/OS Alerts",
-      "type": "alertlist"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 11
-      },
-      "id": 6,
-      "panels": [],
-      "title": "Mesos & Marathon",
-      "type": "row"
-    },
     {
       "cacheTimeout": null,
       "colorBackground": false,
@@ -201,8 +38,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
+      "datasource": null,
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -213,22 +49,13 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 4,
+        "w": 3,
         "x": 0,
-        "y": 12
+        "y": 0
       },
-      "id": 19,
+      "id": 7,
       "interval": null,
-      "links": [
-        {
-          "dashUri": "db/marathon-summary",
-          "dashboard": "Marathon Summary",
-          "includeVars": true,
-          "keepTime": true,
-          "title": "Marathon Summary",
-          "type": "dashboard"
-        }
-      ],
+      "links": [],
       "mappingType": 1,
       "mappingTypes": [
         {
@@ -263,7 +90,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum (marathon_apps_active_gauge{task_name=~\".+\"})",
+          "expr": "count(system_uptime{job=\"master-metrics\",dcos_cluster_name=\"$clustername\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "",
@@ -271,9 +98,9 @@
         }
       ],
       "thresholds": "",
-      "title": "Active Marathon Apps",
+      "title": "Masters",
       "type": "singlestat",
-      "valueFontSize": "100%",
+      "valueFontSize": "80%",
       "valueMaps": [
         {
           "op": "=",
@@ -292,98 +119,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 1,
-      "format": "s",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 12
-      },
-      "id": 21,
-      "interval": null,
-      "links": [
-        {
-          "dashUri": "db/mesos-masters-summary",
-          "dashboard": "Mesos Masters Summary",
-          "title": "Mesos Masters Summary",
-          "type": "dashboard"
-        }
-      ],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "max (mesos_master_uptime_seconds)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Mesos Uptime",
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "title": "Mesos Uptime",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": null,
-      "description": "Can't render this in human readable, right now.",
+      "datasource": null,
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -394,20 +130,13 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
-        "x": 8,
-        "y": 12
+        "w": 3,
+        "x": 3,
+        "y": 0
       },
-      "id": 23,
+      "id": 8,
       "interval": null,
-      "links": [
-        {
-          "dashUri": "db/mesos-masters-summary",
-          "dashboard": "Mesos Masters Summary",
-          "title": "Mesos Masters Summary",
-          "type": "dashboard"
-        }
-      ],
+      "links": [],
       "mappingType": 1,
       "mappingTypes": [
         {
@@ -442,192 +171,532 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum (mesos_master_elected)",
+          "expr": "count(system_uptime{job=\"agent-metrics\",dcos_cluster_name=\"$clustername\"})",
           "format": "time_series",
-          "instant": true,
-          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A"
         }
       ],
       "thresholds": "",
-      "title": "Mesos Master Last Election (epoch ms)",
+      "title": "Agents",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
         {
           "op": "=",
-          "text": "No Data",
+          "text": "N/A",
           "value": "null"
         }
       ],
-      "valueName": "last_time"
+      "valueName": "avg"
     },
     {
-      "collapsed": true,
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
       "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 16
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 0
+      },
+      "id": 6,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(mesos_master_frameworks_connected{dcos_cluster_name=\"$clustername\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "title": "Frameworks",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 9,
+        "y": 0
+      },
+      "id": 5,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "count(count by(task_name) (cpus_limit{dcos_cluster_name=\"$clustername\"}))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "title": "Tasks",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 0
       },
       "id": 4,
-      "panels": [],
-      "title": "Frameworks",
-      "type": "row"
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "count(count by (container_id) (cpus_limit{dcos_cluster_name=\"$clustername\"}))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "title": "Containers",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
-      "collapsed": true,
+      "description": "",
+      "folderId": 0,
       "gridPos": {
-        "h": 1,
-        "w": 24,
+        "h": 17,
+        "w": 9,
+        "x": 15,
+        "y": 0
+      },
+      "headings": false,
+      "id": 2,
+      "limit": 100,
+      "links": [],
+      "query": "Summary",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [],
+      "title": "More Detail",
+      "type": "dashlist"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 7,
+        "w": 15,
         "x": 0,
-        "y": 17
+        "y": 4
+      },
+      "id": 10,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mesos_master_tasks_running{state=\"leader\",dcos_cluster_name=\"$clustername\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Running Tasks",
+          "refId": "A"
+        },
+        {
+          "expr": "delta(mesos_master_tasks_error{state=\"leader\",dcos_cluster_name=\"$clustername\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Errored Tasks",
+          "refId": "B"
+        },
+        {
+          "expr": "delta(mesos_master_tasks_killed{state=\"leader\",dcos_cluster_name=\"$clustername\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Killed Tasks",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Mesos Tasks",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 6,
+        "w": 15,
+        "x": 0,
+        "y": 11
       },
       "id": 12,
-      "panels": [],
-      "title": "Networking",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 18
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
       },
-      "id": 2,
-      "panels": [],
-      "title": "Nodes",
-      "type": "row"
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(mesos_slave_cpus_percent{dcos_cluster_name=\"$clustername\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "CPUs",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(mesos_slave_mem_percent{dcos_cluster_name=\"$clustername\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Memory",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(mesos_slave_disk_percent{dcos_cluster_name=\"$clustername\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Disk",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(mesos_slave_gpus_percent{dcos_cluster_name=\"$clustername\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "GPUs",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Allocated Resources",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "schemaVersion": 16,
   "style": "dark",
-  "tags": [
-    "overview",
-    "dc/os"
-  ],
+  "tags": [],
   "templating": {
     "list": [
       {
-        "auto": false,
-        "auto_count": 30,
-        "auto_min": "10s",
+        "allValue": null,
         "current": {
-          "text": "1m",
-          "value": "1m"
+          "text": "soak113s",
+          "value": "soak113s"
         },
+        "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
-        "label": "Health Check Interval",
-        "name": "health_check_interval",
+        "includeAll": true,
+        "label": "DC/OS Cluster",
+        "multi": false,
+        "name": "clustername",
         "options": [
           {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          {
             "selected": true,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
-            "text": "10m",
-            "value": "10m"
-          },
-          {
-            "selected": false,
-            "text": "30m",
-            "value": "30m"
-          },
-          {
-            "selected": false,
-            "text": "1h",
-            "value": "1h"
-          },
-          {
-            "selected": false,
-            "text": "6h",
-            "value": "6h"
+            "text": "soak113s",
+            "value": "soak113s"
           }
         ],
-        "query": "1m,10m,30m,1h,6h",
-        "refresh": 2,
-        "type": "interval"
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 0,
-        "includeAll": false,
-        "label": "DC/OS Cluster ID",
-        "multi": false,
-        "name": "cluster_id",
-        "options": [],
-        "query": "label_values(dcos_cluster_id)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 0,
-        "includeAll": false,
-        "label": "DC/OS Cluster Name",
-        "multi": false,
-        "name": "cluster_name",
-        "options": [],
         "query": "label_values(dcos_cluster_name)",
-        "refresh": 1,
+        "refresh": 0,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Host",
-        "multi": true,
-        "name": "host",
-        "options": [],
-        "query": "label_values(host)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Host",
-        "multi": true,
-        "name": "job",
-        "options": [],
-        "query": "label_values(job)",
-        "refresh": 1,
-        "regex": "",
-        "sort": 1,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -666,7 +735,7 @@
     ]
   },
   "timezone": "",
-  "title": "Overview",
+  "title": "DC/OS Overview",
   "uid": "ACo4Hq1ik",
-  "version": 27
+  "version": 28
 }
