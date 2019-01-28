@@ -501,7 +501,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Running Tasks",
+      "title": "Running Workload",
       "tooltip": {
         "shared": true,
         "sort": 0,
