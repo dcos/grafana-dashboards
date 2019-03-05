@@ -406,14 +406,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_allocator_offer_filters_roles_active{role=\"dcos-storage\"}",
+          "expr": "mesos_allocator_offer_filters_roles_active{role_name=\"dcos-storage\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "dcos-storage",
           "refId": "A"
         },
         {
-          "expr": "mesos_allocator_offer_filters_roles_active{role=\"dcos-storage/claimed\"}",
+          "expr": "mesos_allocator_offer_filters_roles_active{role_name=\"dcos-storage/claimed\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "dcos-storage/claimed",
@@ -1546,5 +1546,5 @@
   "timezone": "",
   "title": "/Storage-Details",
   "uid": "dyt4PxLmk",
-  "version": 5
+  "version": 2
 }

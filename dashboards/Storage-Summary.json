@@ -537,7 +537,7 @@
       }
     },
     {
-      "content": "This metric measures the storage service's usage of resources when performing storage operations. Resources to run the storage service itself are not included here.\n\nThe metric should be zero during normal operation, but migtht become non-zero when storage operations are performed.\n\nIf this metric becomes larger than zero for long durations of time, the storage service might not be able to perform storage operations quickly anymore, and might need to be restarted, also see the offer rate metric.",
+      "content": "This metric measures the storage service's usage of resources when performing storage operations. Resources to run the storage service itself are not included here.\n\nThe metric should be zero during normal operation, but migtht become non-zero when storage operations are performed.\n\nIf this metric becomes larger than zero for long durations of time, the storage service might not be able to perform storage operations quickly anymore, and might need to be restarted, also see the offer event metric.",
       "gridPos": {
         "h": 5,
         "w": 12,
