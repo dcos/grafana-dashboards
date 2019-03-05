@@ -624,14 +624,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"mem\"})",
+          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"disk\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Total",
           "refId": "A"
         },
         {
-          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\".*\", resource=\"mem\"}",
+          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\".*\", resource=\"disk\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{role_name}}",
