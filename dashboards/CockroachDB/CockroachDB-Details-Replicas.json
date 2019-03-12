@@ -1852,7 +1852,7 @@
     ]
   },
   "timezone": "utc",
-  "title": "CockroachDB Details Replicas",
+  "title": "CockroachDB: Details Replicas",
   "uid": "000000005",
   "version": 2
 }

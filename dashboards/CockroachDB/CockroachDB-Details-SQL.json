@@ -1285,7 +1285,7 @@
     ]
   },
   "timezone": "utc",
-  "title": "CockroachDB Details SQL",
+  "title": "CockroachDB: Details SQL",
   "uid": "000000004",
   "version": 3
 }

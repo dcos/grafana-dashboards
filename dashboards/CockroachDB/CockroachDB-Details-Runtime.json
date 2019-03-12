@@ -2006,7 +2006,7 @@
     ]
   },
   "timezone": "utc",
-  "title": "CockroachDB Details Runtime",
+  "title": "CockroachDB: Details Runtime",
   "uid": "000000001",
   "version": 6
 }
