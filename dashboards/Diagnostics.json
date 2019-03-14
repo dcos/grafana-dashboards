@@ -115,6 +115,105 @@
       "mode": "markdown",
       "title": "Average bundle creation time",
       "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 16,
+        "w": 16,
+        "x": 0,
+        "y": 4
+      },
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(fetch_endpoint_time_seconds_bucket[5m])) by (le, path))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Endpoints response time (s)",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "This graph shows the response times of all the endpoints called when creating a bundle.",
+      "gridPos": {
+        "h": 16,
+        "w": 8,
+        "x": 16,
+        "y": 4
+      },
+      "id": 8,
+      "links": [],
+      "mode": "markdown",
+      "title": "Endpoints response time (s)",
+      "type": "text"
     }
   ],
   "refresh": false,
@@ -128,8 +227,8 @@
     "list": []
   },
   "time": {
-    "from": "2019-03-14T12:07:32.620Z",
-    "to": "2019-03-14T12:15:25.432Z"
+    "from": "now-24h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -159,5 +258,5 @@
   "timezone": "",
   "title": "Diagnostics: Summary",
   "uid": "ECa21R3ik",
-  "version": 2
+  "version": 3
 }
