@@ -123,12 +123,12 @@
           "refId": "B"
         },
         {
-          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"cpus\"})",
+          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"cpus\"}",
           "format": "time_series",
           "instant": false,
           "interval": "5m",
           "intervalFactor": 1,
-          "legendFormat": "Quota",
+          "legendFormat": "Quota ($role)",
           "refId": "C"
         }
       ],
@@ -239,10 +239,10 @@
           "refId": "B"
         },
         {
-          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"mem\"})",
+          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"mem\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Quota",
+          "legendFormat": "Quota ($role)",
           "refId": "C"
         }
       ],
@@ -339,10 +339,10 @@
           "refId": "B"
         },
         {
-          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"disk\"})",
+          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"disk\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Quota",
+          "legendFormat": "Quota ($role)",
           "refId": "C"
         }
       ],
@@ -445,10 +445,10 @@
           "refId": "A"
         },
         {
-          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\".*\", resource=\"cpus\"}",
+          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"cpus\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{role_name}}",
+          "legendFormat": "$role",
           "refId": "B"
         }
       ],
@@ -538,10 +538,10 @@
           "refId": "A"
         },
         {
-          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\".*\", resource=\"mem\"}",
+          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"mem\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{role_name}}",
+          "legendFormat": "$role",
           "refId": "B"
         }
       ],
@@ -631,10 +631,10 @@
           "refId": "A"
         },
         {
-          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\".*\", resource=\"disk\"}",
+          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"disk\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{role_name}}",
+          "legendFormat": "$role",
           "refId": "B"
         }
       ],
@@ -690,7 +690,34 @@
     "resources"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": "",
+          "value": ""
+        },
+        "datasource": "${DS_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Role",
+        "multi": false,
+        "name": "role",
+        "options": [],
+        "query": "label_values(mesos_allocator_quota_roles_resources_guarantee, role_name)",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-11h",
