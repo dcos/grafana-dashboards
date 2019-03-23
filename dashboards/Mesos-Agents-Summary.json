@@ -434,6 +434,191 @@
         "x": 0,
         "y": 10
       },
+      "id": 47,
+      "panels": [],
+      "title": "Mesos agent process",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 11
+      },
+      "id": 43,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "procstat_cpu_usage{process_name=\"mesos-agent\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{process_name}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CPU usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 45,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "procstat_memory_rss{process_name=\"mesos-agent\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{process_name}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Memory usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
       "id": 29,
       "panels": [],
       "title": "Resources Summary",
@@ -450,7 +635,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 21
       },
       "id": 37,
       "legend": {
@@ -552,7 +737,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 28
       },
       "id": 20,
       "panels": [],
@@ -570,7 +755,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 19
+        "y": 29
       },
       "id": 6,
       "legend": {
@@ -668,7 +853,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 29
       },
       "id": 12,
       "legend": {
@@ -766,7 +951,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 38
       },
       "id": 13,
       "legend": {
@@ -864,7 +1049,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 38
       },
       "id": 14,
       "legend": {
@@ -957,7 +1142,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 47
       },
       "id": 22,
       "panels": [],
@@ -975,7 +1160,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 38
+        "y": 48
       },
       "id": 34,
       "legend": {
@@ -1075,7 +1260,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 38
+        "y": 48
       },
       "id": 35,
       "legend": {
@@ -1163,7 +1348,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 57
       },
       "id": 24,
       "panels": [],
@@ -1181,7 +1366,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 48
+        "y": 58
       },
       "id": 32,
       "legend": {
@@ -1288,7 +1473,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 48
+        "y": 58
       },
       "id": 33,
       "legend": {
