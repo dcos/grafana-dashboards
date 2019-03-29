@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553856175026,
+  "iteration": 1553873014443,
   "links": [
     {
       "icon": "external link",
@@ -119,19 +119,6 @@
   ],
   "panels": [
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 32,
-      "panels": [],
-      "title": "Server",
-      "type": "row"
-    },
-    {
       "aliasColors": {},
       "bars": true,
       "dashLength": 10,
@@ -145,7 +132,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "id": 18,
       "legend": {
@@ -193,7 +180,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Throughput: $node",
+      "title": "Nginx Throughput: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -212,7 +199,7 @@
         {
           "decimals": 2,
           "format": "none",
-          "label": "Rate per second",
+          "label": "Requests/s",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -255,7 +242,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 1
+        "y": 0
       },
       "hideTimeOverride": false,
       "id": 46,
@@ -298,6 +285,187 @@
       "type": "table"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 32,
+      "panels": [],
+      "title": "Server",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "editable": true,
+      "error": false,
+      "fill": 4,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 16,
+        "x": 0,
+        "y": 8
+      },
+      "id": 50,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 2,
+      "links": [
+        {
+          "dashboard": "Admin Router Details Server Status",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "Admin Router Details Server Status",
+          "type": "dashboard",
+          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+        }
+      ],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 2,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Server Throughput: $node",
+      "tooltip": {
+        "msResolution": true,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 2,
+          "format": "none",
+          "label": "Requests/s",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "ms",
+          "label": "Latency",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        },
+        {
+          "text": "Avg",
+          "value": "avg"
+        },
+        {
+          "text": "Max",
+          "value": "max"
+        }
+      ],
+      "datasource": "${DS_PROMETHEUS}",
+      "editable": true,
+      "error": false,
+      "fontSize": "90%",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 8
+      },
+      "hideTimeOverride": false,
+      "id": 51,
+      "links": [],
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": null,
+        "desc": false
+      },
+      "styles": [
+        {
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "decimals": 2,
+          "pattern": ".*",
+          "thresholds": [],
+          "type": "number",
+          "unit": "reqps"
+        }
+      ],
+      "targets": [
+        {
+          "expr": "sum(rate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "{{host}}",
+          "refId": "A",
+          "step": 240
+        }
+      ],
+      "title": "Throughput: $node",
+      "transform": "timeseries_aggregations",
+      "type": "table"
+    },
+    {
       "aliasColors": {
         "1xx": "rgb(255, 0, 255)",
         "2xx": "rgb(0, 255, 0)",
@@ -319,18 +487,18 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 8
+        "y": 15
       },
       "id": 47,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "hideEmpty": false,
         "hideZero": false,
         "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "sideWidth": null,
         "sort": "max",
@@ -392,7 +560,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Error Rate (sum): $node",
+      "title": "Server HTTP Error Rate (sum): $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -454,7 +622,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 8
+        "y": 15
       },
       "hideTimeOverride": false,
       "id": 48,
@@ -502,7 +670,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 22
       },
       "id": 36,
       "panels": [],
@@ -524,7 +692,7 @@
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 23
       },
       "id": 22,
       "legend": {
@@ -537,7 +705,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sideWidth": null,
+        "sideWidth": 270,
         "sort": "max",
         "sortDesc": true,
         "total": false,
@@ -575,7 +743,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(nginx_upstream_backend_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)",
+          "expr": "sum(irate(nginx_upstream_backend_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{upstream}}",
@@ -586,7 +754,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Throughput: $node",
+      "title": "Upstream Throughput: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -648,7 +816,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 35
       },
       "id": 49,
       "legend": {
@@ -661,7 +829,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sideWidth": null,
+        "sideWidth": 270,
         "sort": "max",
         "sortDesc": true,
         "total": false,
@@ -720,7 +888,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Error Rate (sum): $node",
+      "title": "Upstream HTTP Error Rate (sum): $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -889,5 +1057,5 @@
   "timezone": "",
   "title": "Admin Router: Details Traffic",
   "uid": "adminrouter-details-traffic",
-  "version": 3
+  "version": 6
 }

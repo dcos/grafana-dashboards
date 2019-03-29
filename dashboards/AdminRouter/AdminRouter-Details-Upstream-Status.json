@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553857586926,
+  "iteration": 1553873683825,
   "links": [
     {
       "icon": "external link",
@@ -217,7 +217,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Throughput: $node",
+      "title": "Upstream Throughput: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -364,7 +364,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Status: $node",
+      "title": "Upstream HTTP Status: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,

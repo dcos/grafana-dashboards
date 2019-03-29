@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553856750859,
+  "iteration": 1553873597715,
   "links": [
     {
       "icon": "external link",
@@ -217,7 +217,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Throughput: $node",
+      "title": "Server Throughput: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -358,7 +358,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Status: $node",
+      "title": "Server HTTP Status: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -570,5 +570,5 @@
   "timezone": "",
   "title": "Admin Router: Details Server Status",
   "uid": "adminrouter-details-server-status",
-  "version": 5
+  "version": 3
 }

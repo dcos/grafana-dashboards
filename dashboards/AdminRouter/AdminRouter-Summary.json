@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553857244390,
+  "iteration": 1553871437837,
   "links": [
     {
       "icon": "external link",
@@ -210,7 +210,7 @@
         {
           "decimals": 0,
           "format": "short",
-          "label": "",
+          "label": "Count",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -335,7 +335,7 @@
         {
           "decimals": null,
           "format": "s",
-          "label": "",
+          "label": "log Time",
           "logBase": 10,
           "max": null,
           "min": null,
@@ -356,7 +356,7 @@
       }
     },
     {
-      "content": "Admin Router uptime on a logarithmic scale.",
+      "content": "Admin Router uptime on a logarithmic scale. This graph is best for detecting Admin Router restarts.",
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -449,7 +449,7 @@
       "yaxes": [
         {
           "format": "none",
-          "label": "",
+          "label": "Count",
           "logBase": 1,
           "max": "1024",
           "min": "0",
@@ -562,7 +562,7 @@
       },
       "yaxes": [
         {
-          "decimals": null,
+          "decimals": 2,
           "format": "none",
           "label": "Requests/s",
           "logBase": 1,
@@ -585,7 +585,7 @@
       }
     },
     {
-      "content": "Stacked Admin Router throughput measured in requests per second.",
+      "content": "Nginx throughput measured in requests per second. This is the total request rate towards each Admin Router instance. This includes request handled by each configured server directly plus requests that went to an upstream.",
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -604,7 +604,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "decimals": 2,
       "editable": true,
       "error": false,
       "fill": 4,
@@ -614,6 +613,124 @@
         "w": 16,
         "x": 0,
         "y": 28
+      },
+      "id": 37,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 2,
+      "links": [
+        {
+          "dashboard": "Admin Router Details Server Status",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "Admin Router Details Server Status",
+          "type": "dashboard",
+          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+        }
+      ],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 2,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Server Throughput: $node",
+      "tooltip": {
+        "msResolution": true,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 2,
+          "format": "none",
+          "label": "Requests/s",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "ms",
+          "label": "Latency",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "Server throughput measured in requests per second. This is concerned with requests that are served by Admin Router itself, not going to any of the upstreams found in the upstream tab.",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 28
+      },
+      "id": 38,
+      "links": [],
+      "mode": "markdown",
+      "title": "Admin Router Server Throughput",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 2,
+      "editable": true,
+      "error": false,
+      "fill": 4,
+      "grid": {},
+      "gridPos": {
+        "h": 10,
+        "w": 16,
+        "x": 0,
+        "y": 35
       },
       "id": 36,
       "legend": {
@@ -626,7 +743,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sideWidth": null,
+        "sideWidth": 270,
         "sort": "max",
         "sortDesc": true,
         "total": false,
@@ -694,7 +811,7 @@
         {
           "decimals": 2,
           "format": "none",
-          "label": "Rate per second",
+          "label": "Requests/s",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -718,10 +835,10 @@
     {
       "content": "Stacked upstream throughput measured as requests per second going to each upstream server aggregated over all master nodes. This graph helps to identify upstreams that are particularly active.",
       "gridPos": {
-        "h": 7,
+        "h": 10,
         "w": 8,
         "x": 16,
-        "y": 28
+        "y": 35
       },
       "id": 20,
       "links": [],
@@ -858,5 +975,5 @@
   "timezone": "",
   "title": "Admin Router: Summary",
   "uid": "adminrouter-summary",
-  "version": 10
+  "version": 14
 }

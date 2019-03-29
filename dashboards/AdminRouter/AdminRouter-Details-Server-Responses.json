@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553856498079,
+  "iteration": 1553873133387,
   "links": [
     {
       "icon": "external link",
@@ -166,7 +166,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sideWidth": null,
+        "sideWidth": 120,
         "sort": null,
         "sortDesc": null,
         "total": false,
@@ -232,7 +232,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Status: $node",
+      "title": "Server HTTP Status: $node - $server",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -363,7 +363,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Responses: $node - Server $server",
+      "title": "Server HTTP Responses: $node - $server",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -740,5 +740,5 @@
   "timezone": "",
   "title": "Admin Router: Details Server Responses",
   "uid": "adminrouter-details-server-responses",
-  "version": 3
+  "version": 4
 }

@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553857385391,
+  "iteration": 1553873336682,
   "links": [
     {
       "icon": "external link",
@@ -225,18 +225,12 @@
           "intervalFactor": 1,
           "legendFormat": "2xx",
           "refId": "E"
-        },
-        {
-          "expr": "sum(irate(nginx_upstream_status_requests_total{upstream=~\"$upstream\",status=~\"1.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) / sum(rate(nginx_upstream_backend_requests_total{upstream=~\"$upstream\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Status: $node - Upstream $upstream ($backend)",
+      "title": "Upstream HTTP Status: $node - $upstream ($backend)",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -367,7 +361,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Responses: $node - Upstream $upstream ($backend)",
+      "title": "Upstream HTTP Responses: $node - $upstream ($backend)",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -766,5 +760,5 @@
   "timezone": "",
   "title": "Admin Router: Details Upstream Responses",
   "uid": "adminrouter-details-upstream-responses",
-  "version": 3
+  "version": 4
 }
