@@ -450,6 +450,13 @@
           "intervalFactor": 1,
           "legendFormat": "$role",
           "refId": "B"
+        },
+        {
+          "expr": "mesos_allocator_quota_roles_resources_offered_or_allocated{role_name=~\"$role\", resource=\"cpus\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Offered or allocated",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -543,6 +550,13 @@
           "intervalFactor": 1,
           "legendFormat": "$role",
           "refId": "B"
+        },
+        {
+          "expr": "mesos_allocator_quota_roles_resources_offered_or_allocated{role_name=~\"$role\", resource=\"mem\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Offered or allocated",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -636,6 +650,13 @@
           "intervalFactor": 1,
           "legendFormat": "$role",
           "refId": "B"
+        },
+        {
+          "expr": "mesos_allocator_quota_roles_resources_offered_or_allocated{role_name=~\"$role\", resource=\"disk\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Offered or allocated",
+          "refId": "C"
         }
       ],
       "thresholds": [],
