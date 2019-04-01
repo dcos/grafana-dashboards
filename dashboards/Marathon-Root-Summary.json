@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 60,
-  "iteration": 1554113706490,
+  "iteration": 1554139865159,
   "links": [],
   "panels": [
     {
@@ -29,7 +29,7 @@
       },
       "id": 8,
       "panels": [],
-      "title": "Core Marathon Metrics",
+      "title": "Core Metrics",
       "type": "row"
     },
     {
@@ -749,21 +749,8 @@
       "type": "text"
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 64
-      },
-      "id": 20,
-      "panels": [],
-      "title": "Marathon Mesos Metrics",
-      "type": "row"
-    },
-    {
       "aliasColors": {},
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
@@ -772,9 +759,9 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 65
+        "y": 64
       },
-      "id": 21,
+      "id": 39,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -788,7 +775,7 @@
         "total": false,
         "values": true
       },
-      "lines": false,
+      "lines": true,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
@@ -802,10 +789,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "increase(marathon_mesos_offers_declined_counter{job=\"master-metrics\"}[$min_interval])",
+          "expr": "max by (host) (marathon_leadership_duration_gauge_seconds{job=\"master-metrics\"})",
           "format": "time_series",
           "hide": false,
-          "interval": "$min_interval",
           "intervalFactor": 1,
           "legendFormat": "{{host}}",
           "refId": "A"
@@ -814,7 +800,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Declined mesos offers",
+      "title": "Marathon leadership duration",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -831,7 +817,7 @@
       "yaxes": [
         {
           "decimals": null,
-          "format": "short",
+          "format": "dtdurations",
           "label": "",
           "logBase": 1,
           "max": null,
@@ -853,15 +839,15 @@
       }
     },
     {
-      "content": "# Mesos offers metrics\n\n### Declined offers\nOffers that were declined by Marathon. If that value is high than \n\n### Incoming offers\nOffers that marathon received from Mesos. If this value is low, then Marathon is starving unless a `supress` call was issued.\n\n### Supress calls\nIf Marathon issues a `supress` call, Mesos won't send any offers.\n\n### Revive calls\nIf Marathon issues a `Revive` call, Mesos will start sending offers.\n\n\n\n",
+      "content": "# Leardship duration of Marathon masters\n\n### What does it mean\nThis metrics shows how long a given Marathon master stayed leader.\n\n### Expected behavior\nThis value should be linearly increasing over time. If a leader is being relected frequently (short leadership duration) then can be a sign of Marathon instability.\n\n\n",
       "description": "",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 65
+        "y": 64
       },
-      "id": 22,
+      "id": 40,
       "links": [],
       "mode": "markdown",
       "title": "",
@@ -869,358 +855,479 @@
       "type": "text"
     },
     {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
+      "collapsed": true,
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 1,
+        "w": 24,
         "x": 0,
-        "y": 74
+        "y": 73
       },
-      "id": 23,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": true,
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
+      "id": 20,
+      "panels": [
         {
-          "expr": "increase(marathon_mesos_offers_incoming_counter{job=\"master-metrics\"}[$min_interval])",
-          "format": "time_series",
-          "hide": false,
-          "interval": "$min_interval",
-          "intervalFactor": 1,
-          "legendFormat": "{{host}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Incoming Mesos offers",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 3
+          },
+          "id": 21,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "increase(marathon_mesos_offers_declined_counter{job=\"master-metrics\"}[$min_interval])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "$min_interval",
+              "intervalFactor": 1,
+              "legendFormat": "{{host}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Declined mesos offers",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
         },
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 74
-      },
-      "id": 24,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": true,
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "increase(marathon_mesos_offers_used_counter{job=\"master-metrics\"}[$min_interval])",
-          "format": "time_series",
-          "hide": false,
-          "interval": "$min_interval",
-          "intervalFactor": 1,
-          "legendFormat": "{{host}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Used Mesos offers",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
+          "content": "# Mesos offers metrics\n\n### Declined offers\nOffers that were declined by Marathon. If that value is high than \n\n### Incoming offers\nOffers that marathon received from Mesos. If this value is low, then Marathon is starving unless a `supress` call was issued.\n\n### Supress calls\nIf Marathon issues a `supress` call, Mesos won't send any offers.\n\n### Revive calls\nIf Marathon issues a `Revive` call, Mesos will start sending offers.\n\n\n\n",
+          "description": "",
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 3
+          },
+          "id": 22,
+          "links": [],
+          "mode": "markdown",
+          "title": "",
+          "transparent": true,
+          "type": "text"
         },
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 83
-      },
-      "id": 26,
-      "interval": "",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "increase(marathon_mesos_calls_revive_counter{job=\"master-metrics\"}[$min_interval])",
-          "format": "time_series",
-          "interval": "$min_interval",
-          "intervalFactor": 1,
-          "legendFormat": "{{host}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Revive calls by root Marathon ($min_interval)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 12
+          },
+          "id": 23,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "increase(marathon_mesos_offers_incoming_counter{job=\"master-metrics\"}[$min_interval])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "$min_interval",
+              "intervalFactor": 1,
+              "legendFormat": "{{host}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Incoming Mesos offers",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
         },
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 83
-      },
-      "id": 27,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": true,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "increase(marathon_mesos_calls_suppress_counter{job=\"master-metrics\"}[$min_interval])",
-          "format": "time_series",
-          "interval": "$min_interval",
-          "intervalFactor": 1,
-          "legendFormat": "{{host}} ({{instance}})",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Supress Mesos calls issued by root Marathon",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 12
+          },
+          "id": 24,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "increase(marathon_mesos_offers_used_counter{job=\"master-metrics\"}[$min_interval])",
+              "format": "time_series",
+              "hide": false,
+              "interval": "$min_interval",
+              "intervalFactor": 1,
+              "legendFormat": "{{host}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Used Mesos offers",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
         },
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 21
+          },
+          "id": 26,
+          "interval": "",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "increase(marathon_mesos_calls_revive_counter{job=\"master-metrics\"}[$min_interval])",
+              "format": "time_series",
+              "interval": "$min_interval",
+              "intervalFactor": 1,
+              "legendFormat": "{{host}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Revive calls by root Marathon ($min_interval)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": true,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 21
+          },
+          "id": 27,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": false,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "increase(marathon_mesos_calls_suppress_counter{job=\"master-metrics\"}[$min_interval])",
+              "format": "time_series",
+              "interval": "$min_interval",
+              "intervalFactor": 1,
+              "legendFormat": "{{host}} ({{instance}})",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Supress Mesos calls issued by root Marathon",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
         }
       ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "title": "Mesos Related Metrics",
+      "type": "row"
     },
     {
       "collapsed": false,
@@ -1228,11 +1335,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 92
+        "y": 74
       },
       "id": 29,
       "panels": [],
-      "title": "Marathon HTTP",
+      "title": "HTTP Traffic",
       "type": "row"
     },
     {
@@ -1246,7 +1353,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 93
+        "y": 75
       },
       "id": 31,
       "legend": {
@@ -1321,12 +1428,12 @@
       }
     },
     {
-      "content": "## Response latency\n\nThis metric shows 95 percentile response latency. High numbers mean that marathon is experiencing quite some load.\n\n## HTTP response 2xx rates\n\nThis metric shows the rate of requests with resulted in status 200-299.\n\n## HTTP response 5xx rates\n\nThis metric shows the rate of requests with resulted in status 500-599. A small amount of such responses are expected in some situations, such as leader re-election.\n",
+      "content": "# Marathon HTTP Metrics\n\n## Response latency\n\nThis metric shows 95 percentile response latency. High numbers mean that marathon is experiencing quite some load.\n\n## HTTP response 2xx rates\n\nThis metric shows the rate of requests with resulted in status 200-299.\n\n## HTTP response 5xx rates\n\nThis metric shows the rate of requests with resulted in status 500-599. A small amount of such responses are expected in some situations, such as leader re-election.\n\n## HTTP request/responses size\n\nThese metrics show the size of Marathon requests/responses. Too high values can lead to Marathon being overloaded with data serialization.",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 93
+        "y": 75
       },
       "id": 34,
       "links": [],
@@ -1346,7 +1453,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 102
+        "y": 84
       },
       "id": 36,
       "legend": {
@@ -1432,7 +1539,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 102
+        "y": 84
       },
       "id": 32,
       "legend": {
@@ -1506,8 +1613,553 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 93
+      },
+      "id": 37,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "increase(marathon_http_requests_size_counter_bytes{job=\"master-metrics\"}[$min_interval])",
+          "format": "time_series",
+          "hide": false,
+          "interval": "$min_interval",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "HTTP request size rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 93
+      },
+      "id": 38,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "increase(marathon_http_responses_size_counter_bytes{job=\"master-metrics\"}[$min_interval])",
+          "format": "time_series",
+          "hide": false,
+          "interval": "$min_interval",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "HTTP response size rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 102
+      },
+      "id": 47,
+      "panels": [],
+      "title": "JVM Metrics",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 103
+      },
+      "id": 42,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "marathon_jvm_memory_heap_used_gauge_bytes{job=\"master-metrics\"}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "$min_interval",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Marathon heap usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "# Marathon JVM Metrics\n\n## Active Thread Count\n\nThis metric total number of active (and runnable) threads used by Marathon. A sudden change in number of threads can be an indication of a problem.\n\n## Waiting Thread Count\n\nThis metric total number of waiting (and timed waiting) threads used by Marathon. A sudden change in number of threads can be an indication of a problem.\n\n## Heap Usage\n\nThis metric shows Marathons heap usage. An overall growing pattern where more and more heap is being used can be an indication of a problem.\n\n## Total Memory Usage\n\nThis metric shows total Marathons memory usage. An overall growing pattern where more and more heap is being used can be an indication of a problem.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 103
+      },
+      "id": 41,
+      "links": [],
+      "mode": "markdown",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 112
+      },
+      "id": 43,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "marathon_jvm_memory_total_used_gauge_bytes{job=\"master-metrics\"}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "$min_interval",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Marathon total memory usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decbytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 112
+      },
+      "id": 44,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "marathon_jvm_threads_active_gauge{job=\"master-metrics\"} + marathon_jvm_threads_runnable_gauge{job=\"master-metrics\"}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "$min_interval",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Marathon active and runnable threads count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 121
+      },
+      "id": 45,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "marathon_jvm_threads_waiting_gauge{job=\"master-metrics\"} + marathon_jvm_threads_timed_waiting_gauge{job=\"master-metrics\"}",
+          "format": "time_series",
+          "hide": false,
+          "interval": "$min_interval",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Marathon waiting and timed waiting threads count",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
+  "refresh": false,
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -1564,7 +2216,7 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1595,5 +2247,5 @@
   "timezone": "",
   "title": "Marathon Root Summary",
   "uid": "6RQwfLqmz",
-  "version": 71
+  "version": 90
 }
