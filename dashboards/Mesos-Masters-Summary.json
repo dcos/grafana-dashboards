@@ -50,80 +50,124 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
   "id": null,
   "iteration": 1543441157459,
   "links": [],
   "panels": [
     {
-      "columns": [],
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 30,
+      "panels": [],
+      "title": "Basic",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "fontSize": "100%",
+      "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 1
       },
-      "id": 16,
+      "id": 22,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
       "links": [],
-      "pageSize": null,
-      "scroll": false,
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
-      },
-      "styles": [
-        {
-          "alias": "Time",
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "pattern": "Time",
-          "type": "hidden"
-        },
-        {
-          "alias": "Uptime",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 1,
-          "pattern": "Value",
-          "thresholds": [],
-          "type": "number",
-          "unit": "dtdurations"
-        },
-        {
-          "alias": "",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "decimals": 2,
-          "pattern": "/.*/",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
           "expr": "max(mesos_master_uptime_secs) by (instance)",
-          "format": "table",
-          "instant": true,
+          "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
-      "title": "Mesos Masters Uptime",
-      "transform": "table",
-      "type": "table"
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Master Uptime",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "dthms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "Shows the time in seconds since the last restart of the Mesos masters.\n\nThis metric should always increase. If the metric drops to zero, the master has restarted and a reelection might be observed afterwards.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 32,
+      "links": [],
+      "mode": "markdown",
+      "title": "Mesos Master Uptime",
+      "type": "text"
     },
     {
       "aliasColors": {},
@@ -136,8 +180,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 0
+        "x": 0,
+        "y": 10
       },
       "id": 4,
       "legend": {
@@ -152,7 +196,7 @@
         "values": true
       },
       "lines": true,
-      "linewidth": 10,
+      "linewidth": 2,
       "links": [],
       "nullPointMode": "null as zero",
       "percentage": false,
@@ -167,7 +211,7 @@
         {
           "expr": "mesos_master_elected",
           "format": "time_series",
-          "interval": "$min_interval",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -176,7 +220,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Mesos Master Election",
+      "title": "Leader Election",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -193,6 +237,7 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -215,112 +260,31 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
+      "content": "Whether a master is elected leader.\n\nTODO(tillt): Add expectation and interpretation hints.",
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 0,
-        "y": 9
+        "x": 12,
+        "y": 10
       },
-      "id": 6,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
+      "id": 33,
       "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(mesos_master_tasks_staging)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Staging",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_starting)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Starting",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_running)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Running",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_unreachable)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Unreachable",
-          "refId": "D"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Active tasks",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
+      "mode": "markdown",
+      "title": "Mesos Master Leader Election",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
       },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "id": 24,
+      "panels": [],
+      "title": "Mesos Master Process",
+      "type": "row"
     },
     {
       "aliasColors": {},
@@ -332,10 +296,10 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 9
+        "x": 0,
+        "y": 20
       },
-      "id": 10,
+      "id": 18,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -361,80 +325,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_master_tasks_finished)",
+          "expr": "procstat_cpu_usage{process_name=\"mesos-master\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Finished",
+          "legendFormat": "{{process_name}}",
           "refId": "A"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_failed)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Failed",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_gone)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Gone",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_gone_by_operator)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Gone by operator",
-          "refId": "D"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_dropped)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Dropped",
-          "refId": "E"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_killing)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Killing",
-          "refId": "F"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_killed)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Killed",
-          "refId": "G"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_lost)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Lost",
-          "refId": "H"
-        },
-        {
-          "expr": "sum(mesos_master_tasks_error)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Error",
-          "refId": "I"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Terminal tasks",
+      "title": "CPU Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -445,11 +352,11 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "percent",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
@@ -465,6 +372,20 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "content": "The percentage of time that the process is active in any capacity.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "id": 34,
+      "links": [],
+      "mode": "markdown",
+      "title": "Used Percent of Total CPUs",
+      "type": "text"
     },
     {
       "aliasColors": {},
@@ -477,97 +398,12 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 29
       },
-      "id": 8,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(mesos_master_frameworks_active)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "frameworks",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Number of frameworks",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 18
-      },
-      "id": 12,
+      "id": 20,
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": true,
         "max": true,
         "min": false,
@@ -590,51 +426,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_master_slaves_connected)",
+          "expr": "procstat_memory_rss{process_name=\"mesos-master\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Connected",
+          "legendFormat": "{{process_name}}",
           "refId": "A"
-        },
-        {
-          "expr": "sum(mesos_master_slaves_disconnected)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Disconnected",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(mesos_master_slaves_active)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Active",
-          "refId": "C"
-        },
-        {
-          "expr": "sum(mesos_master_slaves_inactive)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Inactive",
-          "refId": "D"
-        },
-        {
-          "expr": "sum(mesos_master_slaves_unreachable)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Unreachable",
-          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Number of agents",
+      "title": "Memory (RSS) Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -667,6 +475,20 @@
       }
     },
     {
+      "content": "The amount of real memory (resident set) that the process is using.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 29
+      },
+      "id": 35,
+      "links": [],
+      "mode": "markdown",
+      "title": "Memory (RSS) Usage",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -677,7 +499,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 38
       },
       "id": 14,
       "legend": {
@@ -727,7 +549,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Queue length",
+      "title": "Queue Length",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -766,19 +588,47 @@
       }
     },
     {
+      "content": "Number of dispatches in the event queue.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 38
+      },
+      "id": 36,
+      "links": [],
+      "mode": "markdown",
+      "title": "Queue Length",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      },
+      "id": 28,
+      "panels": [],
+      "title": "Tasks",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
       "fill": 1,
       "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 27
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 48
       },
-      "id": 18,
+      "id": 6,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -804,23 +654,45 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "procstat_cpu_usage{process_name=\"mesos-master\"}",
+          "expr": "mesos_master_tasks_staging{state=\"leader\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{process_name}}",
+          "legendFormat": "Staging",
           "refId": "A"
+        },
+        {
+          "expr": "mesos_master_tasks_starting{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Starting",
+          "refId": "B"
+        },
+        {
+          "expr": "mesos_master_tasks_running{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Running",
+          "refId": "C"
+        },
+        {
+          "expr": "mesos_master_tasks_unreachable{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Unreachable",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "CPU usage",
+      "title": "Active Tasks",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -831,7 +703,8 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "decimals": 0,
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -853,6 +726,20 @@
       }
     },
     {
+      "content": "Number of tasks in an active state.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 48
+      },
+      "id": 37,
+      "links": [],
+      "mode": "markdown",
+      "title": "Active Tasks",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -860,12 +747,12 @@
       "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 18,
-        "y": 27
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 57
       },
-      "id": 20,
+      "id": 10,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -891,23 +778,80 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "procstat_memory_rss{process_name=\"mesos-master\"}",
+          "expr": "irate(mesos_master_tasks_finished{state=\"leader\"}[$rate])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{process_name}}",
+          "legendFormat": "Finished",
           "refId": "A"
+        },
+        {
+          "expr": "irate(mesos_master_tasks_failed{state=\"leader\"}[$rate])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Failed",
+          "refId": "B"
+        },
+        {
+          "expr": "irate(mesos_master_tasks_gone{state=\"leader\"}[$rate])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Gone",
+          "refId": "C"
+        },
+        {
+          "expr": "irate(mesos_master_tasks_gone_by_operator{state=\"leader\"}[$rate])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Gone by operator",
+          "refId": "D"
+        },
+        {
+          "expr": "irate(mesos_master_tasks_dropped{state=\"leader\"}[$rate])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Dropped",
+          "refId": "E"
+        },
+        {
+          "expr": "irate(mesos_master_tasks_killing{state=\"leader\"}[$rate])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Killing",
+          "refId": "F"
+        },
+        {
+          "expr": "irate(mesos_master_tasks_killed{state=\"leader\"}[$rate])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Killed",
+          "refId": "G"
+        },
+        {
+          "expr": "irate(mesos_master_tasks_lost{state=\"leader\"}[$rate])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Lost",
+          "refId": "H"
+        },
+        {
+          "expr": "irate(mesos_master_tasks_error{state=\"leader\"}[$rate])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Error",
+          "refId": "I"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Memory usage",
+      "title": "Terminal Task Rate ($rate)",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -922,7 +866,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -938,6 +882,288 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "content": "Tasks per second reaching a terminal state.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 57
+      },
+      "id": 38,
+      "links": [],
+      "mode": "markdown",
+      "title": "Terminal Task Rate",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 66
+      },
+      "id": 26,
+      "panels": [],
+      "title": "Cluster",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 67
+      },
+      "id": 8,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mesos_master_frameworks_connected{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Connected",
+          "refId": "A"
+        },
+        {
+          "expr": "mesos_master_frameworks_disconnected{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Disconnected",
+          "refId": "B"
+        },
+        {
+          "expr": "mesos_master_frameworks_active{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Active",
+          "refId": "C"
+        },
+        {
+          "expr": "mesos_master_frameworks_inactive{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Inactive",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Number of Frameworks",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "Number of frameworks.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 67
+      },
+      "id": 39,
+      "links": [],
+      "mode": "markdown",
+      "title": "Number of Frameworks",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 76
+      },
+      "id": 12,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mesos_master_slaves_connected{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Connected",
+          "refId": "A"
+        },
+        {
+          "expr": "mesos_master_slaves_disconnected{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Disconnected",
+          "refId": "B"
+        },
+        {
+          "expr": "mesos_master_slaves_active{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Active",
+          "refId": "C"
+        },
+        {
+          "expr": "mesos_master_slaves_inactive{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Inactive",
+          "refId": "D"
+        },
+        {
+          "expr": "mesos_master_slaves_unreachable{state=\"leader\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Unreachable",
+          "refId": "E"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Number of Agents",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "Number of agents.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 76
+      },
+      "id": 40,
+      "links": [],
+      "mode": "markdown",
+      "title": "Number of Agents",
+      "type": "text"
     }
   ],
   "refresh": "1m",
@@ -960,14 +1186,9 @@
           "value": "2m"
         },
         "hide": 0,
-        "label": "Interval",
-        "name": "min_interval",
+        "label": "Rate Interval",
+        "name": "rate",
         "options": [
-          {
-            "selected": true,
-            "text": "2m",
-            "value": "2m"
-          },
           {
             "selected": false,
             "text": "1m",
@@ -994,7 +1215,7 @@
             "value": "30m"
           }
         ],
-        "query": "2m, 1m,2m,5m,10m,30m",
+        "query": "1m,2m,5m,10m,30m",
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
