@@ -51,7 +51,7 @@
   "description": "Show Mesos Agent metrics on a host",
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
   "id": null,
   "iteration": 1547665619735,
   "links": [],
@@ -66,113 +66,33 @@
       },
       "id": 18,
       "panels": [],
-      "title": "Basic",
+      "title": "Basic: $host",
       "type": "row"
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorPostfix": false,
-      "colorPrefix": false,
-      "colorValue": false,
-      "colors": [
-        "#fceaca",
-        "#0a437c",
-        "#9ac48a"
-      ],
-      "datasource": "${DS_PROMETHEUS}",
-      "format": "dthms",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 0,
-        "y": 1
-      },
-      "id": 4,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "Value",
-      "targets": [
-        {
-          "expr": "max(mesos_slave_uptime_secs{host=~\"$host\"})",
-          "format": "table",
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "title": "Agent's uptime",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
     },
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": null,
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 10,
-        "x": 4,
+        "w": 12,
+        "x": 0,
         "y": 1
       },
-      "id": 41,
+      "id": 49,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
+        "current": true,
         "max": false,
         "min": false,
-        "show": false,
+        "rightSide": true,
+        "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -188,16 +108,119 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_frameworks_active{host=~\"$host\"}",
+          "expr": "mesos_slave_uptime_secs{host=~\"$host\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "{{host}}",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Active frameworks",
+      "title": "Uptime",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "dthms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "Shows the time in seconds since the last restart of the Mesos agent.\n\nThis metric should always increase. If the metric drops to zero, the agent has restarted.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 53,
+      "links": [],
+      "mode": "markdown",
+      "title": "Mesos Agent Uptime",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 0,
+      "fill": 5,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 10
+      },
+      "id": 51,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": true,
+      "targets": [
+        {
+          "expr": "mesos_slave_registered{host=~\"$host\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Registered",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -215,15 +238,15 @@
         {
           "decimals": 0,
           "format": "short",
-          "label": "",
+          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1",
+          "min": "0",
           "show": true
         },
         {
           "format": "short",
-          "label": "",
+          "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
@@ -236,6 +259,20 @@
       }
     },
     {
+      "content": "Whether this agent is registered with a master.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 54,
+      "links": [],
+      "mode": "markdown",
+      "title": "Registered",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -244,19 +281,21 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 10,
-        "x": 14,
-        "y": 1
+        "w": 12,
+        "x": 0,
+        "y": 19
       },
       "id": 39,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -272,28 +311,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_recovery_errors{host=~\"$host\"}",
+          "expr": "sum(irate(mesos_slave_recovery_errors{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "On agent recovery",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_container_launch_errors{host=~\"$host\"}",
+          "expr": "sum(irate(mesos_slave_container_launch_errors{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "On container launch",
           "refId": "B"
         },
         {
-          "expr": "mesos_slave_invalid_status_updates{host=~\"$host\"}",
+          "expr": "sum(irate(mesos_slave_invalid_status_updates{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "For status updates",
           "refId": "C"
         },
         {
-          "expr": "mesos_slave_invalid_framework_messages{host=~\"$host\"}",
+          "expr": "sum(irate(mesos_slave_invalid_framework_messages{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "For framework messages",
@@ -303,7 +342,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Errors",
+      "title": "Error Rate ($rate)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -319,17 +358,17 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
+          "decimals": null,
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
           "format": "short",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -342,274 +381,18 @@
       }
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "${DS_PROMETHEUS}",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 0,
-        "y": 4
-      },
-      "id": 16,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "mesos_slave_registered{host=~\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "A"
-        }
-      ],
-      "thresholds": "",
-      "title": "Agent registered?",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "yes",
-          "value": "1"
-        },
-        {
-          "op": "=",
-          "text": "no",
-          "value": "0"
-        }
-      ],
-      "valueName": "current"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 10
-      },
-      "id": 47,
-      "panels": [],
-      "title": "Mesos agent process",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 11
-      },
-      "id": 43,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "procstat_cpu_usage{process_name=\"mesos-agent\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{process_name}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "CPU usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
+      "content": "Number of errors encountered per second, measured over $rate interval windows.\n\nTODO(tillt): Add expectation and interpretation hints.",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 11
+        "y": 19
       },
-      "id": 45,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
+      "id": 55,
       "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "procstat_memory_rss{process_name=\"mesos-agent\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{process_name}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Memory usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "mode": "markdown",
+      "title": "Error Rate",
+      "type": "text"
     },
     {
       "collapsed": false,
@@ -617,11 +400,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 28
       },
       "id": 29,
       "panels": [],
-      "title": "Resources Summary",
+      "title": "Resources Summary: $host",
       "type": "row"
     },
     {
@@ -632,10 +415,10 @@
       "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
-        "h": 7,
-        "w": 24,
+        "h": 9,
+        "w": 12,
         "x": 0,
-        "y": 21
+        "y": 29
       },
       "id": 37,
       "legend": {
@@ -663,28 +446,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_cpus_percent{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_cpus_percent{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "CPUs",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_mem_percent{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_mem_percent{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Memory",
           "refId": "B"
         },
         {
-          "expr": "mesos_slave_disk_percent{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_disk_percent{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Disk",
           "refId": "C"
         },
         {
-          "expr": "mesos_slave_gpus_percent{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_gpus_percent{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "GPUs",
@@ -694,7 +477,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "% of allocated resources",
+      "title": "% of Allocated Resources",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -732,16 +515,30 @@
       }
     },
     {
+      "content": "Percentage of allocated or offered resources.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 29
+      },
+      "id": 56,
+      "links": [],
+      "mode": "markdown",
+      "title": "% of Allocated Resources",
+      "type": "text"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 38
       },
       "id": 20,
       "panels": [],
-      "title": "Resources Detailed",
+      "title": "Resources Detailed: $host",
       "type": "row"
     },
     {
@@ -755,7 +552,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 39
       },
       "id": 6,
       "legend": {
@@ -775,37 +572,49 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "Containers CPU Usage",
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_cpus_total{host=~\"$host\"} + mesos_slave_cpus_revocable_total{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_cpus_total{host=~\"$host\"} + mesos_slave_cpus_revocable_total{host=~\"$host\"})",
           "format": "time_series",
+          "hide": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Total CPUs with revocable",
+          "legendFormat": "Total CPUs",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_cpus_used{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_cpus_used{host=~\"$host\"})",
           "format": "time_series",
+          "hide": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Used CPUs, non-revocable",
+          "legendFormat": "Offered or Allocated CPUs",
           "refId": "B"
         },
         {
-          "expr": "mesos_slave_cpus_revocable_used{host=~\"$host\"}",
+          "expr": "sum(irate(cpus_system_time_secs{host=~\"$host\"}[$rate]) + irate(cpus_user_time_secs{host=~\"$host\"}[$rate])) * sum(mesos_slave_cpus_total{host=~\"$host\"})",
           "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Used CPUs, revocable",
-          "refId": "C"
+          "legendFormat": "Containers CPU Usage",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "CPU allocation",
+      "title": "CPU Allocation and Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -822,18 +631,19 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
-          "format": "short",
-          "label": null,
+          "decimals": null,
+          "format": "percent",
+          "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         }
       ],
@@ -841,6 +651,20 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "content": "Number of CPUs in total and offered or allocated within the cluster. Additionally shows the percentage of total CPUs used by the container subsystem.\n\nThe amount of offered or allocated CPUs does contain a subset of CPUs for executors. Mesos does allow for the executor part to exceed resource limits.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 39
+      },
+      "id": 57,
+      "links": [],
+      "mode": "markdown",
+      "title": "CPU Allocation and Usage",
+      "type": "text"
     },
     {
       "aliasColors": {},
@@ -852,8 +676,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 29
+        "x": 0,
+        "y": 48
       },
       "id": 12,
       "legend": {
@@ -873,37 +697,43 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "Containers Memory Usage",
+          "yaxis": 1
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_mem_total{host=~\"$host\"} + mesos_slave_mem_revocable_total{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_mem_total{host=~\"$host\"} + mesos_slave_mem_revocable_total{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Total memory with revocable",
+          "legendFormat": "Total Memory",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_mem_used{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_mem_used{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Used memory, non-revocable",
+          "legendFormat": "Offered or Allocated Memory",
           "refId": "B"
         },
         {
-          "expr": "mesos_slave_mem_revocable_used{host=~\"$host\"}",
+          "expr": "sum(mem_total_bytes{host=~\"$host\"}) / 1000000",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Used memory, revocable",
-          "refId": "C"
+          "legendFormat": "Containers Memory Usage",
+          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Memory allocation",
+      "title": "Memory Allocation and Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -927,11 +757,12 @@
           "show": true
         },
         {
-          "format": "short",
+          "decimals": null,
+          "format": "decbytes",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         }
       ],
@@ -939,6 +770,20 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "content": "Memory in total and offered or allocated within the cluster. Additionally shows the amount of memory used by containers.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 48
+      },
+      "id": 58,
+      "links": [],
+      "mode": "markdown",
+      "title": "Memory Allocation and Usage",
+      "type": "text"
     },
     {
       "aliasColors": {},
@@ -951,105 +796,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 38
-      },
-      "id": 13,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "mesos_slave_disk_total{host=~\"$host\"} + mesos_slave_disk_revocable_total{host=~\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Total disk with revocable",
-          "refId": "A"
-        },
-        {
-          "expr": "mesos_slave_disk_used{host=~\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Used disk, non-revocable",
-          "refId": "B"
-        },
-        {
-          "expr": "mesos_slave_disk_revocable_used{host=~\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Used disk, revocable",
-          "refId": "C"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Disk allocation",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "decmbytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 38
+        "y": 57
       },
       "id": 14,
       "legend": {
@@ -1075,31 +822,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_gpus_total{host=~\"$host\"} + mesos_slave_gpus_revocable_total{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_gpus_total{host=~\"$host\"} + mesos_slave_gpus_revocable_total{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Total GPUs with revocable",
+          "legendFormat": "Total GPUs",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_gpus_used{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_gpus_used{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Used GPUs, non-revocable",
+          "legendFormat": "Offered or Allocated GPUs",
           "refId": "B"
-        },
-        {
-          "expr": "mesos_slave_gpus_revocable_used{host=~\"$host\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Used GPUs, revocable",
-          "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "GPU allocation",
+      "title": "GPU Allocation",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1116,6 +856,119 @@
       "yaxes": [
         {
           "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "Number of GPUs in total and offered or allocated within the cluster.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 57
+      },
+      "id": 59,
+      "links": [],
+      "mode": "markdown",
+      "title": "GPU Allocation",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 66
+      },
+      "id": 13,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(mesos_slave_disk_total{host=~\"$host\"} + mesos_slave_disk_revocable_total{host=~\"$host\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Total Disk",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(mesos_slave_disk_used{host=~\"$host\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Offered of Allocated Disk",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(disk_used_bytes{host=~\"$host\"}) / 1000000",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Container Disk Usage",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Disk Allocation and Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "decmbytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -1137,16 +990,30 @@
       }
     },
     {
+      "content": "Disk space in total and offered or allocated within the cluster. Additionally shows the amount of disk space used by containers.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 66
+      },
+      "id": 60,
+      "links": [],
+      "mode": "markdown",
+      "title": "Disk Allocation",
+      "type": "text"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 75
       },
       "id": 22,
       "panels": [],
-      "title": "Executors",
+      "title": "Executors: $host",
       "type": "row"
     },
     {
@@ -1155,12 +1022,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 48
+        "y": 76
       },
       "id": 34,
       "legend": {
@@ -1184,25 +1052,25 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_slave_executors_registering{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_executors_registering{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Registering",
           "refId": "A"
         },
         {
-          "expr": "mesos_slave_executors_running{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_executors_running{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Running",
           "refId": "B"
         },
         {
-          "expr": "mesos_slave_executors_terminating{host=~\"$host\"}",
+          "expr": "sum(mesos_slave_executors_terminating{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Terminating",
@@ -1212,7 +1080,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Active executors",
+      "title": "Active Executors",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1228,6 +1096,7 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1250,6 +1119,20 @@
       }
     },
     {
+      "content": "Number of executors in an active state.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 76
+      },
+      "id": 61,
+      "links": [],
+      "mode": "markdown",
+      "title": "Active Executors",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -1259,8 +1142,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 48
+        "x": 0,
+        "y": 85
       },
       "id": 35,
       "legend": {
@@ -1288,14 +1171,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(mesos_slave_executors_terminated{host=~\"$host\"}[$rate])",
+          "expr": "sum(irate(mesos_slave_executors_terminated{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Terminated",
           "refId": "A"
         },
         {
-          "expr": "rate(mesos_slave_executors_preempted{host=~\"$host\"}[$rate])",
+          "expr": "sum(irate(mesos_slave_executors_preempted{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Preempted",
@@ -1305,7 +1188,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Terminal executors, rate over $rate window",
+      "title": "Terminal Executors Rate ($rate)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1325,7 +1208,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1343,16 +1226,30 @@
       }
     },
     {
+      "content": "Rate of executors terminated per second, measured over $rate interval windows.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 85
+      },
+      "id": 62,
+      "links": [],
+      "mode": "markdown",
+      "title": "Terminal Executors Rate",
+      "type": "text"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 94
       },
       "id": 24,
       "panels": [],
-      "title": "Tasks",
+      "title": "Tasks: $host",
       "type": "row"
     },
     {
@@ -1361,12 +1258,13 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 58
+        "y": 95
       },
       "id": 32,
       "legend": {
@@ -1390,32 +1288,32 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(mesos_slave_tasks_staging{host=~\"$host\"}[$rate])",
+          "expr": "sum(mesos_slave_tasks_staging{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Staging",
           "refId": "A"
         },
         {
-          "expr": "rate(mesos_slave_tasks_starting{host=~\"$host\"}[$rate])",
+          "expr": "sum(mesos_slave_tasks_starting{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Starting",
           "refId": "B"
         },
         {
-          "expr": "rate(mesos_slave_tasks_running{host=~\"$host\"}[$rate])",
+          "expr": "sum(mesos_slave_tasks_running{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Running",
           "refId": "C"
         },
         {
-          "expr": "rate(mesos_slave_tasks_killing{host=~\"$host\"}[$rate])",
+          "expr": "sum(mesos_slave_tasks_killing{host=~\"$host\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Killing",
@@ -1425,7 +1323,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Active tasks, rate over $rate window",
+      "title": "Active Tasks",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1441,6 +1339,7 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1463,6 +1362,20 @@
       }
     },
     {
+      "content": "Number of tasks in an active state.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 95
+      },
+      "id": 63,
+      "links": [],
+      "mode": "markdown",
+      "title": "Active Tasks",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -1472,8 +1385,8 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 58
+        "x": 0,
+        "y": 104
       },
       "id": 33,
       "legend": {
@@ -1501,35 +1414,36 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(mesos_slave_tasks_finished{host=~\"$host\"}[$rate])",
+          "expr": "sum(irate(mesos_slave_tasks_finished{host=~\"$host\"}[$rate]))",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Finished",
           "refId": "A"
         },
         {
-          "expr": "rate(mesos_slave_tasks_failed{host=~\"$host\"}[$rate])",
+          "expr": "sum(irate(mesos_slave_tasks_failed{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Failed",
           "refId": "B"
         },
         {
-          "expr": "rate(mesos_slave_tasks_gone{host=~\"$host\"}[$rate])",
+          "expr": "sum(irate(mesos_slave_tasks_gone{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Gone",
           "refId": "C"
         },
         {
-          "expr": "rate(mesos_slave_tasks_killed{host=~\"$host\"}[$rate])",
+          "expr": "sum(irate(mesos_slave_tasks_killed{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Killed",
           "refId": "D"
         },
         {
-          "expr": "rate(mesos_slave_tasks_lost{host=~\"$host\"}[$rate])",
+          "expr": "sum(irate(mesos_slave_tasks_lost{host=~\"$host\"}[$rate]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Lost",
@@ -1539,7 +1453,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Terminal tasks, rate over $rate window",
+      "title": "Terminal Tasks Rate ($rate)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1559,7 +1473,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1575,8 +1489,238 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "content": "Rate of tasks terminated per second, measured over 1h interval windows.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 104
+      },
+      "id": 64,
+      "links": [],
+      "mode": "markdown",
+      "title": "Terminal Tasks Rate",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 113
+      },
+      "id": 47,
+      "panels": [],
+      "repeat": null,
+      "title": "Mesos Agent Process: $host",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 114
+      },
+      "id": 43,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(procstat_cpu_usage{process_name=\"mesos-agent\", host=~\"$host\"})",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "mesos-agent",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CPU Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "The percentage of time that the \"mesos-agent\" process is active in any capacity.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 114
+      },
+      "id": 65,
+      "links": [],
+      "mode": "markdown",
+      "title": "Used Percent of Total CPU",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 123
+      },
+      "id": 45,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(procstat_memory_rss{process_name=\"mesos-agent\",host=~\"$host\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "mesos-agent",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Memory (RSS) Usage",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "The amount of real memory (resident set) that the \"mesos-agent\" process is using.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 123
+      },
+      "id": 66,
+      "links": [],
+      "mode": "markdown",
+      "title": "Memory (RSS) Usage",
+      "type": "text"
     }
   ],
+  "refresh": "5m",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -1589,16 +1733,20 @@
     "list": [
       {
         "allValue": ".*",
-        "current": {},
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
-        "includeAll": false,
-        "label": null,
+        "includeAll": true,
+        "label": "Host",
         "multi": false,
         "name": "host",
         "options": [],
         "query": "label_values(mesos_slave_uptime_secs, host)",
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1617,7 +1765,7 @@
           "value": "1h"
         },
         "hide": 0,
-        "label": "Rate interval",
+        "label": "Rate Interval",
         "name": "rate",
         "options": [
           {
@@ -1725,5 +1873,5 @@
   "timezone": "",
   "title": "Mesos: Agents Summary",
   "uid": "b7b4c454b",
-  "version": 14
+  "version": 15
 }
