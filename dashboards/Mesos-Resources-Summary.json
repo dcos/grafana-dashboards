@@ -50,7 +50,7 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
   "id": null,
   "links": [],
   "panels": [
@@ -77,18 +77,18 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 16,
+        "w": 12,
         "x": 0,
         "y": 1
       },
       "id": 2,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": true,
         "min": true,
-        "rightSide": false,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
@@ -107,7 +107,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_allocator_mesos_resources_cpus_total)",
+          "expr": "mesos_allocator_mesos_resources_cpus_total",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
@@ -115,21 +115,35 @@
           "refId": "A"
         },
         {
-          "expr": "sum(mesos_allocator_mesos_resources_cpus_offered_or_allocated)",
+          "expr": "mesos_allocator_mesos_resources_cpus_offered_or_allocated",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
-          "legendFormat": "Offered or allocated ",
+          "legendFormat": "Offered or Allocated ",
           "refId": "B"
         },
         {
-          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"cpus\"}",
+          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"cpus\"})",
           "format": "time_series",
           "instant": false,
           "interval": "5m",
           "intervalFactor": 1,
-          "legendFormat": "Quota ($role)",
+          "legendFormat": "Quota Total",
           "refId": "C"
+        },
+        {
+          "expr": "sum(mesos_allocator_quota_roles_resources_offered_or_allocated{resource=\"cpus\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Quota Offered or Allocated",
+          "refId": "D"
+        },
+        {
+          "expr": "sum(contain)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "E"
         }
       ],
       "thresholds": [],
@@ -174,17 +188,17 @@
       }
     },
     {
-      "content": "When an offer is sent to a framework, it is counted as allocated until the framework rejects it. Hence one may see oscillation.\n\nCPU Quota is occasionally reported at 2x it's actual value. This _may_ be because `mesos_exporter` is too slow and reports multiple times within a polling interval causing a double count. TBC.",
+      "content": "Total number of CPUs in the cluster, CPUs offered or allocated, CPUs assigned to quotas and CPUs offered or allocated against quotas.\n\nTODO(tillt): Add expectation and interpretation hints.",
       "gridPos": {
         "h": 9,
-        "w": 8,
-        "x": 16,
+        "w": 12,
+        "x": 12,
         "y": 1
       },
       "id": 13,
       "links": [],
       "mode": "markdown",
-      "title": "Mesos Resource Summary Hints",
+      "title": "CPUs",
       "type": "text"
     },
     {
@@ -196,17 +210,18 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 16,
+        "w": 12,
         "x": 0,
         "y": 10
       },
       "id": 3,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
@@ -239,11 +254,18 @@
           "refId": "B"
         },
         {
-          "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"mem\"}",
+          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"mem\"})",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Quota ($role)",
+          "legendFormat": "Quota Total",
           "refId": "C"
+        },
+        {
+          "expr": "sum(mesos_allocator_quota_roles_resources_offered_or_allocated{role_name=~\"$role\", resource=\"mem\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Quota Offered or Allocated",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -288,6 +310,20 @@
       }
     },
     {
+      "content": "Total amount of memory in the cluster, memory offered or allocated, memory assigned to quotas and memory offered or allocated against quotas.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 17,
+      "links": [],
+      "mode": "markdown",
+      "title": "Memory",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -296,17 +332,18 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 16,
+        "w": 12,
         "x": 0,
         "y": 19
       },
       "id": 4,
       "legend": {
         "alignAsTable": true,
-        "avg": true,
+        "avg": false,
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
@@ -388,6 +425,20 @@
       }
     },
     {
+      "content": "Total amount of disk space in the cluster, disk space offered or allocated, disk space assigned to quotas and disk space offered or allocated against quotas.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 19
+      },
+      "id": 18,
+      "links": [],
+      "mode": "markdown",
+      "title": "Disk",
+      "type": "text"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
@@ -397,7 +448,7 @@
       },
       "id": 11,
       "panels": [],
-      "title": "Quota Detailed",
+      "title": "Quota Detailed: $role",
       "type": "row"
     },
     {
@@ -408,8 +459,8 @@
       "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
-        "h": 11,
-        "w": 8,
+        "h": 9,
+        "w": 12,
         "x": 0,
         "y": 29
       },
@@ -420,6 +471,7 @@
         "current": true,
         "max": true,
         "min": false,
+        "rightSide": false,
         "show": true,
         "total": false,
         "values": true
@@ -438,31 +490,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"cpus\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Total",
-          "refId": "A"
-        },
-        {
           "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"cpus\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "$role",
+          "legendFormat": "Quota ({{role_name}})",
           "refId": "B"
         },
         {
           "expr": "mesos_allocator_quota_roles_resources_offered_or_allocated{role_name=~\"$role\", resource=\"cpus\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Offered or allocated",
+          "legendFormat": "Offered or Allocated ({{role_name}})",
           "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "CPUs quota",
+      "title": "CPUs Quota",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -501,6 +547,20 @@
       }
     },
     {
+      "content": "Amount of CPUs guaranteed for role \"$role\" via quota.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 29
+      },
+      "id": 19,
+      "links": [],
+      "mode": "markdown",
+      "title": "CPUs Quota",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -508,10 +568,10 @@
       "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 8,
-        "y": 29
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 38
       },
       "id": 7,
       "legend": {
@@ -538,31 +598,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"mem\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Total",
-          "refId": "A"
-        },
-        {
           "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"mem\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "$role",
+          "legendFormat": "Quota ({{role_name}})",
           "refId": "B"
         },
         {
           "expr": "mesos_allocator_quota_roles_resources_offered_or_allocated{role_name=~\"$role\", resource=\"mem\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Offered or allocated",
+          "legendFormat": "Quota Offered or Allocated ({{role_name}})",
           "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Memory quota",
+      "title": "Memory Quota",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -601,6 +654,20 @@
       }
     },
     {
+      "content": "Amount of memory guaranteed for role \"high\" via quota.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 38
+      },
+      "id": 20,
+      "links": [],
+      "mode": "markdown",
+      "title": "Memory Quota",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -608,10 +675,10 @@
       "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 16,
-        "y": 29
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 47
       },
       "id": 14,
       "legend": {
@@ -638,31 +705,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_allocator_quota_roles_resources_guarantee{resource=\"disk\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Total",
-          "refId": "A"
-        },
-        {
           "expr": "mesos_allocator_quota_roles_resources_guarantee{role_name=~\"$role\", resource=\"disk\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "$role",
+          "legendFormat": "Quota {{role_name}}",
           "refId": "B"
         },
         {
           "expr": "mesos_allocator_quota_roles_resources_offered_or_allocated{role_name=~\"$role\", resource=\"disk\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Offered or allocated",
+          "legendFormat": "Offered or Allocated {{role_name}}",
           "refId": "C"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Disk quota",
+      "title": "Disk Quota",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -699,9 +759,23 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "content": "Amount of disk space guaranteed for role \"high\" via quota.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 47
+      },
+      "id": 21,
+      "links": [],
+      "mode": "markdown",
+      "title": "Disk Quota",
+      "type": "text"
     }
   ],
-  "refresh": "1m",
+  "refresh": "5s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -713,12 +787,11 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {
-          "selected": true,
           "tags": [],
-          "text": "",
-          "value": ""
+          "text": "high",
+          "value": "high"
         },
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
@@ -728,10 +801,10 @@
         "name": "role",
         "options": [],
         "query": "label_values(mesos_allocator_quota_roles_resources_guarantee, role_name)",
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -772,5 +845,5 @@
   "timezone": "",
   "title": "Mesos: Resources Summary",
   "uid": "7cf9ddb73",
-  "version": 8
+  "version": 9
 }
