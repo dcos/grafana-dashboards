@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553873133387,
+  "iteration": 1554287661740,
   "links": [
     {
       "icon": "external link",
@@ -176,12 +176,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Responses",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Responses",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-requests/admin-router-details-server-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -318,12 +318,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Status",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -738,7 +738,7 @@
     ]
   },
   "timezone": "",
-  "title": "Admin Router: Details Server Responses",
+  "title": "/AdminRouter/AdminRouter-Details-Server-Responses",
   "uid": "adminrouter-details-server-responses",
-  "version": 4
+  "version": 2
 }

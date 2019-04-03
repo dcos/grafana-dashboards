@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553871437837,
+  "iteration": 1554286729218,
   "links": [
     {
       "icon": "external link",
@@ -152,12 +152,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Runtime",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Runtime",
+          "title": "/AdminRouter/AdminRouter-Details-Runtime",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/iuoewqiuyrowqer/admin-router-details-runtime"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -276,12 +276,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Runtime",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Runtime",
+          "title": "/AdminRouter/AdminRouter-Details-Runtime",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/iuoewqiuyrowqer/admin-router-details-runtime"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -401,12 +401,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Runtime",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Runtime",
+          "title": "/AdminRouter/AdminRouter-Details-Runtime",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/iuoewqiuyrowqer/admin-router-details-runtime"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -515,12 +515,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Status",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -632,12 +632,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Status",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -753,12 +753,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Upstream Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Upstream Status",
+          "title": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/jkhlkjdshfsafd/admin-router-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-adminrouter-details-upstream-status"
         }
       ],
       "nullPointMode": "null",
@@ -973,7 +973,7 @@
     ]
   },
   "timezone": "",
-  "title": "Admin Router: Summary",
+  "title": "/AdminRouter/AdminRouter-Summary",
   "uid": "adminrouter-summary",
-  "version": 14
+  "version": 3
 }

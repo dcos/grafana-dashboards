@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553873597715,
+  "iteration": 1554287775194,
   "links": [
     {
       "icon": "external link",
@@ -184,13 +184,13 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Traffic",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Responses",
           "includeVars": true,
           "keepTime": true,
           "targetBlank": false,
-          "title": "Admin Router Details Traffic",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Responses",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/whydwencsd/admin-router-details-traffic"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-adminrouter-details-server-responses"
         }
       ],
       "nullPointMode": "null",
@@ -302,12 +302,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Responses",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Responses",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Responses",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Responses",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-requests/admin-router-details-server-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-adminrouter-details-server-responses"
         }
       ],
       "nullPointMode": "null",
@@ -568,7 +568,7 @@
     ]
   },
   "timezone": "",
-  "title": "Admin Router: Details Server Status",
+  "title": "/AdminRouter/AdminRouter-Details-Server-Status",
   "uid": "adminrouter-details-server-status",
-  "version": 3
+  "version": 2
 }

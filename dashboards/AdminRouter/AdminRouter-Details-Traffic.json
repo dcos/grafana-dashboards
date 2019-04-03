@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553873014443,
+  "iteration": 1554286957587,
   "links": [
     {
       "icon": "external link",
@@ -150,12 +150,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Status",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -331,12 +331,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Status",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -510,12 +510,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Status",
+          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -715,12 +715,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Upstream Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Upstream Status",
+          "title": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/jkhlkjdshfsafd/admin-router-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-adminrouter-details-upstream-status"
         }
       ],
       "nullPointMode": "null",
@@ -839,12 +839,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Upstream Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Upstream Status",
+          "title": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/jkhlkjdshfsafd/admin-router-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-adminrouter-details-upstream-status"
         }
       ],
       "nullPointMode": "null",
@@ -1055,7 +1055,7 @@
     ]
   },
   "timezone": "",
-  "title": "Admin Router: Details Traffic",
+  "title": "/AdminRouter/AdminRouter-Details-Traffic",
   "uid": "adminrouter-details-traffic",
-  "version": 6
+  "version": 3
 }

@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553873683825,
+  "iteration": 1554287840719,
   "links": [
     {
       "icon": "external link",
@@ -184,13 +184,13 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Traffic",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Upstream-Responses",
           "includeVars": true,
           "keepTime": true,
           "targetBlank": false,
-          "title": "Admin Router Details Traffic",
+          "title": "/AdminRouter/AdminRouter-Details-Upstream-Responses",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/whydwencsd/admin-router-details-traffic"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-responses/adminrouter-adminrouter-details-upstream-responses"
         }
       ],
       "nullPointMode": "null",
@@ -302,12 +302,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Upstream Responses",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Upstream-Responses",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Upstream Responses",
+          "title": "/AdminRouter/AdminRouter-Details-Upstream-Responses",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/ywywalsduacd/admin-router-details-upstream-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-responses/adminrouter-adminrouter-details-upstream-responses"
         }
       ],
       "nullPointMode": "null",
@@ -574,7 +574,7 @@
     ]
   },
   "timezone": "",
-  "title": "Admin Router: Details Upstream Status",
+  "title": "/AdminRouter/AdminRouter-Details-Upstream-Status",
   "uid": "adminrouter-details-upstream-status",
-  "version": 3
+  "version": 2
 }

@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553873336682,
+  "iteration": 1554287982543,
   "links": [
     {
       "icon": "external link",
@@ -174,12 +174,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Upstream Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Upstream Status",
+          "title": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/jkhlkjdshfsafd/admin-router-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-adminrouter-details-upstream-status"
         }
       ],
       "nullPointMode": "null",
@@ -316,12 +316,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "Admin Router Details Upstream Status",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Upstream Status",
+          "title": "/AdminRouter/AdminRouter-Details-Upstream-Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/jkhlkjdshfsafd/admin-router-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-adminrouter-details-upstream-status"
         }
       ],
       "nullPointMode": "null",
@@ -603,7 +603,7 @@
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": "Upstream",
         "multi": false,
         "name": "upstream",
@@ -635,9 +635,7 @@
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "label_values(nginx_upstream_backend_requests_total{upstream=\"$tag\",dcos_component_name=\"Admin Router\"},backend)",
-        "tags": [
-          "IAM"
-        ],
+        "tags": [],
         "tagsQuery": "label_values(nginx_upstream_backend_requests_total{upstream=\"$upstream\",dcos_component_name=\"Admin Router\"},upstream)",
         "type": "query",
         "useTags": true
@@ -758,7 +756,7 @@
     ]
   },
   "timezone": "",
-  "title": "Admin Router: Details Upstream Responses",
+  "title": "/AdminRouter/AdminRouter-Details-Upstream-Responses",
   "uid": "adminrouter-details-upstream-responses",
-  "version": 4
+  "version": 5
 }
