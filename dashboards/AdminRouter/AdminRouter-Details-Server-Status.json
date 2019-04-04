@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554287775194,
+  "iteration": 1554382339727,
   "links": [
     {
       "icon": "external link",
@@ -133,8 +133,8 @@
       },
       "id": 26,
       "panels": [],
-      "repeat": "server",
-      "title": "$server",
+      "repeat": "node",
+      "title": "$node",
       "type": "row"
     },
     {
@@ -206,7 +206,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\".*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -217,7 +217,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Server Throughput: $node",
+      "title": "Server Throughput",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -315,7 +315,6 @@
       "pointradius": 1,
       "points": false,
       "renderer": "flot",
-      "repeat": "node",
       "repeatDirection": "v",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -323,7 +322,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\"5.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) / sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\".*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{status=~\"5.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{status=~\"5.*\",backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)) / sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -331,7 +330,7 @@
           "refId": "C"
         },
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\"4.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) / sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\".*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{status=~\"4.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{status=~\"4.*\",backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)) / sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -339,7 +338,7 @@
           "refId": "B"
         },
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\"3.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) / sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\".*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{status=~\"3.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{status=~\"3.*\",backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)) / sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -347,7 +346,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\"2.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) / sum(irate(nginx_server_status_requests_total{server=~\"$server\",status=~\".*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{status=~\"2.*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{status=~\"2.*\",backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)) / sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -358,7 +357,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Server HTTP Status: $node",
+      "title": "Server HTTP Status",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -410,27 +409,6 @@
   ],
   "templating": {
     "list": [
-      {
-        "allValue": ".*",
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Server",
-        "multi": true,
-        "name": "server",
-        "options": [],
-        "query": "label_values(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\"},server)",
-        "refresh": 2,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
       {
         "allValue": ".*",
         "current": {},
@@ -514,27 +492,6 @@
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
-      },
-      {
-        "allValue": "",
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 2,
-        "includeAll": true,
-        "label": "HTTP Error",
-        "multi": true,
-        "name": "http_error",
-        "options": [],
-        "query": "label_values(nginx_upstream_status_requests_total{dcos_component_name=\"Admin Router\"},status)",
-        "refresh": 2,
-        "regex": "40[^9]|5.*",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
       }
     ]
   },
@@ -570,5 +527,5 @@
   "timezone": "",
   "title": "/AdminRouter/AdminRouter-Details-Server-Status",
   "uid": "adminrouter-details-server-status",
-  "version": 2
+  "version": 10
 }

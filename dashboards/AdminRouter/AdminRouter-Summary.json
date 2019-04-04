@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554286729218,
+  "iteration": 1554382250120,
   "links": [
     {
       "icon": "external link",
@@ -651,7 +651,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,upstream)) by (host)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -727,27 +727,27 @@
       "fill": 4,
       "grid": {},
       "gridPos": {
-        "h": 10,
+        "h": 7,
         "w": 16,
         "x": 0,
         "y": 35
       },
       "id": 36,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "hideEmpty": false,
         "hideZero": false,
-        "max": true,
+        "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "sideWidth": 270,
         "sort": "max",
         "sortDesc": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": false,
       "linewidth": 2,
@@ -781,7 +781,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_upstream_backend_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)",
+          "expr": "sum(irate(nginx_upstream_backend_requests_total{backend=~\".+\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{upstream}}",
@@ -835,7 +835,7 @@
     {
       "content": "Stacked upstream throughput measured as requests per second going to each upstream server aggregated over all master nodes. This graph helps to identify upstreams that are particularly active.",
       "gridPos": {
-        "h": 10,
+        "h": 7,
         "w": 8,
         "x": 16,
         "y": 35
@@ -975,5 +975,5 @@
   "timezone": "",
   "title": "/AdminRouter/AdminRouter-Summary",
   "uid": "adminrouter-summary",
-  "version": 3
+  "version": 9
 }
