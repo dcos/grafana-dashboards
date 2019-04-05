@@ -1,4 +1,40 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.3.4"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": "5.0.0"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -15,8 +51,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 60,
-  "iteration": 1554372201649,
+  "id": null,
+  "iteration": 1554472343395,
   "links": [],
   "panels": [
     {
@@ -28,7 +64,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#890f02"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -109,7 +145,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#890f02"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -190,7 +226,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#890f02"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -271,7 +307,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#890f02"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -352,7 +388,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#890f02"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -433,7 +469,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#890f02"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "rpm",
       "gauge": {
         "maxValue": 100,
@@ -514,7 +550,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#890f02"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "decbytes",
       "gauge": {
         "maxValue": 100,
@@ -595,7 +631,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#890f02"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "decbytes",
       "gauge": {
         "maxValue": 100,
@@ -685,7 +721,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Active applications on root Marathon\n\n## What does it mean\nThis metric shows the number of active applications in the root Marathon.\n\n## Expected behavior\nThe number should be relatively stable unless services are being actively deployed/removed.\n\n## Where to look when for further information:\nFollowing metrics can provide additional information:\n\n * `marathon_instances_running`\n * `marathon.instances_staged`\n * `marathon_mesos_offers`",
       "fill": 1,
       "gridPos": {
@@ -772,7 +808,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Active pods on root Marathon\n\n## What does it mean\nThis metric shows the number of active pods in the root Marathon.\n\n## Expected behavior\nThe number should be relatively stable unless services are being actively deployed/removed.\n\n## Where to look when for further information:\nFollowing metrics can provide additional information:\n\n * `marathon_instances_running`\n * `marathon_instances_staged`\n * `marathon_mesos_offers`",
       "fill": 1,
       "gridPos": {
@@ -893,7 +929,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Active deployments on root Marathon\n\n### What does it mean\nThis metric shows the number of active deployments in the root Marathon. \nA deployment happens when an app/pod was just created/updated and instances have to be started/killed. \n\n### Expected behavior\nThe number should usually be < 50, however, if the number of deployments is > 80 for a long period,\nthen it might be a signal that something is wrong.\n\n### Where to look when for further information:\nFollowing metrics can provide additional information:\n\n * `marathon_mesos_offers_incoming_counter`\n * `marathon_mesos_offers_declined_counter`\n * `marathon_mesos_offers_used_counter`\n * `marathon_mesos_calls_revive_counter`\n * `marathon_mesos_calls_suppress_counter`",
       "fill": 1,
       "gridPos": {
@@ -1021,7 +1057,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Staged instances on root Marathon\n\n### What does it mean\nThis metric shows the number of staged instances in the root Marathon. An instance is staged when Marathon has sent a launch request to Mesos but it's not yet running.\n\n### Expected behavior\nThis metric shouldn't have a large value, one can expect it to be < 10, however sometimes it might reach high values. \nIf there are many staged instances, that might indicate a problem with an agent (docker daemon hangs, the image can't be pulled, etc.).\n\n### Where to look when for further information\nFollowing metrics can provide additional information:\n\n * `marathon_mesos_task_updates_task_error`\n * `marathon_mesos_task_updates_task_error_counter`",
       "fill": 1,
       "gridPos": {
@@ -1116,7 +1152,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Running instances on root Marathon\n\n### What does it mean\nThis metric shows the number of running instances in the root Marathon. \n\n### Expected behavior\nThis metric shouldn't have huge drops unless apps/pods being upscaled/downscaled.\n\n### Where to look when for further information:\nFollowing metrics can provide additional information:\n\n * `marathon_mesos_offers`",
       "fill": 1,
       "gridPos": {
@@ -1203,7 +1239,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Launch overdue instances on root Marathon\n\n### What does it mean\nThis metrics shows the number of overdue instances. Overdue instances are those that have been either launched or staged but hasn’t become running within the `task_launch_timeout` or `task_launch_confirm_timeout` respectively.\n\n### Expected behavior\nThis metric should be around 0 at all times. \n\n### Where to look when for further information\nThe next metrics can provide additional information:\n\n * `marathon_mesos_task_updates_task_error`\n * `marathon_mesos_task_updates_task_error_counter`",
       "fill": 1,
       "gridPos": {
@@ -1290,7 +1326,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Uptime and leadership duration of root Marathon masters\n\n### What does it mean\nThese metric shows the uptime of each root Marathon master and how long a given Marathon master stayed the leader.\n\n### Expected behavior\nThis value should be linearly increasing over time. If there is a drop, that means that Marathon was restarted. If there are multiple drops within a short period of time that can be a sign of instability. \nBoth, leadership duration and uptime should look the same since Marathon will restart upon leadership loss.",
       "fill": 1,
       "gridPos": {
@@ -1398,11 +1434,14 @@
       "type": "row"
     },
     {
-      "aliasColors": {},
-      "bars": true,
+      "aliasColors": {
+        "declined": "#bf1b00",
+        "incoming": "#629e51"
+      },
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Mesos offers metrics\n\n### Incoming offers\nOffers that marathon received from Mesos. If this value is low, then Marathon experiences an \"offer starvation\" unless a `suppress` call was issued.",
       "fill": 1,
       "gridPos": {
@@ -1411,7 +1450,7 @@
         "x": 0,
         "y": 23
       },
-      "id": 23,
+      "id": 57,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -1425,7 +1464,7 @@
         "total": false,
         "values": true
       },
-      "lines": false,
+      "lines": true,
       "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
@@ -1444,106 +1483,22 @@
           "hide": false,
           "interval": "$min_interval",
           "intervalFactor": 1,
-          "legendFormat": "{{host}}",
+          "legendFormat": "Incoming offers",
           "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Incoming Mesos offers",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": "0",
-          "show": true
         },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "description": "# Mesos offers metrics\n\n### Declined offers\nThis metric show number of offers that Marathon declined either because they weren't a fit or because there is nothing to launch.",
-      "fill": 1,
-      "gridPos": {
-        "h": 6,
-        "w": 8,
-        "x": 8,
-        "y": 23
-      },
-      "id": 21,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
-        "max": true,
-        "min": false,
-        "show": true,
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
         {
           "expr": "increase(marathon_mesos_offers_declined_counter{job=\"master-metrics\"}[$min_interval])",
           "format": "time_series",
-          "hide": false,
           "interval": "$min_interval",
           "intervalFactor": 1,
-          "legendFormat": "{{host}}",
-          "refId": "A"
+          "legendFormat": "Declined offers",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Declined mesos offers",
+      "title": "Mesos offers overview",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1586,13 +1541,13 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Mesos offers metrics\n\n### Used offers\nThis metric shows the number of used Mesos offers. If Marathon is trying to deploy a service and receives enough incoming offers but doesn't seem to use any, then this usually means that the offers aren't a fit (bad role, not enough cpu/mem other resources, etc.)",
       "fill": 1,
       "gridPos": {
         "h": 6,
         "w": 8,
-        "x": 16,
+        "x": 8,
         "y": 23
       },
       "id": 24,
@@ -1678,14 +1633,14 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Mesos offers metrics\n\n### Revive calls\nIf Marathon issues a `Revive` call, Mesos will start sending offers.",
       "fill": 1,
       "gridPos": {
         "h": 6,
         "w": 8,
-        "x": 0,
-        "y": 29
+        "x": 16,
+        "y": 23
       },
       "id": 26,
       "interval": "",
@@ -1765,7 +1720,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Mesos offers metrics\n\n### Suppress calls\nIf Marathon issues a `suppress` call, Mesos won't send any offers.",
       "fill": 1,
       "gridPos": {
@@ -1898,7 +1853,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon HTTP Metrics\n\n## Request duration\n\nThis metric shows 95 percentile request duration. High numbers mean that marathon is experiencing quite some load.",
       "fill": 1,
       "gridPos": {
@@ -1992,7 +1947,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon HTTP Metrics\n\n## HTTP request size\n\nThese metrics show the size of Marathon requests. Too high values can lead to Marathon being overloaded with data serialization.",
       "fill": 1,
       "gridPos": {
@@ -2079,7 +2034,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon HTTP Metrics\n\n## HTTP response size\n\nThese metrics show the size of Marathon responses. Too high values can lead to Marathon being overloaded with data serialization.",
       "fill": 1,
       "gridPos": {
@@ -2166,7 +2121,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon HTTP Metrics\n\n## HTTP response 2xx rates\n\nThis metric shows the rate of requests which resulted in status 200-299.",
       "fill": 1,
       "gridPos": {
@@ -2253,7 +2208,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon HTTP Metrics\n\n## HTTP response 5xx rates\n\nThis metric shows the rate of requests which resulted in status 500-599. A short period of 5xx responses is expected in situations such as leader re-election.",
       "fill": 1,
       "gridPos": {
@@ -2353,7 +2308,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon JVM Metrics\n\n## Heap Usage\n\nThis metric shows Marathons heap usage. An overall growth pattern where more and more heap is being used can be an indication of a problem.",
       "fill": 1,
       "gridPos": {
@@ -2473,7 +2428,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon JVM Metrics\n\n## Total Memory Usage\n\nThis metric shows total Marathons memory usage. An overall growth pattern where more and more heap is being used can be an indication of a problem.",
       "fill": 1,
       "gridPos": {
@@ -2568,7 +2523,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon JVM Metrics\n\n## Active Thread Count\n\nThis metric total number of active (and runnable) threads used by Marathon. A sudden change in the number of threads can be an indication of a problem.",
       "fill": 1,
       "gridPos": {
@@ -2655,7 +2610,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Marathon JVM Metrics\n\n## Waiting Thread Count\n\nThis metric total number of waiting (and timed waiting) threads used by Marathon. A sudden change in the number of threads can be an indication of a problem.",
       "fill": 1,
       "gridPos": {
@@ -2824,7 +2779,7 @@
     ]
   },
   "timezone": "",
-  "title": "DC/OS Root Marathon",
+  "title": "Marathon: Root Summary",
   "uid": "6RQwfLqmz",
-  "version": 156
+  "version": 161
 }
