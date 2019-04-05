@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554471983517,
+  "iteration": 1554480042368,
   "links": [
     {
       "icon": "external link",
@@ -101,6 +101,20 @@
         "upstream"
       ],
       "title": "Upstream",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "dc/os",
+        "detail",
+        "adminrouter",
+        "service"
+      ],
+      "title": "Service",
       "type": "dashboards"
     },
     {
@@ -1056,5 +1070,5 @@
   "timezone": "",
   "title": "/AdminRouter/AdminRouter-Details-Runtime",
   "uid": "adminrouter-details-runtime",
-  "version": 3
+  "version": 5
 }

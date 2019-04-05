@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554472119182,
+  "iteration": 1554480169575,
   "links": [
     {
       "icon": "external link",
@@ -101,6 +101,20 @@
         "upstream"
       ],
       "title": "Upstream",
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "dc/os",
+        "detail",
+        "adminrouter",
+        "service"
+      ],
+      "title": "Service",
       "type": "dashboards"
     },
     {
@@ -200,7 +214,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"25\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "(sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"25\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -208,7 +222,7 @@
           "refId": "C"
         },
         {
-          "expr": "(sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"25\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"5\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "(sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"25\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"5\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -216,7 +230,7 @@
           "refId": "B"
         },
         {
-          "expr": "(sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"5\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"1\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "(sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"5\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"1\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -224,7 +238,7 @@
           "refId": "A"
         },
         {
-          "expr": "(sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"1\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"0.2\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "(sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"1\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"0.2\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -232,7 +246,7 @@
           "refId": "E"
         },
         {
-          "expr": "(sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"0.2\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"0.04\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "(sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"0.2\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"0.04\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -240,7 +254,7 @@
           "refId": "D"
         },
         {
-          "expr": "(sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"0.04\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"0.008\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "(sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"0.04\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval]))-sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"0.008\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])))/sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -248,7 +262,7 @@
           "refId": "F"
         },
         {
-          "expr": "sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"0.008\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) / sum(irate(nginx_upstream_backend_request_duration_seconds_bucket{upstream=~\"$upstream\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
+          "expr": "sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"0.008\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) / sum(irate(nginx_upstream_status_request_duration_seconds_bucket{upstream=~\"$upstream\",status=~\"$status\",backend=~\"$backend\",le=\"+Inf\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -916,5 +930,5 @@
   "timezone": "",
   "title": "/AdminRouter/AdminRouter-Details-Upstream-Responses",
   "uid": "adminrouter-details-upstream-responses",
-  "version": 30
+  "version": 35
 }
