@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554382250120,
+  "iteration": 1554471852319,
   "links": [
     {
       "icon": "external link",
@@ -847,7 +847,7 @@
       "type": "text"
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -975,5 +975,5 @@
   "timezone": "",
   "title": "/AdminRouter/AdminRouter-Summary",
   "uid": "adminrouter-summary",
-  "version": 9
+  "version": 11
 }
