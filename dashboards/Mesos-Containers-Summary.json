@@ -45,11 +45,36 @@
   "description": "Actual CPU/Memory/Disk usage of your containers.",
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
   "id": null,
-  "iteration": 1544332110710,
-  "links": [],
+  "iteration": 1554390282996,
+  "links": [
+    {
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "mesos",
+        "container",
+        "detail"
+      ],
+      "type": "dashboards"
+    }
+  ],
   "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 14,
+      "panels": [],
+      "title": "CPU: $service | $task_name | $host | $container_id",
+      "type": "row"
+    },
     {
       "aliasColors": {},
       "bars": false,
@@ -61,21 +86,32 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 4,
       "legend": {
+        "alignAsTable": true,
         "avg": false,
-        "current": false,
-        "max": false,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "dashboard": "Mesos: Containers Details",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "Mesos: Containers Details",
+          "type": "dashboard",
+          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+        }
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -87,20 +123,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cpus_limit{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "CPU Limit (container {{container_id}}, {{host}})",
-          "refId": "A"
-        },
-        {
-          "expr": "rate(cpus_system_time_secs{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}[$rate_interval]) + rate(cpus_user_time_secs{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}[$rate_interval])",
+          "expr": "sum(cpus_limit{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU Usage (container {{container_id}}, {{host}})",
+          "legendFormat": "CPU Limit",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(irate(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]) + irate(cpus_user_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]))",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "CPU Usage",
           "refId": "B"
         }
       ],
@@ -145,6 +182,20 @@
       }
     },
     {
+      "content": "Total percentage of CPU time spent by tasks of the cgroup combined in kernel and user mode.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 20,
+      "links": [],
+      "mode": "markdown",
+      "title": "CPU Usage",
+      "type": "text"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -154,22 +205,33 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 0
+        "x": 0,
+        "y": 10
       },
       "id": 10,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "dashboard": "Mesos: Containers Details",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "Mesos: Containers Details",
+          "type": "dashboard",
+          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+        }
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -181,11 +243,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(cpus_nr_throttled{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}[$rate_interval]) / rate(cpus_nr_periods{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}[$rate_interval]) * 100",
+          "expr": "sum(irate(cpus_nr_throttled{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]) / irate(cpus_nr_periods{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "(container {{container_id}}, {{host}})",
+          "legendFormat": "CPU Throttle",
           "refId": "A"
         }
       ],
@@ -208,11 +270,11 @@
       },
       "yaxes": [
         {
-          "format": "percent",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -230,6 +292,33 @@
       }
     },
     {
+      "content": "Rate of cgroup CPU throttle triggers, sampled over $rate_interval interval windows.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 21,
+      "links": [],
+      "mode": "markdown",
+      "title": "CPU Throttling",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Memory: $service | $task_name | $host | $container_id",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -240,21 +329,32 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 9
+        "y": 20
       },
       "id": 8,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "dashboard": "Mesos: Containers Details",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "Mesos: Containers Details",
+          "type": "dashboard",
+          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+        }
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -266,18 +366,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mem_limit_bytes{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}",
+          "expr": "sum(mem_limit_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Memory Limit (container {{container_id}}, {{host}})",
+          "legendFormat": "Memory Limit",
           "refId": "A"
         },
         {
-          "expr": "mem_total_bytes{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}",
+          "expr": "sum(mem_total_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Memory Usage (container {{container_id}}, {{host}})",
+          "legendFormat": "Memory Usage",
           "refId": "B"
         }
       ],
@@ -322,6 +423,33 @@
       }
     },
     {
+      "content": "Memory size limit and memory used by container.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "id": 22,
+      "links": [],
+      "mode": "markdown",
+      "title": "Memory Usage",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 16,
+      "panels": [],
+      "title": "Disk:  $service | $task_name | $host | $container_id",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -331,22 +459,33 @@
       "gridPos": {
         "h": 9,
         "w": 12,
-        "x": 12,
-        "y": 9
+        "x": 0,
+        "y": 30
       },
       "id": 2,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "dashboard": "Mesos: Containers Details",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "Mesos: Containers Details",
+          "type": "dashboard",
+          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+        }
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -358,18 +497,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "disk_limit_bytes{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Disk Limit (container {{container_id}}, {{host}})",
-          "refId": "A"
-        },
-        {
-          "expr": "disk_used_bytes{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}",
+          "expr": "sum(disk_limit_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Disk Usage (container {{container_id}}, {{host}})",
+          "legendFormat": "Disk Limit",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(disk_used_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Disk Usage",
           "refId": "B"
         }
       ],
@@ -396,7 +536,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -414,6 +554,33 @@
       }
     },
     {
+      "content": "Disk space size limit and disk space used by container.\n\nTODO(tillt): Add expectation and interpretation hints. ",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 30
+      },
+      "id": 23,
+      "links": [],
+      "mode": "markdown",
+      "title": "Disk Usage",
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 39
+      },
+      "id": 18,
+      "panels": [],
+      "title": "Network: $service | $task_name | $host | $container_id",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -424,21 +591,32 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 40
       },
       "id": 6,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
         "min": false,
+        "rightSide": true,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "dashboard": "Mesos: Containers Details",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "Mesos: Containers Details",
+          "type": "dashboard",
+          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+        }
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -450,17 +628,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(net_rx_bytes{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}[$rate_interval])",
+          "expr": "sum(irate(net_rx_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]))",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Recv (container {{container_id}}, {{host}})",
+          "legendFormat": "Received",
           "refId": "A"
         },
         {
-          "expr": "rate(net_tx_bytes{service_name=~\"$service_name\",executor_name=~\"$executor_name\",task_name=~\"$task_name\"}[$rate_interval])",
+          "expr": "sum(irate(net_tx_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]))",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Sent (container {{container_id}}, {{host}})",
+          "legendFormat": "Sent",
           "refId": "B"
         }
       ],
@@ -487,7 +665,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -503,6 +681,20 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "content": "Bytes per second sent and received via network.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 40
+      },
+      "id": 24,
+      "links": [],
+      "mode": "markdown",
+      "title": "Network",
+      "type": "text"
     }
   ],
   "refresh": false,
@@ -511,42 +703,25 @@
   "tags": [
     "dc/os",
     "mesos",
-    "detail"
+    "container",
+    "summary"
   ],
   "templating": {
     "list": [
       {
         "allValue": ".*",
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
         "includeAll": true,
-        "label": null,
+        "label": "Service Name",
         "multi": false,
-        "name": "service_name",
+        "name": "service",
         "options": [],
-        "query": "label_values(service_name)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": ".*",
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": false,
-        "name": "executor_name",
-        "options": [],
-        "query": "label_values(executor_name)",
+        "query": "label_values(cpus_system_time_secs, service_name)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -559,15 +734,66 @@
       },
       {
         "allValue": ".*",
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
         "includeAll": true,
-        "label": null,
+        "label": "Task Name",
         "multi": false,
         "name": "task_name",
         "options": [],
-        "query": "label_values(task_name)",
+        "query": "label_values(cpus_system_time_secs{service_name=~\"$service\"}, task_name)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "${DS_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Host",
+        "multi": false,
+        "name": "host",
+        "options": [],
+        "query": "label_values(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\"}, host)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "${DS_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Container ID",
+        "multi": false,
+        "name": "container_id",
+        "options": [],
+        "query": "label_values(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\"}, container_id)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -587,7 +813,7 @@
           "value": "2m"
         },
         "hide": 0,
-        "label": null,
+        "label": "Rate Interval",
         "name": "rate_interval",
         "options": [
           {
@@ -643,7 +869,7 @@
     ]
   },
   "timezone": "",
-  "title": "Mesos: Container Details",
-  "uid": "mpivSaYiz",
-  "version": 60
+  "title": "Mesos: Containers Summary",
+  "uid": "_x5aKa6mz",
+  "version": 7
 }

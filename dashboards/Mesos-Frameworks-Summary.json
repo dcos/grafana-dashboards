@@ -30,8 +30,8 @@
     },
     {
       "type": "panel",
-      "id": "text",
-      "name": "Text",
+      "id": "singlestat",
+      "name": "Singlestat",
       "version": "5.0.0"
     }
   ],
@@ -51,8 +51,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 2,
-  "id": null,
-  "iteration": 1543441157459,
+  "id": 46,
+  "iteration": 1554250721466,
   "links": [],
   "panels": [
     {
@@ -63,9 +63,9 @@
         "x": 0,
         "y": 0
       },
-      "id": 30,
+      "id": 33,
       "panels": [],
-      "title": "Basic",
+      "title": "Basic: $framework",
       "type": "row"
     },
     {
@@ -74,6 +74,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -81,17 +82,15 @@
         "x": 0,
         "y": 1
       },
-      "id": 22,
+      "id": 12,
       "legend": {
-        "alignAsTable": true,
         "avg": false,
-        "current": true,
+        "current": false,
         "max": false,
         "min": false,
-        "rightSide": true,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -107,18 +106,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "max(mesos_master_uptime_secs) by (instance)",
+          "expr": "mesos_master_frameworks_subscribed_total{framework_name=~\"$framework\"}",
           "format": "time_series",
-          "interval": "",
+          "interval": "$rate",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{framework_name}}",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Master Uptime",
+      "title": "Subscribed",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -134,14 +133,16 @@
       },
       "yaxes": [
         {
-          "format": "dthms",
+          "decimals": 0,
+          "format": "short",
           "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "1",
+          "min": "0",
           "show": true
         },
         {
+          "decimals": null,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -156,17 +157,17 @@
       }
     },
     {
-      "content": "Shows the time in seconds since the last restart of the Mesos masters.\n\nThis metric should always increase. If the metric drops to zero, the master has restarted and a reelection might be observed afterwards.",
+      "content": "Shows whether not the framework has an active subscription with the Mesos master.\n\nThis metric should commonly remain steady at 1. If the metric drops to zero, the framework may have restarted and some time of unavailability might be observed afterwards.",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 1
       },
-      "id": 32,
+      "id": 16,
       "links": [],
       "mode": "markdown",
-      "title": "Mesos Master Uptime",
+      "title": "Framework subscribed",
       "type": "text"
     },
     {
@@ -174,31 +175,29 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": null,
       "decimals": 0,
-      "fill": 10,
+      "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
         "y": 10
       },
-      "id": 4,
+      "id": 28,
       "legend": {
-        "alignAsTable": true,
         "avg": false,
-        "current": true,
+        "current": false,
         "max": false,
         "min": false,
-        "rightSide": true,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "links": [],
-      "nullPointMode": "null as zero",
+      "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -206,27 +205,26 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_master_elected",
+          "expr": "mesos_master_frameworks_roles_suppressed{framework_name=~\"$framework\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{framework_name}}: {{role_name}}",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Leader Election",
+      "title": "Suppressing",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -251,7 +249,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": false
+          "show": true
         }
       ],
       "yaxis": {
@@ -260,17 +258,17 @@
       }
     },
     {
-      "content": "Whether a master is elected leader.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "For each of the framework’s subscribed roles, whether or not offers for that role are currently suppressed.\n\nTODO(tillt): Add expectation and interpretation hints.",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
         "y": 10
       },
-      "id": 33,
+      "id": 29,
       "links": [],
       "mode": "markdown",
-      "title": "Mesos Master Leader Election",
+      "title": "Suppressing",
       "type": "text"
     },
     {
@@ -281,9 +279,9 @@
         "x": 0,
         "y": 19
       },
-      "id": 24,
+      "id": 31,
       "panels": [],
-      "title": "Mesos Master Process",
+      "title": "Tasks: $framework",
       "type": "row"
     },
     {
@@ -292,6 +290,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
+      "decimals": 0,
       "fill": 1,
       "gridPos": {
         "h": 9,
@@ -299,17 +298,18 @@
         "x": 0,
         "y": 20
       },
-      "id": 18,
+      "id": 10,
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -325,18 +325,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "procstat_cpu_usage{process_name=\"mesos-master\"}",
+          "expr": "sum(mesos_master_frameworks_tasks_active{framework_name=~\"$framework\"}) by (task_state)",
           "format": "time_series",
-          "interval": "",
+          "interval": "$rate",
           "intervalFactor": 1,
-          "legendFormat": "{{process_name}}",
+          "legendFormat": "{{task_state}}",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "CPU Usage",
+      "title": "Active Tasks",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -352,107 +352,7 @@
       },
       "yaxes": [
         {
-          "format": "percent",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "content": "The percentage of time that the process is active in any capacity.\n\nTODO(tillt): Add expectation and interpretation hints.",
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 20
-      },
-      "id": 34,
-      "links": [],
-      "mode": "markdown",
-      "title": "Used Percent of Total CPUs",
-      "type": "text"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 29
-      },
-      "id": 20,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "procstat_memory_rss{process_name=\"mesos-master\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{process_name}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Memory (RSS) Usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -462,7 +362,7 @@
         },
         {
           "format": "short",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": null,
@@ -475,17 +375,17 @@
       }
     },
     {
-      "content": "The amount of real memory (resident set) that the process is using.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Shows count of tasks in an active state.\n\nTODO(tillt): Add expectation and interpretation hints.",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 20
       },
-      "id": 35,
+      "id": 18,
       "links": [],
       "mode": "markdown",
-      "title": "Memory (RSS) Usage",
+      "title": "Count of active state tasks",
       "type": "text"
     },
     {
@@ -493,13 +393,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": null,
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 38
+        "y": 29
       },
       "id": 14,
       "legend": {
@@ -525,333 +425,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mesos_master_event_queue_dispatches)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Dispatches",
-          "refId": "A"
-        },
-        {
-          "expr": "sum(mesos_master_event_queue_http_requests)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "HTTP Requests",
-          "refId": "B"
-        },
-        {
-          "expr": "sum(mesos_master_event_queue_messages)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Messages",
-          "refId": "C"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Queue Length",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "content": "Number of dispatches in the event queue.\n\nTODO(tillt): Add expectation and interpretation hints.",
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 38
-      },
-      "id": 36,
-      "links": [],
-      "mode": "markdown",
-      "title": "Queue Length",
-      "type": "text"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 47
-      },
-      "id": 28,
-      "panels": [],
-      "title": "Tasks",
-      "type": "row"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 48
-      },
-      "id": 6,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "mesos_master_tasks_staging{state=\"leader\"}",
+          "expr": "sum(irate(mesos_master_frameworks_tasks_terminal{framework_name=~\"$framework\"}[$rate])) by (task_state)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Staging",
+          "legendFormat": "{{task_state}}",
           "refId": "A"
-        },
-        {
-          "expr": "mesos_master_tasks_starting{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Starting",
-          "refId": "B"
-        },
-        {
-          "expr": "mesos_master_tasks_running{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Running",
-          "refId": "C"
-        },
-        {
-          "expr": "mesos_master_tasks_unreachable{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Unreachable",
-          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Active Tasks",
+      "title": "Terminal Tasks  Rate [$rate]",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": 0,
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "content": "Number of tasks in an active state.\n\nTODO(tillt): Add expectation and interpretation hints.",
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 48
-      },
-      "id": 37,
-      "links": [],
-      "mode": "markdown",
-      "title": "Active Tasks",
-      "type": "text"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "fill": 1,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 57
-      },
-      "id": 10,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "irate(mesos_master_tasks_finished{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Finished",
-          "refId": "A"
-        },
-        {
-          "expr": "irate(mesos_master_tasks_failed{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Failed",
-          "refId": "B"
-        },
-        {
-          "expr": "irate(mesos_master_tasks_gone{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Gone",
-          "refId": "C"
-        },
-        {
-          "expr": "irate(mesos_master_tasks_gone_by_operator{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Gone by operator",
-          "refId": "D"
-        },
-        {
-          "expr": "irate(mesos_master_tasks_dropped{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Dropped",
-          "refId": "E"
-        },
-        {
-          "expr": "irate(mesos_master_tasks_killing{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Killing",
-          "refId": "F"
-        },
-        {
-          "expr": "irate(mesos_master_tasks_killed{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Killed",
-          "refId": "G"
-        },
-        {
-          "expr": "irate(mesos_master_tasks_lost{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Lost",
-          "refId": "H"
-        },
-        {
-          "expr": "irate(mesos_master_tasks_error{state=\"leader\"}[$rate])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Error",
-          "refId": "I"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Terminal Task Rate ($rate)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -884,17 +474,17 @@
       }
     },
     {
-      "content": "Tasks per second reaching a terminal state.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Shows count of tasks in a terminal state.\n\nTODO(tillt): Add expectation and interpretation hints. ",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 57
+        "y": 29
       },
-      "id": 38,
+      "id": 20,
       "links": [],
       "mode": "markdown",
-      "title": "Terminal Task Rate",
+      "title": "Count of terminal state tasks",
       "type": "text"
     },
     {
@@ -903,11 +493,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 38
       },
-      "id": 26,
+      "id": 35,
       "panels": [],
-      "title": "Cluster",
+      "title": "Performance: $framework",
       "type": "row"
     },
     {
@@ -916,25 +506,121 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 67
+        "y": 39
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(mesos_master_frameworks_offers_sent{framework_name=~\"$framework\"}[$rate])",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{host}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Offers Rate ($rate)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "Shows rate of offers per second sent by the leading master.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 39
+      },
+      "id": 22,
+      "links": [],
+      "mode": "markdown",
+      "title": "Rate of offers sent",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 48
       },
       "id": 8,
       "legend": {
-        "alignAsTable": true,
         "avg": false,
-        "current": true,
-        "max": true,
+        "current": false,
+        "max": false,
         "min": false,
-        "rightSide": true,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -950,44 +636,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_master_frameworks_connected{state=\"leader\"}",
+          "expr": "sum(irate(mesos_master_frameworks_events{framework_name=~\"$framework\"}[$rate])) by (event_type)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Connected",
+          "legendFormat": "{{event_type}}",
           "refId": "A"
-        },
-        {
-          "expr": "mesos_master_frameworks_disconnected{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Disconnected",
-          "refId": "B"
-        },
-        {
-          "expr": "mesos_master_frameworks_active{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Active",
-          "refId": "C"
-        },
-        {
-          "expr": "mesos_master_frameworks_inactive{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Inactive",
-          "refId": "D"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Number of Frameworks",
+      "title": "Events Rate ($rate)",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -998,7 +663,6 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1021,17 +685,17 @@
       }
     },
     {
-      "content": "Number of frameworks.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "This panel shows the rate of any kind of event received from the Mesos master.\n\nThis metric should commonly remain mostly flat and non-zero during normal framework operation.\n\nFor batch processing workloads, the rate might increase during load but should drop to its previous value after the operation is done. If operations are pending, but no offer events are observed, the service might be starved for resources. If this metric drops to zero, the service might have lost contact to the Mesos master and might need to be restarted.",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 67
+        "y": 48
       },
-      "id": 39,
+      "id": 24,
       "links": [],
       "mode": "markdown",
-      "title": "Number of Frameworks",
+      "title": "Rate of events received",
       "type": "text"
     },
     {
@@ -1040,25 +704,22 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 76
+        "y": 57
       },
-      "id": 12,
+      "id": 2,
       "legend": {
-        "alignAsTable": true,
         "avg": false,
-        "current": true,
-        "max": true,
+        "current": false,
+        "max": false,
         "min": false,
-        "rightSide": true,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
@@ -1074,51 +735,23 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_master_slaves_connected{state=\"leader\"}",
+          "expr": "sum(irate(mesos_master_frameworks_calls{framework_name=~\"$framework\"}[$rate])) by (call_type)",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Connected",
-          "refId": "A"
-        },
-        {
-          "expr": "mesos_master_slaves_disconnected{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Disconnected",
+          "legendFormat": "{{call_type}}",
           "refId": "B"
-        },
-        {
-          "expr": "mesos_master_slaves_active{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Active",
-          "refId": "C"
-        },
-        {
-          "expr": "mesos_master_slaves_inactive{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Inactive",
-          "refId": "D"
-        },
-        {
-          "expr": "mesos_master_slaves_unreachable{state=\"leader\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Unreachable",
-          "refId": "E"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Number of Agents",
+      "title": "Calls Rate ($rate)",
       "tooltip": {
         "shared": true,
         "sort": 0,
         "value_type": "individual"
       },
-      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1129,12 +762,11 @@
       },
       "yaxes": [
         {
-          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
@@ -1152,31 +784,56 @@
       }
     },
     {
-      "content": "Number of agents.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "This panel shows the rate of any kind of call sent by the framework per second.\n\nThis metric should commonly remain mostly flat and non-zero during normal framework operation.\n\nFor batch processing workloads, the rate might increase during load but should drop to its previous value after the operation is done. If operations are pending, but no offer events are observed, the service might be starved for resources. If this metric drops to zero, the service might have lost contact to the Mesos master and might need to be restarted.",
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 76
+        "y": 57
       },
-      "id": 40,
+      "id": 26,
       "links": [],
       "mode": "markdown",
-      "title": "Number of Agents",
+      "title": "Rate of calls sent",
       "type": "text"
     }
   ],
-  "refresh": "1m",
+  "refresh": false,
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
+    "dc/os",
     "mesos",
-    "masters",
-    "summary",
-    "dc/os"
+    "frameworks",
+    "summary"
   ],
   "templating": {
     "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "tags": [],
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": "${DS_PROMETHEUS}",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Framework",
+        "multi": false,
+        "name": "framework",
+        "options": [],
+        "query": "label_values(mesos_master_frameworks_calls_total, framework_name)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
       {
         "auto": false,
         "auto_count": 30,
@@ -1190,11 +847,6 @@
         "name": "rate",
         "options": [
           {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
             "selected": true,
             "text": "2m",
             "value": "2m"
@@ -1206,16 +858,26 @@
           },
           {
             "selected": false,
-            "text": "10m",
-            "value": "10m"
+            "text": "15m",
+            "value": "15m"
           },
           {
             "selected": false,
             "text": "30m",
             "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "2h",
+            "value": "2h"
           }
         ],
-        "query": "1m,2m,5m,10m,30m",
+        "query": "2m,5m,15m,30m,1h,2h",
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
@@ -1223,7 +885,7 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -1232,6 +894,7 @@
       "10s",
       "30s",
       "1m",
+      "2m",
       "5m",
       "15m",
       "30m",
@@ -1252,7 +915,7 @@
     ]
   },
   "timezone": "",
-  "title": "Mesos: Masters Summary",
-  "uid": "WPWgJ3Jik",
-  "version": 5
+  "title": "Mesos: Frameworks Summary",
+  "uid": "C3EFGTeiz",
+  "version": 1
 }
