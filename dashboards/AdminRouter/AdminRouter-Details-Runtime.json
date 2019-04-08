@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554480042368,
+  "iteration": 1554737149870,
   "links": [
     {
       "icon": "external link",
@@ -73,6 +73,20 @@
         "summary",
         "adminrouter"
       ],
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "dc/os",
+        "detail",
+        "adminrouter",
+        "traffic"
+      ],
+      "title": "",
       "type": "dashboards"
     },
     {
@@ -115,20 +129,6 @@
         "service"
       ],
       "title": "Service",
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "dc/os",
-        "detail",
-        "adminrouter",
-        "traffic"
-      ],
-      "title": "Admin Router Details",
       "type": "dashboards"
     }
   ],
@@ -941,7 +941,7 @@
       "type": "table"
     }
   ],
-  "refresh": "5s",
+  "refresh": "30s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -978,6 +978,7 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
+          "selected": true,
           "text": "5m",
           "value": "5m"
         },
@@ -1068,7 +1069,7 @@
     ]
   },
   "timezone": "",
-  "title": "/AdminRouter/AdminRouter-Details-Runtime",
+  "title": "AdminRouter: Details Runtime",
   "uid": "adminrouter-details-runtime",
-  "version": 5
+  "version": 6
 }

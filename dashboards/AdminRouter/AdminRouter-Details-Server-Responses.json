@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554480064257,
+  "iteration": 1554737214215,
   "links": [
     {
       "icon": "external link",
@@ -72,6 +72,32 @@
         "dc/os",
         "summary",
         "adminrouter"
+      ],
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "dc/os",
+        "detail",
+        "adminrouter",
+        "runtime"
+      ],
+      "title": "",
+      "type": "dashboards"
+    },
+    {
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "dc/os",
+        "detail",
+        "adminrouter",
+        "traffic"
       ],
       "type": "dashboards"
     },
@@ -115,32 +141,6 @@
         "service"
       ],
       "title": "Service",
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "dc/os",
-        "detail",
-        "adminrouter",
-        "traffic"
-      ],
-      "type": "dashboards"
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "dc/os",
-        "detail",
-        "adminrouter",
-        "runtime"
-      ],
-      "title": "Admin Router Details",
       "type": "dashboards"
     }
   ],
@@ -195,12 +195,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
+          "dashboard": "AdminRouter: Details Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
+          "title": "AdminRouter: Details Server Status",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -274,7 +274,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Server Latency: $node",
+      "title": "Server HTTP Request Latency Distribution: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -358,12 +358,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
+          "dashboard": "AdminRouter: Details Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
+          "title": "AdminRouter: Details Server Status",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -413,7 +413,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Server HTTP Status: $node",
+      "title": "Server HTTP Status Distribution: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -499,12 +499,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "/AdminRouter/AdminRouter-Details-Server-Status",
+          "dashboard": "AdminRouter: Details Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "/AdminRouter/AdminRouter-Details-Server-Status",
+          "title": "AdminRouter: Details Server Status",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-adminrouter-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -515,11 +515,11 @@
       "repeatDirection": "v",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(sum(irate(nginx_server_status_requests_total{status=~\"$status\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (status,server) or sum(irate(nginx_upstream_status_requests_total{status=~\"$status\",backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (status,upstream)) by (status)",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{status=~\"$status\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (status,server) or sum(irate(nginx_upstream_status_requests_total{status=~\"$status\",backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (status,upstream) or sum(irate(nginx_service_status_requests_total{status=~\"$status\",backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (status,upstream)) by (status)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -530,7 +530,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Server HTTP Responses: $node",
+      "title": "Server HTTP Response Status Code Rate: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -550,7 +550,7 @@
           "decimals": 2,
           "format": "none",
           "label": "Requests/s",
-          "logBase": 10,
+          "logBase": 1,
           "max": null,
           "min": null,
           "show": true
@@ -751,7 +751,7 @@
       "type": "table"
     }
   ],
-  "refresh": "5s",
+  "refresh": "30s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -810,6 +810,7 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
+          "selected": true,
           "text": "5m",
           "value": "5m"
         },
@@ -900,7 +901,7 @@
     ]
   },
   "timezone": "",
-  "title": "/AdminRouter/AdminRouter-Details-Server-Responses",
+  "title": "AdminRouter: Details Server Responses",
   "uid": "adminrouter-details-server-responses",
-  "version": 35
+  "version": 14
 }
