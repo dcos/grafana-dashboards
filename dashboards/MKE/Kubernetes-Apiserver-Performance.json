@@ -3033,7 +3033,7 @@
         "query": "apiserver_request_latencies_summary{resource=~\"$resource\"}",
         "refresh": 1,
         "refresh_on_load": false,
-        "regex": "/[,{]verb=\"(.+)\"/",
+        "regex": "/[,{]verb=\"([a-zA-Z]*)\"/",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -3075,7 +3075,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Kubernetes - Apiserver Performance",
+  "title": "Kubernetes: Apiserver Performance",
   "uid": "zgN8Yi6iz",
   "version": 2
 }
