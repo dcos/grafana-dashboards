@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1553871437837,
+  "iteration": 1554737020216,
   "links": [
     {
       "icon": "external link",
@@ -62,6 +62,32 @@
         "dc/os",
         "overview"
       ],
+      "type": "dashboards"
+    },
+    {
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "dc/os",
+        "detail",
+        "adminrouter",
+        "runtime"
+      ],
+      "type": "dashboards"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "dc/os",
+        "detail",
+        "adminrouter",
+        "traffic"
+      ],
+      "title": "",
       "type": "dashboards"
     },
     {
@@ -93,7 +119,7 @@
       "type": "dashboards"
     },
     {
-      "asDropdown": false,
+      "asDropdown": true,
       "icon": "external link",
       "includeVars": true,
       "keepTime": true,
@@ -101,21 +127,9 @@
         "dc/os",
         "detail",
         "adminrouter",
-        "traffic"
+        "service"
       ],
-      "title": "Admin Router Details",
-      "type": "dashboards"
-    },
-    {
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "dc/os",
-        "detail",
-        "adminrouter",
-        "runtime"
-      ],
+      "title": "Service",
       "type": "dashboards"
     }
   ],
@@ -152,12 +166,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Runtime",
+          "dashboard": "AdminRouter: Details Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Runtime",
+          "title": "AdminRouter: Details Runtime",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/iuoewqiuyrowqer/admin-router-details-runtime"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -276,12 +290,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Runtime",
+          "dashboard": "AdminRouter: Details Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Runtime",
+          "title": "AdminRouter: Details Runtime",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/iuoewqiuyrowqer/admin-router-details-runtime"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -401,12 +415,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Runtime",
+          "dashboard": "/AdminRouter/AdminRouter-Details-Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Runtime",
+          "title": "/AdminRouter/AdminRouter-Details-Runtime",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/iuoewqiuyrowqer/admin-router-details-runtime"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -515,12 +529,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Status",
+          "dashboard": "AdminRouter: Details Traffic",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Status",
+          "title": "AdminRouter: Details Traffic",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-traffic/adminrouter-details-traffic"
         }
       ],
       "nullPointMode": "null",
@@ -534,7 +548,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host) + sum(irate(nginx_upstream_status_requests_total{upstream=~\".*\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
+          "expr": "sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host) + sum(irate(nginx_upstream_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host) + sum(irate(nginx_service_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -545,7 +559,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Nginx Throughput: $node",
+      "title": "Nginx HTTP Request Throughput: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -595,7 +609,7 @@
       "id": 30,
       "links": [],
       "mode": "markdown",
-      "title": "Admin Router Nginx Throughput",
+      "title": "Admin Router Nginx HTTP Request Throughput",
       "type": "text"
     },
     {
@@ -632,12 +646,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Server Status",
+          "dashboard": "AdminRouter: Details Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Server Status",
+          "title": "AdminRouter: Details Server Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/adminrouter-details-server-status/admin-router-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -651,7 +665,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,upstream) or sum(irate(nginx_service_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,upstream)) by (host)",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -662,7 +676,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Server Throughput: $node",
+      "title": "Server HTTP Request Throughput: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -712,7 +726,7 @@
       "id": 38,
       "links": [],
       "mode": "markdown",
-      "title": "Admin Router Server Throughput",
+      "title": "Admin Router Server HTTP Request Throughput",
       "type": "text"
     },
     {
@@ -727,38 +741,38 @@
       "fill": 4,
       "grid": {},
       "gridPos": {
-        "h": 10,
+        "h": 7,
         "w": 16,
         "x": 0,
         "y": 35
       },
       "id": 36,
       "legend": {
-        "alignAsTable": true,
+        "alignAsTable": false,
         "avg": false,
         "current": false,
         "hideEmpty": false,
         "hideZero": false,
-        "max": true,
+        "max": false,
         "min": false,
-        "rightSide": true,
+        "rightSide": false,
         "show": true,
         "sideWidth": 270,
         "sort": "max",
         "sortDesc": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": false,
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "Admin Router Details Upstream Status",
+          "dashboard": "AdminRouter: Details Upstream Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "Admin Router Details Upstream Status",
+          "title": "AdminRouter: Details Upstream Status",
           "type": "dashboard",
-          "url": "/service/monitoring/grafana/d/jkhlkjdshfsafd/admin-router-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-upstream-status"
         }
       ],
       "nullPointMode": "null",
@@ -781,7 +795,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_upstream_backend_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)",
+          "expr": "sum(irate(nginx_upstream_status_requests_total{backend=~\".+\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{upstream}}",
@@ -792,7 +806,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Upstream Throughput: $node",
+      "title": "Upstream HTTP Request Throughput: $node",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -835,7 +849,7 @@
     {
       "content": "Stacked upstream throughput measured as requests per second going to each upstream server aggregated over all master nodes. This graph helps to identify upstreams that are particularly active.",
       "gridPos": {
-        "h": 10,
+        "h": 7,
         "w": 8,
         "x": 16,
         "y": 35
@@ -843,11 +857,142 @@
       "id": 20,
       "links": [],
       "mode": "markdown",
-      "title": "Admin Router Upstream Throughput",
+      "title": "Admin Router Upstream HTTP Request Throughput",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "decimals": 2,
+      "editable": true,
+      "error": false,
+      "fill": 4,
+      "grid": {},
+      "gridPos": {
+        "h": 7,
+        "w": 16,
+        "x": 0,
+        "y": 42
+      },
+      "id": 39,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "sideWidth": 270,
+        "sort": "max",
+        "sortDesc": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 2,
+      "links": [
+        {
+          "dashboard": "AdminRouter: Details Service Status",
+          "includeVars": true,
+          "keepTime": true,
+          "title": "AdminRouter: Details Service Status",
+          "type": "dashboard",
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-service-status"
+        }
+      ],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Live nodes",
+          "yaxis": 1
+        },
+        {
+          "alias": "All nodes",
+          "yaxis": 1
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(nginx_service_status_requests_total{backend=~\".+\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (service)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{service}}",
+          "refId": "C",
+          "step": 120
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Service HTTP Request Throughput: $node",
+      "tooltip": {
+        "msResolution": true,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 2,
+          "format": "none",
+          "label": "Requests/s",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 2,
+          "format": "ms",
+          "label": "Latency",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "Stacked service throughput measured as requests per second going to each service upstream server aggregated over all master nodes. This graph helps to identify services that are particularly active.",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 42
+      },
+      "id": 40,
+      "links": [],
+      "mode": "markdown",
+      "title": "Admin Router Service HTTP Request Throughput",
       "type": "text"
     }
   ],
-  "refresh": "5s",
+  "refresh": "30s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -973,7 +1118,7 @@
     ]
   },
   "timezone": "",
-  "title": "Admin Router: Summary",
+  "title": "AdminRouter: Summary",
   "uid": "adminrouter-summary",
-  "version": 14
+  "version": 9
 }
