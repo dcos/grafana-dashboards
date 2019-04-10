@@ -1,4 +1,40 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "5.3.4"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": "5.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "singlestat",
+      "name": "Singlestat",
+      "version": "5.0.0"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -15,8 +51,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 71,
-  "iteration": 1554823147374,
+  "id": null,
+  "iteration": 1554883168157,
   "links": [],
   "panels": [
     {
@@ -28,7 +64,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -109,7 +145,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -190,7 +226,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -271,7 +307,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "rpm",
       "gauge": {
         "maxValue": 100,
@@ -352,7 +388,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "bytes",
       "gauge": {
         "maxValue": 100,
@@ -433,7 +469,7 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "format": "bytes",
       "gauge": {
         "maxValue": 100,
@@ -524,7 +560,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Job runs overview\n\n## What does it mean\nThis metric shows the number of active and failed job runs in Metronome over time.\n\n## Expected behavior\nNumber of failed jobs should be zero at all times. In terms of active runs, the shape of the graph strongly depends on what schedule your jobs run on so it will differ in various clusters.\n\n## Where to look when for further information:\nThe next metrics can provide additional information:\n\n * `metronome_jobs_started`",
       "fill": 1,
       "gridPos": {
@@ -655,7 +691,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Staged job runs\n\n### What does it mean\nNumber of staged job runs is count of jobs that we already requested to start in mesos but they did not turn running yet.\n\n### Expected behavior\nNumber of staged jobs should be roughly equal to number of job runs started in that time period. If this value is growing or have high value it might indicate a problem with an agent (docker daemon hangs, image can't be pulled, etc.).\n\n### Where to look when for further information\nThe next metrics can provide additional information:\n\n * `metronome_mesos_task_updates_task_error`\n * `metronome_mesos_task_updates_task_error_counter`",
       "fill": 1,
       "gridPos": {
@@ -750,7 +786,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Launch overdue job runs\n\n### What does it mean\nOverdue jobs are those that we already accepted offer for but they haven’t become running within the `METRONOME_SCHEDULER_TASK_LAUNCH_TIMEOUT` or `METRONOME_SCHEDULER_TASK_LAUNCH_CONFIRM_TIMEOUT` respectively.\n\n### Expected behavior\nValue of this should be 0 at all times. \n\n### Where to look when for further information\nThe next metrics can provide additional information:\n\n * `metronome_mesos_task_updates_task_error`\n * `metronome_mesos_task_updates_task_error_counter`",
       "fill": 1,
       "gridPos": {
@@ -870,7 +906,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Leardship duration of master nodes\n\n### What does it mean\nIt shows which master node is a leader and how long is the leadership period.\n\n### Expected behavior\nThis value should be linearly increasing over time. If a leader is being re-elected frequently (short leadership duration) that can be a sign of instability. Node can lose leadership e.g. because of lost connection to zookeeper, mesos or because of some other unrecoverable error.",
       "fill": 1,
       "gridPos": {
@@ -989,7 +1025,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Mesos offers metrics\n\n### Declined offers\nOffers that were declined by Marathon. If that value is high than \n\n### Incoming offers\nOffers that marathon received from Mesos. If this value is low, then Marathon is starving unless a `supress` call was issued.",
       "fill": 1,
       "gridPos": {
@@ -1089,7 +1125,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "# Mesos offers metrics\n\n### Used offers\nThis metric shows the number of used Mesos offers. If Metronome is trying to deploy a service and receives enough incoming offers but doesn't seem to use any, then this usually means that the offers aren't a fit (bad role, not enough cpu/mem other resources, etc.)",
       "fill": 1,
       "gridPos": {
@@ -1176,7 +1212,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 8,
@@ -1316,7 +1352,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "This metric shows 95 percentile response latency. High numbers mean that marathon is experiencing quite some load.",
       "fill": 1,
       "gridPos": {
@@ -1410,7 +1446,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "These metrics show the size of Marathon requests. Too high values can lead to Marathon being overloaded with data serialization.",
       "fill": 1,
       "gridPos": {
@@ -1497,7 +1533,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "These metrics show the size of Marathon responses. Too high values can lead to Marathon being overloaded with data serialization.",
       "fill": 1,
       "gridPos": {
@@ -1584,7 +1620,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "This metric shows the rate of requests with resulted in status 200-299.",
       "fill": 1,
       "gridPos": {
@@ -1671,7 +1707,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "This metric shows the rate of requests with resulted in status 500-599. A small amount of such responses are expected in some situations, such as leader re-election.",
       "fill": 1,
       "gridPos": {
@@ -1771,7 +1807,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "An overall growing pattern where more and more heap is being used can be an indication of a problem.",
       "fill": 1,
       "gridPos": {
@@ -1858,7 +1894,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "A sudden change in number of threads can be an indication of a problem. Also having too many threads may be an indication of possible performance issues.",
       "fill": 1,
       "gridPos": {
@@ -1978,7 +2014,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "An overall growing pattern where more and more memory is being used can be an indication of a problem.",
       "fill": 1,
       "gridPos": {
@@ -2073,7 +2109,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "description": "A sudden change in number of threads can be an indication of a problem.",
       "fill": 1,
       "gridPos": {
@@ -2242,7 +2278,7 @@
     ]
   },
   "timezone": "",
-  "title": "DC/OS Metronome",
+  "title": "DC/OS Metronome: Overview",
   "uid": "6ADwfLqmz",
   "version": 47
 }
