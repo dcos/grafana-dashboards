@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555074422978,
+  "iteration": 1555080270252,
   "links": [
     {
       "icon": "external link",
@@ -1071,5 +1071,5 @@
   "timezone": "",
   "title": "AdminRouter: Details Runtime",
   "uid": "adminrouter-details-runtime",
-  "version": 8
+  "version": 10
 }

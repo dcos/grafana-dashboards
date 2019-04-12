@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555074249521,
+  "iteration": 1555080254818,
   "links": [
     {
       "icon": "external link",
@@ -672,12 +672,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Server Status",
+          "dashboard": "AdminRouter: Details AdminRouter Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Server Status",
+          "title": "AdminRouter: Details AdminRouter Server Status",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -806,12 +806,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Upstream Status",
+          "dashboard": "AdminRouter: Details DC/OS Component Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Upstream Status",
+          "title": "AdminRouter: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
       ],
       "nullPointMode": "null",
@@ -950,12 +950,12 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Service Status",
+          "dashboard": "AdminRouter: Details DC/OS Service Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Service Status",
+          "title": "AdminRouter: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-service-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
       ],
       "nullPointMode": "null",
@@ -1172,5 +1172,5 @@
   "timezone": "",
   "title": "AdminRouter: Summary",
   "uid": "adminrouter-summary",
-  "version": 10
+  "version": 13
 }

@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555074463138,
+  "iteration": 1555080320568,
   "links": [
     {
       "icon": "external link",
@@ -181,12 +181,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Server Status",
+          "dashboard": "AdminRouter: Details AdminRouter Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Server Status",
+          "title": "Show Requests over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -364,12 +364,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Server Status",
+          "dashboard": "AdminRouter: Details AdminRouter Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Server Status",
+          "title": "Show Requests over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -522,12 +522,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Server Status",
+          "dashboard": "AdminRouter: Details AdminRouter Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Server Status",
+          "title": "Show Requests over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-server-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -833,6 +833,7 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
+          "selected": true,
           "text": "5m",
           "value": "5m"
         },
@@ -925,5 +926,5 @@
   "timezone": "",
   "title": "AdminRouter: Details AdminRouter Server Responses",
   "uid": "adminrouter-details-server-responses",
-  "version": 21
+  "version": 24
 }

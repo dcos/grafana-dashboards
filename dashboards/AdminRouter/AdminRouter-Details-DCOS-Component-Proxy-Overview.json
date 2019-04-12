@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555074517448,
+  "iteration": 1555080340362,
   "links": [
     {
       "icon": "external link",
@@ -148,7 +148,7 @@
       "id": 26,
       "panels": [],
       "repeat": "upstream",
-      "title": "Proxied to DC/OS Component $upstream on  DC/OS Master Nodes ( $node )",
+      "title": "Proxied to DC/OS Component ( $upstream ) on  DC/OS Master Nodes ( $node )",
       "type": "row"
     },
     {
@@ -198,13 +198,13 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Upstream Responses",
+          "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
           "includeVars": true,
           "keepTime": true,
           "targetBlank": false,
-          "title": "AdminRouter: Details Upstream Responses",
+          "title": "Show $upstream per DC/OS Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-responses/adminrouter-details-upstream-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-dc-os-component-proxy-individual"
         }
       ],
       "nullPointMode": "null",
@@ -231,7 +231,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Request Throughput",
+      "title": "$upstream - HTTP Request Throughput",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -309,12 +309,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Upstream Responses",
+          "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Upstream Responses",
+          "title": "Show $upstream per DC/OS Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-responses/adminrouter-details-upstream-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-dc-os-component-proxy-individual"
         }
       ],
       "nullPointMode": "null",
@@ -418,7 +418,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Request Latency Distribution",
+      "title": "$upstream - HTTP Request Latency Distribution",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -495,12 +495,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Upstream Responses",
+          "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Upstream Responses",
+          "title": "Show $upstream per DC/OS Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-responses/adminrouter-details-upstream-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-dc-os-component-proxy-individual"
         }
       ],
       "nullPointMode": "null",
@@ -574,7 +574,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Status Distribution",
+      "title": "$upstream - HTTP Status Distribution",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -766,5 +766,5 @@
   "timezone": "",
   "title": "AdminRouter: Details DC/OS Component Proxy Overview",
   "uid": "adminrouter-details-upstream-by-node",
-  "version": 41
+  "version": 47
 }

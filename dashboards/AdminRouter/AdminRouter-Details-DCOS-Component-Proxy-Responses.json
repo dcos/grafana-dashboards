@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555074607066,
+  "iteration": 1555080442551,
   "links": [
     {
       "icon": "external link",
@@ -179,12 +179,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Upstream Status",
+          "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Upstream Status",
+          "title": "Show $upstream over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-dc-os-component-proxy-individual"
         }
       ],
       "nullPointMode": "null",
@@ -287,7 +287,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP ( $status ) Status Request Latency Distribution  | Proxied to ( $upstream => $backend ) through DC/OS Master Nodes ( $node )",
+      "title": "HTTP ( $status ) Status Request Latency Distribution  | Proxied to ( $upstream => $backend ) on DC/OS Master Nodes ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -359,7 +359,7 @@
       "links": [
         {
           "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
-          "title": "AdminRouter: Details DC/OS Component Proxy Individual",
+          "title": "Show $upstream over all DC/OS Master Nodes",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-dc-os-component-proxy-individual"
         }
@@ -423,7 +423,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Status Distribution | Proxied to ( $upstream => $backend ) through DC/OS Master Nodes ( $node )",
+      "title": "HTTP Status Distribution | Proxied to ( $upstream => $backend ) on DC/OS Master Nodes ( $node )",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -508,12 +508,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Upstream Status",
+          "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Upstream Status",
+          "title": "Show $upstream over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-upstream-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-dc-os-component-proxy-individual"
         }
       ],
       "nullPointMode": "null",
@@ -540,7 +540,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP ( $status ) Status Code Rate  | Proxied to ( $upstream => $backend ) through DC/OS Master Nodes ( $node )",
+      "title": "HTTP ( $status ) Status Code Rate  | Proxied to ( $upstream => $backend ) on DC/OS Master Nodes ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -658,7 +658,7 @@
           "refId": "A"
         }
       ],
-      "title": "User Agent HTTP ( $status ) Status Request Rate | Proxied to ( $upstream => $backend ) through DC/OS Master Nodes ( $node )",
+      "title": "User Agent HTTP ( $status ) Status Request Rate | Proxied to ( $upstream => $backend ) on DC/OS Master Nodes ( $node )",
       "transform": "timeseries_aggregations",
       "type": "table"
     },
@@ -740,7 +740,7 @@
           "refId": "A"
         }
       ],
-      "title": "URI HTTP ( $status ) Status Request Rate | Proxied to ( $upstream => $backend ) through DC/OS Master Nodes ( $node )",
+      "title": "URI HTTP ( $status ) Status Request Rate | Proxied to ( $upstream => $backend ) on DC/OS Master Nodes ( $node )",
       "transform": "timeseries_aggregations",
       "type": "table"
     }
@@ -941,5 +941,5 @@
   "timezone": "",
   "title": "AdminRouter: Details DC/OS Component Proxy Responses",
   "uid": "adminrouter-details-upstream-responses",
-  "version": 37
+  "version": 41
 }

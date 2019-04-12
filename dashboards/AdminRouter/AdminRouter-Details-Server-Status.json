@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555074442055,
+  "iteration": 1555080304339,
   "links": [
     {
       "icon": "external link",
@@ -198,13 +198,13 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Server Responses",
+          "dashboard": "AdminRouter: Details AdminRouter Server Responses",
           "includeVars": true,
           "keepTime": true,
           "targetBlank": false,
-          "title": "AdminRouter: Details Server Responses",
+          "title": "Show Requests on this Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-server-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
         }
       ],
       "nullPointMode": "null",
@@ -307,12 +307,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Server Responses",
+          "dashboard": "AdminRouter: Details AdminRouter Server Responses",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Server Responses",
+          "title": "Show Requests on this Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-server-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
         }
       ],
       "nullPointMode": "null",
@@ -491,12 +491,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Server Responses",
+          "dashboard": "AdminRouter: Details AdminRouter Server Responses",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Server Responses",
+          "title": "Show Requests on this Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-server-responses"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
         }
       ],
       "nullPointMode": "null",
@@ -735,5 +735,5 @@
   "timezone": "",
   "title": "AdminRouter: Details AdminRouter Server Status",
   "uid": "adminrouter-details-server-status",
-  "version": 29
+  "version": 33
 }

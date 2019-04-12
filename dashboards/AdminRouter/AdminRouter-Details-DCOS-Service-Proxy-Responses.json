@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555074724821,
+  "iteration": 1555080522536,
   "links": [
     {
       "icon": "external link",
@@ -179,12 +179,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Service Status",
+          "dashboard": "AdminRouter: Details DC/OS Service Proxy Individual",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Service Status",
+          "title": "Show $service over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-service-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-individual/adminrouter-details-dc-os-service-proxy-individual"
         }
       ],
       "nullPointMode": "null",
@@ -362,12 +362,12 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Service Status",
+          "dashboard": "AdminRouter: Details DC/OS Service Proxy Individual",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Service Status",
+          "title": "Show $service over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-service-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-individual/adminrouter-details-dc-os-service-proxy-individual"
         }
       ],
       "nullPointMode": "null",
@@ -520,12 +520,12 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Service Status",
+          "dashboard": "AdminRouter: Details DC/OS Service Proxy Individual",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Service Status",
+          "title": "Show $service over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-service-status"
+          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-individual/adminrouter-details-dc-os-service-proxy-individual"
         }
       ],
       "nullPointMode": "null",
@@ -952,5 +952,5 @@
   "timezone": "",
   "title": "AdminRouter: Details DC/OS Service Proxy Responses",
   "uid": "adminrouter-details-service-responses",
-  "version": 25
+  "version": 28
 }
