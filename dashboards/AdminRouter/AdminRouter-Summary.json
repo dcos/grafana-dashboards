@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554737020216,
+  "iteration": 1555074249521,
   "links": [
     {
       "icon": "external link",
@@ -101,7 +101,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "Server",
+      "title": "AdminRouter Server",
       "type": "dashboards"
     },
     {
@@ -115,7 +115,7 @@
         "adminrouter",
         "upstream"
       ],
-      "title": "Upstream",
+      "title": "DC/OS Component Proxy",
       "type": "dashboards"
     },
     {
@@ -129,7 +129,7 @@
         "adminrouter",
         "service"
       ],
-      "title": "Service",
+      "title": "DC/OS Service Proxy",
       "type": "dashboards"
     }
   ],
@@ -498,6 +498,19 @@
       "type": "text"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 50,
+      "panels": [],
+      "title": "Traffic: AdminRouter Total",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": true,
       "dashLength": 10,
@@ -511,7 +524,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 21
+        "y": 22
       },
       "id": 35,
       "legend": {
@@ -548,10 +561,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host) + sum(irate(nginx_upstream_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host) + sum(irate(nginx_service_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
+          "expr": "sum(irate(nginx_all_http_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host)",
           "format": "time_series",
           "hide": false,
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "{{host}}",
           "refId": "A"
         }
@@ -559,7 +572,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Nginx HTTP Request Throughput: $node",
+      "title": "HTTP Request Throughput ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -599,18 +612,31 @@
       }
     },
     {
-      "content": "Nginx throughput measured in requests per second. This is the total request rate towards each Admin Router instance. This includes request handled by each configured server directly plus requests that went to an upstream.",
+      "content": "HTTP request throughput measured in requests per second. This is the total request rate towards each AdminRouter instance. This includes requests served by each AdminRouter instance directly plus requests that went to an upstream DC/OS Component or to a DC/OS Service.",
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 21
+        "y": 22
       },
       "id": 30,
       "links": [],
       "mode": "markdown",
-      "title": "Admin Router Nginx HTTP Request Throughput",
+      "title": "AdminRouter Total Throughput",
       "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 46,
+      "panels": [],
+      "title": "Traffic: AdminRouter Server",
+      "type": "row"
     },
     {
       "aliasColors": {},
@@ -626,7 +652,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 28
+        "y": 30
       },
       "id": 37,
       "legend": {
@@ -665,10 +691,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,upstream) or sum(irate(nginx_service_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,upstream)) by (host)",
+          "expr": "sum(sum(irate(nginx_server_status_requests_total{dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,server) or sum(irate(nginx_upstream_status_requests_total{backend=\"\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (host,upstream)) by (host)",
           "format": "time_series",
           "hide": false,
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "{{host}}",
           "refId": "A"
         }
@@ -676,7 +702,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Server HTTP Request Throughput: $node",
+      "title": "HTTP Request Throughput ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -716,18 +742,31 @@
       }
     },
     {
-      "content": "Server throughput measured in requests per second. This is concerned with requests that are served by Admin Router itself, not going to any of the upstreams found in the upstream tab.",
+      "content": "HTTP Request throughput measured in requests per second. This is concerned with requests that are served by AdminRouter directly, not going to any of the upstreams (DC/OS Components or DC/OS Services) found in the respective tabs.",
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 28
+        "y": 30
       },
       "id": 38,
       "links": [],
       "mode": "markdown",
-      "title": "Admin Router Server HTTP Request Throughput",
+      "title": "AdminRouter Server Throughput",
       "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 37
+      },
+      "id": 44,
+      "panels": [],
+      "title": "Traffic: DC/OS Component Proxy",
+      "type": "row"
     },
     {
       "aliasColors": {},
@@ -744,7 +783,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 35
+        "y": 38
       },
       "id": 36,
       "legend": {
@@ -795,7 +834,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_upstream_status_requests_total{backend=~\".+\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)",
+          "expr": "sum(irate(nginx_upstream_backend_requests_total{backend=~\".+\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (upstream)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{upstream}}",
@@ -806,7 +845,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Upstream HTTP Request Throughput: $node",
+      "title": "HTTP Request Throughput ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -847,18 +886,31 @@
       }
     },
     {
-      "content": "Stacked upstream throughput measured as requests per second going to each upstream server aggregated over all master nodes. This graph helps to identify upstreams that are particularly active.",
+      "content": "HTTP request throughput measured as requests per second going to each upstream DC/OS Component server. This graph helps to identify DC/OS Components that are particularly active.",
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 35
+        "y": 38
       },
       "id": 20,
       "links": [],
       "mode": "markdown",
-      "title": "Admin Router Upstream HTTP Request Throughput",
+      "title": "DC/OS Component Proxy Throughput",
       "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 48,
+      "panels": [],
+      "title": "Traffic: DC/OS Service Proxy",
+      "type": "row"
     },
     {
       "aliasColors": {},
@@ -875,7 +927,7 @@
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 42
+        "y": 46
       },
       "id": 39,
       "legend": {
@@ -926,7 +978,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(nginx_service_status_requests_total{backend=~\".+\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (service)",
+          "expr": "sum(irate(nginx_service_backend_requests_total{backend=~\".+\",dcos_component_name=\"Admin Router\",host=~\"$node\"}[$rate_interval])) by (service)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{service}}",
@@ -937,7 +989,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Service HTTP Request Throughput: $node",
+      "title": "HTTP Request Throughput ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -978,17 +1030,17 @@
       }
     },
     {
-      "content": "Stacked service throughput measured as requests per second going to each service upstream server aggregated over all master nodes. This graph helps to identify services that are particularly active.",
+      "content": "HTTP request throughput measured as requests per second going to each upstream DC/OS Service server. This graph helps to identify installed services that are accessed through AdminRouter.",
       "gridPos": {
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 42
+        "y": 46
       },
-      "id": 40,
+      "id": 51,
       "links": [],
       "mode": "markdown",
-      "title": "Admin Router Service HTTP Request Throughput",
+      "title": "DC/OS Service Proxy Throughput",
       "type": "text"
     }
   ],
@@ -1089,7 +1141,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1120,5 +1172,5 @@
   "timezone": "",
   "title": "AdminRouter: Summary",
   "uid": "adminrouter-summary",
-  "version": 9
+  "version": 10
 }
