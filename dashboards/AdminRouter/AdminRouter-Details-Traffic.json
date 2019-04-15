@@ -93,7 +93,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "AdminRouter Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -136,7 +136,7 @@
       },
       "id": 56,
       "panels": [],
-      "title": "Traffic: AdminRouter Total",
+      "title": "Traffic: Admin Router Total",
       "type": "row"
     },
     {
@@ -418,7 +418,7 @@
       },
       "id": 32,
       "panels": [],
-      "title": "Traffic: AdminRouter Server",
+      "title": "Traffic: Admin Router Server",
       "type": "row"
     },
     {
@@ -471,10 +471,10 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Status",
+          "dashboard": "Admin Router: Details Admin Router Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details AdminRouter Server Status",
+          "title": "Admin Router: Details Admin Router Server Status",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
@@ -550,7 +550,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Request Latency Distribution Over Requests Served by AdminRouter Directly ( $node )",
+      "title": "HTTP Request Latency Distribution Over Requests Served by Admin Router Directly ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -624,10 +624,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Status",
+          "dashboard": "Admin Router: Details Admin Router Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details AdminRouter Server Status",
+          "title": "Admin Router: Details Admin Router Server Status",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
@@ -654,7 +654,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Request Throughput For  Requests Served by AdminRouter Directly ( $node )",
+      "title": "HTTP Request Throughput For  Requests Served by Admin Router Directly ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -729,10 +729,10 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Status",
+          "dashboard": "Admin Router: Details Admin Router Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details AdminRouter Server Status",
+          "title": "Admin Router: Details Admin Router Server Status",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
@@ -778,7 +778,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Error Status Distribution Over  Requests Served by AdminRouter Directly ( $node )",
+      "title": "HTTP Error Status Distribution Over  Requests Served by Admin Router Directly ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -866,10 +866,10 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Overview",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details DC/OS Component Proxy Overview",
+          "title": "Admin Router: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
@@ -1052,10 +1052,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Overview",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details DC/OS Component Proxy Overview",
+          "title": "Admin Router: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
@@ -1167,10 +1167,10 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Overview",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details DC/OS Component Proxy Overview",
+          "title": "Admin Router: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
@@ -1305,10 +1305,10 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Service Proxy Overview",
+          "dashboard": "Admin Router: Details DC/OS Service Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details DC/OS Service Proxy Overview",
+          "title": "Admin Router: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
@@ -1490,10 +1490,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Service Proxy Overview",
+          "dashboard": "Admin Router: Details DC/OS Service Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details DC/OS Service Proxy Overview",
+          "title": "Admin Router: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
@@ -1607,10 +1607,10 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Service Proxy Overview",
+          "dashboard": "Admin Router: Details DC/OS Service Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details DC/OS Service Proxy Overview",
+          "title": "Admin Router: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
@@ -1823,7 +1823,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Details Traffic",
+  "title": "Admin Router: Details Traffic",
   "uid": "adminrouter-details-traffic",
   "version": 30
 }

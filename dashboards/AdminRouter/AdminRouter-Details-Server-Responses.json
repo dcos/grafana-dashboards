@@ -112,7 +112,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "AdminRouter Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -181,7 +181,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Status",
+          "dashboard": "Admin Router: Details Admin Router Server Status",
           "includeVars": true,
           "keepTime": true,
           "title": "Show Requests over all DC/OS Master Nodes",
@@ -289,7 +289,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP ( $status ) Status Request Latency Distribution | Served by AdminRouter directly on DC/OS Master Nodes ( $node )",
+      "title": "HTTP ( $status ) Status Request Latency Distribution | Served by Admin Router directly on DC/OS Master Nodes ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -364,7 +364,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Status",
+          "dashboard": "Admin Router: Details Admin Router Server Status",
           "includeVars": true,
           "keepTime": true,
           "title": "Show Requests over all DC/OS Master Nodes",
@@ -436,7 +436,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Status Distribution | Served by AdminRouter directly on DC/OS Master Nodes ( $node )",
+      "title": "HTTP Status Distribution | Served by Admin Router directly on DC/OS Master Nodes ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -522,7 +522,7 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Status",
+          "dashboard": "Admin Router: Details Admin Router Server Status",
           "includeVars": true,
           "keepTime": true,
           "title": "Show Requests over all DC/OS Master Nodes",
@@ -553,7 +553,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP ( $status ) Status Code Rate  | Served by AdminRouter directly on DC/OS Master Nodes ( $node )",
+      "title": "HTTP ( $status ) Status Code Rate  | Served by Admin Router directly on DC/OS Master Nodes ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -679,7 +679,7 @@
           "refId": "B"
         }
       ],
-      "title": "User Agent HTTP ( $status ) Status Request Rate | Served by AdminRouter directly on DC/OS Master Nodes ( $node )",
+      "title": "User Agent HTTP ( $status ) Status Request Rate | Served by Admin Router directly on DC/OS Master Nodes ( $node )",
       "transform": "timeseries_aggregations",
       "type": "table"
     },
@@ -769,7 +769,7 @@
           "refId": "B"
         }
       ],
-      "title": "URI HTTP ( $status ) Status Request Rate | Served by AdminRouter directly on DC/OS Master Nodes ( $node )",
+      "title": "URI HTTP ( $status ) Status Request Rate | Served by Admin Router directly on DC/OS Master Nodes ( $node )",
       "transform": "timeseries_aggregations",
       "type": "table"
     }
@@ -924,7 +924,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Details AdminRouter Server Responses",
+  "title": "Admin Router: Details Admin Router Server Responses",
   "uid": "adminrouter-details-server-responses",
   "version": 24
 }

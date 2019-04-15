@@ -104,7 +104,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "AdminRouter Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -197,7 +197,7 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Responses",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Responses",
           "includeVars": true,
           "keepTime": true,
           "targetBlank": false,
@@ -306,7 +306,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Responses",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Responses",
           "includeVars": true,
           "keepTime": true,
           "title": "Show $upstream on this DC/OS Master Node",
@@ -492,7 +492,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Responses",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Responses",
           "includeVars": true,
           "keepTime": true,
           "title": "Show $upstream on this DC/OS Master Node",
@@ -761,7 +761,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Details DC/OS Component Proxy Individual",
+  "title": "Admin Router: Details DC/OS Component Proxy Individual",
   "uid": "adminrouter-details-upstream-status",
   "version": 33
 }

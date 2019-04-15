@@ -101,7 +101,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "AdminRouter Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -166,10 +166,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Runtime",
+          "dashboard": "Admin Router: Details Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Runtime",
+          "title": "Admin Router: Details Runtime",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-details-runtime"
         }
@@ -290,10 +290,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Runtime",
+          "dashboard": "Admin Router: Details Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Runtime",
+          "title": "Admin Router: Details Runtime",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-details-runtime"
         }
@@ -415,10 +415,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "/AdminRouter/AdminRouter-Details-Runtime",
+          "dashboard": "Admin Router: Details Runtime",
           "includeVars": true,
           "keepTime": true,
-          "title": "/AdminRouter/AdminRouter-Details-Runtime",
+          "title": "Admin Router: Details Runtime",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-adminrouter-details-runtime"
         }
@@ -507,7 +507,7 @@
       },
       "id": 50,
       "panels": [],
-      "title": "Traffic: AdminRouter Total",
+      "title": "Traffic: Admin Router Total",
       "type": "row"
     },
     {
@@ -542,10 +542,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details Traffic",
+          "dashboard": "Admin Router: Details Traffic",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details Traffic",
+          "title": "Admin Router: Details Traffic",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-traffic/adminrouter-details-traffic"
         }
@@ -612,7 +612,7 @@
       }
     },
     {
-      "content": "HTTP request throughput measured in requests per second. This is the total request rate towards each AdminRouter instance. This includes requests served by each AdminRouter instance directly plus requests that went to an upstream DC/OS Component or to a DC/OS Service.",
+      "content": "HTTP request throughput measured in requests per second. This is the total request rate towards each Admin Router instance. This includes requests served by each Admin Router instance directly plus requests that went to an upstream DC/OS Component or to a DC/OS Service.",
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -622,7 +622,7 @@
       "id": 30,
       "links": [],
       "mode": "markdown",
-      "title": "AdminRouter Total Throughput",
+      "title": "Admin Router Total Throughput",
       "type": "text"
     },
     {
@@ -635,7 +635,7 @@
       },
       "id": 46,
       "panels": [],
-      "title": "Traffic: AdminRouter Server",
+      "title": "Traffic: Admin Router Server",
       "type": "row"
     },
     {
@@ -672,10 +672,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Status",
+          "dashboard": "Admin Router: Details Admin Router Server Status",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details AdminRouter Server Status",
+          "title": "Admin Router: Details Admin Router Server Status",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
@@ -742,7 +742,7 @@
       }
     },
     {
-      "content": "HTTP Request throughput measured in requests per second. This is concerned with requests that are served by AdminRouter directly, not going to any of the upstreams (DC/OS Components or DC/OS Services) found in the respective tabs.",
+      "content": "HTTP Request throughput measured in requests per second. This is concerned with requests that are served by Admin Router directly, not going to any of the upstreams (DC/OS Components or DC/OS Services) found in the respective tabs.",
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -752,7 +752,7 @@
       "id": 38,
       "links": [],
       "mode": "markdown",
-      "title": "AdminRouter Server Throughput",
+      "title": "Admin Router Server Throughput",
       "type": "text"
     },
     {
@@ -806,10 +806,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Overview",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details DC/OS Component Proxy Overview",
+          "title": "Admin Router: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
@@ -950,10 +950,10 @@
       "linewidth": 2,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Service Proxy Overview",
+          "dashboard": "Admin Router: Details DC/OS Service Proxy Overview",
           "includeVars": true,
           "keepTime": true,
-          "title": "AdminRouter: Details DC/OS Service Proxy Overview",
+          "title": "Admin Router: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
@@ -1030,7 +1030,7 @@
       }
     },
     {
-      "content": "HTTP request throughput measured as requests per second going to each upstream DC/OS Service server. This graph helps to identify installed services that are accessed through AdminRouter.",
+      "content": "HTTP request throughput measured as requests per second going to each upstream DC/OS Service server. This graph helps to identify installed services that are accessed through Admin Router.",
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -1170,7 +1170,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Summary",
+  "title": "Admin Router: Summary",
   "uid": "adminrouter-summary",
   "version": 13
 }

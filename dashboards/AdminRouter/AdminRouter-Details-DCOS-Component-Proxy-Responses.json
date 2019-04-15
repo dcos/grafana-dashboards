@@ -110,7 +110,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "AdminRouter Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -179,7 +179,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Individual",
           "includeVars": true,
           "keepTime": true,
           "title": "Show $upstream over all DC/OS Master Nodes",
@@ -358,7 +358,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Individual",
           "title": "Show $upstream over all DC/OS Master Nodes",
           "type": "dashboard",
           "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-status/adminrouter-details-dc-os-component-proxy-individual"
@@ -508,7 +508,7 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Component Proxy Individual",
+          "dashboard": "Admin Router: Details DC/OS Component Proxy Individual",
           "includeVars": true,
           "keepTime": true,
           "title": "Show $upstream over all DC/OS Master Nodes",
@@ -939,7 +939,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Details DC/OS Component Proxy Responses",
+  "title": "Admin Router: Details DC/OS Component Proxy Responses",
   "uid": "adminrouter-details-upstream-responses",
   "version": 41
 }

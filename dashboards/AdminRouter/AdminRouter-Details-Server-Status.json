@@ -104,7 +104,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "AdminRouter Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -148,7 +148,7 @@
       "id": 69,
       "panels": [],
       "repeat": "node",
-      "title": "Served by AdminRouter directly on DC/OS Master Node  ( $node )",
+      "title": "Served by Admin Router directly on DC/OS Master Node  ( $node )",
       "type": "row"
     },
     {
@@ -198,7 +198,7 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Responses",
+          "dashboard": "Admin Router: Details Admin Router Server Responses",
           "includeVars": true,
           "keepTime": true,
           "targetBlank": false,
@@ -307,7 +307,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Responses",
+          "dashboard": "Admin Router: Details Admin Router Server Responses",
           "includeVars": true,
           "keepTime": true,
           "title": "Show Requests on this Master Node",
@@ -491,7 +491,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details AdminRouter Server Responses",
+          "dashboard": "Admin Router: Details Admin Router Server Responses",
           "includeVars": true,
           "keepTime": true,
           "title": "Show Requests on this Master Node",
@@ -733,7 +733,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Details AdminRouter Server Status",
+  "title": "Admin Router: Details Admin Router Server Status",
   "uid": "adminrouter-details-server-status",
   "version": 33
 }

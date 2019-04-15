@@ -110,7 +110,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "AdminRouter Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -179,7 +179,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Service Proxy Individual",
+          "dashboard": "Admin Router: Details DC/OS Service Proxy Individual",
           "includeVars": true,
           "keepTime": true,
           "title": "Show $service over all DC/OS Master Nodes",
@@ -362,7 +362,7 @@
       "linewidth": 0,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Service Proxy Individual",
+          "dashboard": "Admin Router: Details DC/OS Service Proxy Individual",
           "includeVars": true,
           "keepTime": true,
           "title": "Show $service over all DC/OS Master Nodes",
@@ -520,7 +520,7 @@
       "linewidth": 1,
       "links": [
         {
-          "dashboard": "AdminRouter: Details DC/OS Service Proxy Individual",
+          "dashboard": "Admin Router: Details DC/OS Service Proxy Individual",
           "includeVars": true,
           "keepTime": true,
           "title": "Show $service over all DC/OS Master Nodes",
@@ -950,7 +950,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Details DC/OS Service Proxy Responses",
+  "title": "Admin Router: Details DC/OS Service Proxy Responses",
   "uid": "adminrouter-details-service-responses",
   "version": 28
 }

@@ -100,7 +100,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "AdminRouter Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -1069,7 +1069,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Details Runtime",
+  "title": "Admin Router: Details Runtime",
   "uid": "adminrouter-details-runtime",
   "version": 10
 }
