@@ -142,23 +142,41 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(sum(capacity{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host)) - sum(sum(capacity_available{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "expr": "sum(sum(capacity{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
           "format": "time_series",
+          "hide": false,
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Used",
+          "legendFormat": "Capacity",
           "refId": "A",
           "step": 2
         },
         {
-          "expr": "sum(sum(capacity{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "expr": "sum(sum(capacity_available{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
           "format": "time_series",
+          "hide": false,
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Total",
+          "legendFormat": "Available",
           "metric": "",
           "refId": "B",
           "step": 2
+        },
+        {
+          "expr": "sum(sum(capacity_used{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "Used",
+          "refId": "E"
+        },
+        {
+          "expr": "sum(sum(capacity_reserved{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "Reserved",
+          "refId": "F"
         }
       ],
       "thresholds": [],
