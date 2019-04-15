@@ -53,7 +53,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1554737149870,
+  "iteration": 1555080270252,
   "links": [
     {
       "icon": "external link",
@@ -100,7 +100,7 @@
         "adminrouter",
         "server"
       ],
-      "title": "Server",
+      "title": "Admin Router Server",
       "type": "dashboards"
     },
     {
@@ -114,7 +114,7 @@
         "adminrouter",
         "upstream"
       ],
-      "title": "Upstream",
+      "title": "DC/OS Component Proxy",
       "type": "dashboards"
     },
     {
@@ -128,7 +128,7 @@
         "adminrouter",
         "service"
       ],
-      "title": "Service",
+      "title": "DC/OS Service Proxy",
       "type": "dashboards"
     }
   ],
@@ -195,7 +195,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Live Instances: $node",
+      "title": "Live Instances ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -302,7 +302,7 @@
         }
       ],
       "timeFrom": null,
-      "title": "Nginx Version",
+      "title": "Nginx Version ( $node )",
       "transform": "table",
       "type": "table"
     },
@@ -369,7 +369,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Uptime: $node",
+      "title": "Uptime ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -454,7 +454,7 @@
           "step": 240
         }
       ],
-      "title": "Uptime: $node",
+      "title": "Uptime ( $node )",
       "transform": "timeseries_aggregations",
       "type": "table"
     },
@@ -511,7 +511,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Active Connections (max): $node",
+      "title": "Active Connections ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -610,7 +610,7 @@
           "step": 240
         }
       ],
-      "title": "Active Connections (max): $node",
+      "title": "Active Connections ( $node )",
       "transform": "timeseries_aggregations",
       "type": "table"
     },
@@ -671,7 +671,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Active Connection State (max): $node",
+      "title": "Active Connection State - max ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -771,7 +771,7 @@
           "step": 240
         }
       ],
-      "title": "Active Connection State (max): $node",
+      "title": "Active Connection State - max ( $node )",
       "transform": "timeseries_aggregations",
       "type": "table"
     },
@@ -837,7 +837,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "VTS Module Shared Memory Size: $node",
+      "title": "VTS Module Shared Memory Size ( $node )",
       "tooltip": {
         "msResolution": true,
         "shared": true,
@@ -936,7 +936,7 @@
           "step": 240
         }
       ],
-      "title": "VTS Module Shared Memory Size: $node",
+      "title": "VTS Module Shared Memory Size ( $node )",
       "transform": "timeseries_aggregations",
       "type": "table"
     }
@@ -958,12 +958,12 @@
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
         "includeAll": true,
-        "label": "Node",
+        "label": "DC/OS Master Nodes",
         "multi": false,
         "name": "node",
         "options": [],
         "query": "label_values(nginx_vts_info{dcos_component_name=\"Admin Router\"},host)",
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1040,7 +1040,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1069,7 +1069,7 @@
     ]
   },
   "timezone": "",
-  "title": "AdminRouter: Details Runtime",
+  "title": "Admin Router: Details Runtime",
   "uid": "adminrouter-details-runtime",
-  "version": 6
+  "version": 10
 }
