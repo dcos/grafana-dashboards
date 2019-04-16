@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.0.1"
+      "version": "5.3.4"
     },
     {
       "type": "panel",
@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1543311328597,
+  "iteration": 1555412787147,
   "links": [
     {
       "icon": "external link",
@@ -215,7 +215,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [],
@@ -373,7 +377,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -550,7 +558,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -702,7 +714,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -870,7 +886,11 @@
           "min": 0,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -1034,7 +1054,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -1189,7 +1213,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -1341,7 +1369,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -1428,7 +1460,7 @@
         "x": 0,
         "y": 56
       },
-      "id": 22,
+      "id": 31,
       "legend": {
         "avg": false,
         "current": false,
@@ -1452,7 +1484,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "round_trip_latency:rate1m:quantile_50{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
+          "expr": "histogram_quantile(0.5, rate(round_trip_latency_bucket{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{host}}",
@@ -1495,7 +1527,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -1555,7 +1591,7 @@
       ],
       "targets": [
         {
-          "expr": "round_trip_latency:rate1m:quantile_50{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
+          "expr": "histogram_quantile(0.5, rate(round_trip_latency_bucket{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1582,7 +1618,7 @@
         "x": 0,
         "y": 63
       },
-      "id": 24,
+      "id": 32,
       "legend": {
         "avg": false,
         "current": false,
@@ -1606,7 +1642,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "round_trip_latency:rate1m:quantile_95{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
+          "expr": "histogram_quantile(0.95, rate(round_trip_latency_bucket{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{host}}",
@@ -1649,7 +1685,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -1709,7 +1749,7 @@
       ],
       "targets": [
         {
-          "expr": "round_trip_latency:rate1m:quantile_95{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
+          "expr": "histogram_quantile(0.95, rate(round_trip_latency_bucket{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1736,7 +1776,7 @@
         "x": 0,
         "y": 70
       },
-      "id": 26,
+      "id": 33,
       "legend": {
         "avg": false,
         "current": false,
@@ -1760,7 +1800,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "round_trip_latency:rate1m:quantile_99{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
+          "expr": "histogram_quantile(0.99, rate(round_trip_latency_bucket{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{host}}",
@@ -1803,7 +1843,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "columns": [
@@ -1863,7 +1907,7 @@
       ],
       "targets": [
         {
-          "expr": "round_trip_latency:rate1m:quantile_99{dcos_component_name=\"CockroachDB\",host=~\"$node\"}",
+          "expr": "histogram_quantile(0.99, rate(round_trip_latency_bucket{dcos_component_name=\"CockroachDB\",host=~\"$node\"}[$rate_interval]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1878,7 +1922,7 @@
       "type": "table"
     }
   ],
-  "refresh": false,
+  "refresh": "30s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -1901,6 +1945,7 @@
         "query": "label_values(sys_uptime{dcos_component_name=\"CockroachDB\"},host)",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 3,
         "tagValuesQuery": "",
         "tags": [],
@@ -1913,8 +1958,9 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "text": "10m",
-          "value": "10m"
+          "selected": true,
+          "text": "1m",
+          "value": "1m"
         },
         "datasource": null,
         "hide": 0,
@@ -1929,7 +1975,7 @@
             "value": "30s"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1m",
             "value": "1m"
           },
@@ -1939,7 +1985,7 @@
             "value": "5m"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "10m",
             "value": "10m"
           },
@@ -1972,12 +2018,13 @@
         "query": "30s,1m,5m,10m,30m,1h,6h,12h,1d",
         "refresh": 2,
         "regex": "",
+        "skipUrlSync": false,
         "type": "interval"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
