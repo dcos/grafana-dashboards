@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555424294845,
+  "iteration": 1555426653899,
   "links": [
     {
       "icon": "external link",
@@ -622,6 +622,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
+      "description": "Number of disk reads required per query.",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -727,7 +728,7 @@
         }
       ],
       "datasource": "${DS_PROMETHEUS}",
-      "description": "Number of disk reads required per query.",
+      "description": "",
       "editable": true,
       "error": false,
       "fontSize": "90%",
@@ -1716,5 +1717,5 @@
   "timezone": "utc",
   "title": "CockroachDB: Details Storage",
   "uid": "000000006",
-  "version": 4
+  "version": 6
 }
