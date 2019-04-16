@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1555412787147,
+  "iteration": 1555424226325,
   "links": [
     {
       "icon": "external link",
@@ -1938,7 +1938,7 @@
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
         "includeAll": true,
-        "label": "Node",
+        "label": "DC/OS Master Nodes",
         "multi": false,
         "name": "node",
         "options": [],
@@ -1958,9 +1958,8 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "selected": true,
-          "text": "1m",
-          "value": "1m"
+          "text": "5m",
+          "value": "5m"
         },
         "datasource": null,
         "hide": 0,
@@ -1975,12 +1974,12 @@
             "value": "30s"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "1m",
             "value": "1m"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "5m",
             "value": "5m"
           },
@@ -2055,5 +2054,5 @@
   "timezone": "utc",
   "title": "CockroachDB: Details Runtime",
   "uid": "000000001",
-  "version": 6
+  "version": 3
 }
