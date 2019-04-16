@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1555412468771,
+  "iteration": 1555415458902,
   "links": [
     {
       "icon": "external link",
@@ -343,7 +343,7 @@
         "x": 0,
         "y": 14
       },
-      "id": 8,
+      "id": 29,
       "legend": {
         "avg": false,
         "current": false,
@@ -356,7 +356,7 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -367,20 +367,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(sum(capacity{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host)) - sum(sum(capacity_available{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "expr": "sum(sum(capacity_available{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
           "format": "time_series",
-          "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Used",
-          "refId": "A",
-          "step": 2
+          "legendFormat": "Available Capacity ",
+          "refId": "C"
         },
         {
-          "expr": "sum(sum(capacity{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
+          "expr": "sum(sum(capacity_used{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "Total",
+          "legendFormat": "Used Capacity ",
           "metric": "",
           "refId": "B",
           "step": 2
@@ -393,7 +391,7 @@
       "tooltip": {
         "msResolution": false,
         "shared": true,
-        "sort": 0,
+        "sort": 2,
         "value_type": "cumulative"
       },
       "type": "graph",
@@ -428,7 +426,7 @@
       }
     },
     {
-      "content": "Amount of total storage capacity in Gigabytes versus amount of storage currently in use.",
+      "content": "CockroachDB storage capacity utilization.",
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -911,129 +909,12 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
-      "editable": true,
-      "error": false,
-      "fill": 1,
-      "grid": {},
-      "gridPos": {
-        "h": 7,
-        "w": 16,
-        "x": 0,
-        "y": 49
-      },
-      "id": 10,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 2,
-      "links": [],
-      "nullPointMode": "connected",
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum(sum(livebytes{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
-          "format": "time_series",
-          "hide": false,
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "User",
-          "metric": "",
-          "refId": "A",
-          "step": 2
-        },
-        {
-          "expr": "sum(sum(sysbytes{dcos_component_name=\"CockroachDB\",host=~\"$node\"}) by (host))",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "Internal",
-          "metric": "",
-          "refId": "C",
-          "step": 2
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Bytes: $node",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "cumulative"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": 0,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "content": "Number of bytes of system data stored for CockroachDB internal purposes versus number of bytes of live data from DC/OS.",
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 49
-      },
-      "id": 26,
-      "links": [],
-      "mode": "markdown",
-      "title": "CockroachDB Bytes",
-      "type": "text"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
       "fill": 1,
       "gridPos": {
         "h": 7,
         "w": 16,
         "x": 0,
-        "y": 56
+        "y": 49
       },
       "id": 12,
       "legend": {
@@ -1114,7 +995,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 56
+        "y": 49
       },
       "id": 22,
       "links": [],
@@ -1251,5 +1132,5 @@
   "timezone": "",
   "title": "CockroachDB: Summary",
   "uid": "mSSvRcBiz",
-  "version": 7
+  "version": 12
 }
