@@ -19,93 +19,126 @@
   "links": [],
   "panels": [
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
-      "datasource": "prometheus",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "aliasColors": {
+        "average": "#7d58ff",
+        "bundle count": "#ff007d",
+        "latest bundle": "#14c684"
       },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
       "gridPos": {
-        "h": 4,
+        "h": 12,
         "w": 16,
         "x": 0,
         "y": 0
       },
-      "id": 2,
-      "interval": null,
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "seriesOverrides": [
         {
-          "name": "value to text",
-          "value": 1
+          "alias": "average",
+          "bars": false,
+          "lines": true,
+          "stack": false
         },
         {
-          "name": "range to text",
-          "value": 2
+          "alias": "bundle count",
+          "bars": false,
+          "lines": true,
+          "yaxis": 2
         }
       ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "repeat": null,
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "Value",
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
+        {
+          "expr": "sum(bundle_creation_time_seconds_gauge)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "latest bundle",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(bundle_creation_time_seconds_count)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "bundle count",
+          "refId": "C"
+        },
         {
           "expr": "sum(bundle_creation_time_seconds_sum)/sum(bundle_creation_time_seconds_count)",
           "format": "time_series",
-          "hide": false,
-          "instant": true,
           "intervalFactor": 1,
-          "refId": "A"
+          "legendFormat": "average",
+          "refId": "B"
         }
       ],
-      "thresholds": "",
-      "title": "Avg. bundle creation time (s)",
-      "transparent": false,
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Bundle creation times (s)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
         {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
+          "format": "short",
+          "label": "seconds",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": "count",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
       ],
-      "valueName": "current"
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
-      "content": "The average time in seconds it takes to create a bundle. Since bundle creation time varies heavily depending on the node the bundle is created for, this number shall be taken as a rough estimate.",
+      "content": "Time (in seconds) it takes to create a bundle. The graph contains discrete creation times (bars) as well as a simple average (line). On the right y axis the total number of created bundles is plotted. Since bundle creation time varies heavily depending on the node the bundle is created for, the numbers shall be taken as rough estimates. Each bar may represent a completely different bundle from a different node as its neighbouring bars.",
       "gridPos": {
-        "h": 4,
+        "h": 12,
         "w": 8,
         "x": 16,
         "y": 0
@@ -113,7 +146,7 @@
       "id": 4,
       "links": [],
       "mode": "markdown",
-      "title": "Average bundle creation time",
+      "title": "Bundle creation times",
       "type": "text"
     },
     {
@@ -127,7 +160,7 @@
         "h": 16,
         "w": 16,
         "x": 0,
-        "y": 4
+        "y": 12
       },
       "id": 6,
       "legend": {
@@ -207,7 +240,7 @@
         "h": 16,
         "w": 8,
         "x": 16,
-        "y": 4
+        "y": 12
       },
       "id": 8,
       "links": [],
@@ -258,5 +291,5 @@
   "timezone": "",
   "title": "Diagnostics: Summary",
   "uid": "ECa21R3ik",
-  "version": 3
+  "version": 6
 }
