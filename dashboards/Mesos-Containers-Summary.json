@@ -72,7 +72,7 @@
       },
       "id": 14,
       "panels": [],
-      "title": "CPU: $service | $task_name | $host | $container_id",
+      "title": "CPU: $service | $task_name | $instance | $container_id",
       "type": "row"
     },
     {
@@ -84,7 +84,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 1
       },
@@ -123,7 +123,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(cpus_limit{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
+          "expr": "sum(cpus_limit{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -132,13 +132,21 @@
           "refId": "A"
         },
         {
-          "expr": "sum(irate(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]) + irate(cpus_user_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]))",
+          "expr": "sum(irate(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}[$rate_interval]) + irate(cpus_user_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}[$rate_interval]))",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "CPU Usage",
           "refId": "B"
+        },
+        {
+          "expr": "sum(rate(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}[$rate_interval]) + rate(cpus_user_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}[$rate_interval]))",
+          "format": "time_series",
+          "interval": "$rate_interval",
+          "intervalFactor": 1,
+          "legendFormat": "CPU Usage Average",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -182,11 +190,11 @@
       }
     },
     {
-      "content": "Total percentage of CPU time spent by tasks of the cgroup combined in kernel and user mode.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Total CPUs used.\n\nShows the number of CPUs used by the container subsystem.\n\nThe container resource usage should be close to the allocation for better cluster utilization.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 1
       },
       "id": 20,
@@ -204,7 +212,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 10
       },
@@ -217,6 +225,8 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sort": null,
+        "sortDesc": null,
         "total": false,
         "values": true
       },
@@ -240,10 +250,10 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": false,
+      "steppedLine": true,
       "targets": [
         {
-          "expr": "sum(irate(cpus_nr_throttled{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]) / irate(cpus_nr_periods{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]))",
+          "expr": "sum(irate(cpus_nr_throttled{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}[$rate_interval]) / irate(cpus_nr_periods{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}[$rate_interval]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -292,11 +302,11 @@
       }
     },
     {
-      "content": "Rate of cgroup CPU throttle triggers, sampled over $rate_interval interval windows.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "CGroup CPU throttle triggers.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 10
       },
       "id": 21,
@@ -315,7 +325,7 @@
       },
       "id": 12,
       "panels": [],
-      "title": "Memory: $service | $task_name | $host | $container_id",
+      "title": "Memory: $service | $task_name | $instance | $container_id",
       "type": "row"
     },
     {
@@ -327,7 +337,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 20
       },
@@ -366,7 +376,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mem_limit_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
+          "expr": "sum(mem_limit_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -374,7 +384,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(mem_total_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
+          "expr": "sum(mem_total_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -423,11 +433,11 @@
       }
     },
     {
-      "content": "Memory size limit and memory used by container.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Memory size limit and memory used by container.\n\nContainers exceeding their memory limit may get OOM killed.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 20
       },
       "id": 22,
@@ -446,7 +456,7 @@
       },
       "id": 16,
       "panels": [],
-      "title": "Disk:  $service | $task_name | $host | $container_id",
+      "title": "Disk:  $service | $task_name | $instance | $container_id",
       "type": "row"
     },
     {
@@ -458,7 +468,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 30
       },
@@ -497,7 +507,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(disk_limit_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
+          "expr": "sum(disk_limit_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -505,7 +515,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(disk_used_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"})",
+          "expr": "sum(disk_used_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -554,11 +564,11 @@
       }
     },
     {
-      "content": "Disk space size limit and disk space used by container.\n\nTODO(tillt): Add expectation and interpretation hints. ",
+      "content": "Disk space size limit and disk space used by container.\n",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 30
       },
       "id": 23,
@@ -577,7 +587,7 @@
       },
       "id": 18,
       "panels": [],
-      "title": "Network: $service | $task_name | $host | $container_id",
+      "title": "Network: $service | $task_name | $instance | $container_id",
       "type": "row"
     },
     {
@@ -589,7 +599,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 40
       },
@@ -628,14 +638,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(net_rx_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]))",
+          "expr": "sum(irate(net_rx_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}[$rate_interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Received",
           "refId": "A"
         },
         {
-          "expr": "sum(irate(net_tx_bytes{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\", container_id=~\"$container_id\"}[$rate_interval]))",
+          "expr": "sum(irate(net_tx_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}[$rate_interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Sent",
@@ -683,11 +693,11 @@
       }
     },
     {
-      "content": "Bytes per second sent and received via network.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Bytes per second sent and received via network.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 40
       },
       "id": 24,
@@ -697,7 +707,7 @@
       "type": "text"
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -735,6 +745,7 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -759,17 +770,18 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
         "includeAll": true,
-        "label": "Host",
+        "label": "Instance",
         "multi": false,
-        "name": "host",
+        "name": "instance",
         "options": [],
-        "query": "label_values(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\"}, host)",
+        "query": "label_values(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\"}, instance)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -783,6 +795,7 @@
       {
         "allValue": ".*",
         "current": {
+          "selected": true,
           "text": "All",
           "value": "$__all"
         },
@@ -793,7 +806,7 @@
         "multi": false,
         "name": "container_id",
         "options": [],
-        "query": "label_values(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", host=~\"$host\"}, container_id)",
+        "query": "label_values(cpus_system_time_secs{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\"}, container_id)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -812,7 +825,7 @@
           "text": "2m",
           "value": "2m"
         },
-        "hide": 0,
+        "hide": 2,
         "label": "Rate Interval",
         "name": "rate_interval",
         "options": [
@@ -820,19 +833,9 @@
             "selected": true,
             "text": "2m",
             "value": "2m"
-          },
-          {
-            "selected": false,
-            "text": "10m",
-            "value": "10m"
-          },
-          {
-            "selected": false,
-            "text": "30m",
-            "value": "30m"
           }
         ],
-        "query": "2m,10m,30m",
+        "query": "2m",
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
@@ -871,5 +874,5 @@
   "timezone": "",
   "title": "Mesos: Containers Summary",
   "uid": "_x5aKa6mz",
-  "version": 7
+  "version": 8
 }
