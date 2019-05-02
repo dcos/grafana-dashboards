@@ -109,7 +109,7 @@
           "keepTime": true,
           "title": "Mesos: Containers Details",
           "type": "dashboard",
-          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+          "url": "d/kOFp4oemk/mesos-containers-details"
         }
       ],
       "nullPointMode": "null",
@@ -239,7 +239,7 @@
           "keepTime": true,
           "title": "Mesos: Containers Details",
           "type": "dashboard",
-          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+          "url": "d/kOFp4oemk/mesos-containers-details"
         }
       ],
       "nullPointMode": "null",
@@ -362,7 +362,7 @@
           "keepTime": true,
           "title": "Mesos: Containers Details",
           "type": "dashboard",
-          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+          "url": "d/kOFp4oemk/mesos-containers-details"
         }
       ],
       "nullPointMode": "null",
@@ -493,7 +493,7 @@
           "keepTime": true,
           "title": "Mesos: Containers Details",
           "type": "dashboard",
-          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+          "url": "d/kOFp4oemk/mesos-containers-details"
         }
       ],
       "nullPointMode": "null",
@@ -624,7 +624,7 @@
           "keepTime": true,
           "title": "Mesos: Containers Details",
           "type": "dashboard",
-          "url": "/service/dcos-monitoring/grafana/d/kOFp4oemk/mesos-containers-details"
+          "url": "d/kOFp4oemk/mesos-containers-details"
         }
       ],
       "nullPointMode": "null",

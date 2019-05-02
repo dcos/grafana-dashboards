@@ -946,7 +946,7 @@
           "keepTime": true,
           "title": "Mesos: Frameworks Summary",
           "type": "dashboard",
-          "url": "/service/dcos-monitoring/grafana/d/C3EFGTeiz/mesos-frameworks-summary"
+          "url": "d/C3EFGTeiz/mesos-frameworks-summary"
         }
       ],
       "nullPointMode": "null",
@@ -1078,7 +1078,7 @@
           "keepTime": true,
           "title": "Mesos: Agents Summary",
           "type": "dashboard",
-          "url": "/service/dcos-monitoring/grafana/d/WhevMTemk/mesos-agents-summary"
+          "url": "d/WhevMTemk/mesos-agents-summary"
         }
       ],
       "nullPointMode": "null",

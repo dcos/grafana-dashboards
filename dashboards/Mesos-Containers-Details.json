@@ -55,7 +55,7 @@
       "keepTime": true,
       "title": "Mesos: Containers Summary",
       "type": "dashboard",
-      "url": "/service/dcos-monitoring/grafana/d/_x5aKa6mz/mesos-containers-summary"
+      "url": "d/_x5aKa6mz/mesos-containers-summary"
     }
   ],
   "panels": [
