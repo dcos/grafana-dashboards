@@ -541,7 +541,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{host}}",
+          "legendFormat": "{{framework_name}}",
           "refId": "A"
         }
       ],
