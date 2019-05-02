@@ -107,7 +107,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mesos_allocator_mesos_resources_cpus_total",
+          "expr": "sum(mesos_allocator_mesos_resources_cpus_total)",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
@@ -115,7 +115,7 @@
           "refId": "A"
         },
         {
-          "expr": "mesos_allocator_mesos_resources_cpus_offered_or_allocated",
+          "expr": "sum(mesos_allocator_mesos_resources_cpus_offered_or_allocated)",
           "format": "time_series",
           "interval": "5m",
           "intervalFactor": 1,
