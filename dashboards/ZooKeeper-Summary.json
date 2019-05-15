@@ -401,7 +401,7 @@
           "format": "none",
           "label": "Ticks",
           "logBase": 1,
-          "max": "10",
+          "max": null,
           "min": "0",
           "show": true
         },
@@ -500,7 +500,7 @@
           "format": "none",
           "label": null,
           "logBase": 1,
-          "max": "10",
+          "max": null,
           "min": "0",
           "show": true
         },
@@ -603,7 +603,7 @@
           "format": "none",
           "label": "",
           "logBase": 1,
-          "max": "10",
+          "max": null,
           "min": "0",
           "show": true
         },
