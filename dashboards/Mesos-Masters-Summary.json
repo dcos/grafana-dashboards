@@ -77,7 +77,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 1
       },
@@ -134,7 +134,7 @@
       },
       "yaxes": [
         {
-          "format": "dthms",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -156,11 +156,11 @@
       }
     },
     {
-      "content": "Shows the time in seconds since the last restart of the Mesos masters.\n\nThis metric should always increase. If the metric drops to zero, the master has restarted and a reelection might be observed afterwards.",
+      "content": "Shows the time in seconds since the last restart of the Mesos masters.\n\nThis metric should always increase. If the metric drops to zero, the master has restarted and a re-election might be observed afterwards.\n\nShort uptimes should be investigated as unplanned Mesos master restarts are considered unexpected.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 1
       },
       "id": 32,
@@ -176,10 +176,10 @@
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
       "decimals": 0,
-      "fill": 10,
+      "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 10
       },
@@ -196,7 +196,7 @@
         "values": true
       },
       "lines": true,
-      "linewidth": 2,
+      "linewidth": 1,
       "links": [],
       "nullPointMode": "null as zero",
       "percentage": false,
@@ -260,11 +260,11 @@
       }
     },
     {
-      "content": "Whether a master is elected leader.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Which master is elected leader.\n\nThere should always be a single Mesos master elected as leader. A leader election happens when the leading Master is restarted for planned maintenance (example Upgrades) or unplanned failures—these should be investigated.\n\nWhile investigating, try to look for patterns! \n\n- If there was a large gap of time where no Mesos master is elected leader\n- Leader election happening frequently (Mesos master flapping)\n- Several leading masters (Splitbrain situation)\n\nStart by looking at the previously leading (failed over) Mesos master unit log at around and before the time of the last re-election.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 10
       },
       "id": 33,
@@ -295,7 +295,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 20
       },
@@ -329,7 +329,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{process_name}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -352,11 +352,12 @@
       },
       "yaxes": [
         {
+          "decimals": null,
           "format": "percent",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -374,11 +375,11 @@
       }
     },
     {
-      "content": "The percentage of time that the process is active in any capacity.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "The percentage of time that the `mesos-master` process is active in any capacity.\n\nThe displayed value is identical to what you would see if you used `ps` or `htop` and checked the results for the `mesos-master` process.\n\nUnder normal circumstances this graph is expected to remain relatively stable. Non leading masters will show low CPU use, only the leading master may show significant load. Unexpected spikes in CPU load are worth investigating.\n\nLook at correlated cluster events!\n\n- Mesos master leader re-election\n- Re-registration of framework or agents\n- Changes in task launch rate and lifetime\n- Increased rate of Mesos master endpoint requests",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 20
       },
       "id": 34,
@@ -396,7 +397,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 29
       },
@@ -430,7 +431,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{process_name}}",
+          "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
@@ -453,7 +454,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -475,11 +476,11 @@
       }
     },
     {
-      "content": "The amount of real memory (resident set) that the process is using.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "The amount of real memory (resident set) that the process is using.\n\nThis graph should remain relatively stable and in close relation to the number of active tasks.\n\nBeyond conditions described in the **CPU Usage** paragraph, following constellations can lead to increased memory usage.\n\n- Slow reader attacks\n- Clients abandoning streaming connections without properly closing them\n- Mesos modules introducing resource leaks into the master process\n\nFor more general expectations and troubleshooting, see **CPU Usage** paragraph.\n",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 29
       },
       "id": 35,
@@ -497,7 +498,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 38
       },
@@ -588,11 +589,11 @@
       }
     },
     {
-      "content": "Number of dispatches in the event queue.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Number of messages pending in the event queue of the actor associated with the Mesos master. These are the messages that are to be processed sequentially by a single thread.\nEach incoming HTTP API request adds to this queue size.\n\nTODO(tillt): Explain the upper bounds for explaining an expectation on normal mode.\n\nExceptionally large queue sizes may cause API timeouts. Optimize for reduced request frequency onto master endpoints or even entirely avoid them.\n\nThings to watch out for:\n- There are API endpoints which are known to be expensive on the Mesos master like `/state`\n- Re-registration of agents and/or frameworks\n\n\n",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 38
       },
       "id": 36,
@@ -624,7 +625,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 48
       },
@@ -726,11 +727,11 @@
       }
     },
     {
-      "content": "Number of tasks in an active state.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Number of tasks in active states.\n\nThis graph should be predominantly showing tasks in *Running* state and, dependent on your workload, remain stable.\n\nWhen seeing *Unreachable* tasks, the next step is confirming health of the agents. The next step would be looking at the [Mesos: Agents Summary](d/b7b4c454b/mesos-agents-summary) dashboard to investigate.\n\nTasks stuck in *Staging* or *Starting* for a long time should be investigated by looking at Mesos master and agent logs.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 48
       },
       "id": 37,
@@ -748,7 +749,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 57
       },
@@ -862,8 +863,9 @@
       },
       "yaxes": [
         {
+          "decimals": 2,
           "format": "short",
-          "label": null,
+          "label": "",
           "logBase": 1,
           "max": null,
           "min": "0",
@@ -884,11 +886,11 @@
       }
     },
     {
-      "content": "Tasks per second reaching a terminal state.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Tasks per second reaching a terminal state.\n\nFor short termed workload, this graph is expected to be dominated by tasks in *Finished* state. For long running services, under normal operation, we do not expect tasks in a terminal state.\n\nSpikes in anything but *Finished* state might indicate problems.\n",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 57
       },
       "id": 38,
@@ -920,7 +922,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 67
       },
@@ -938,7 +940,15 @@
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "dashboard": "Mesos: Frameworks Summary",
+          "keepTime": true,
+          "title": "Mesos: Frameworks Summary",
+          "type": "dashboard",
+          "url": "d/C3EFGTeiz/mesos-frameworks-summary"
+        }
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -1021,11 +1031,11 @@
       }
     },
     {
-      "content": "Number of frameworks.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Number of frameworks.\n\nThis metric is expected to remain steady and dominated by *Connected* and *Active* frameworks whereas both values are expected to be equal. \n\nWhen there are unplanned framework disconnects, the next step would be looking at the [Mesos: Frameworks Summary](d/C3EFGTeiz/mesos-frameworks-summary) dashboard to investigate.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 67
       },
       "id": 39,
@@ -1044,7 +1054,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 76
       },
@@ -1062,7 +1072,15 @@
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
+      "links": [
+        {
+          "dashboard": "Mesos: Agents Summary",
+          "keepTime": true,
+          "title": "Mesos: Agents Summary",
+          "type": "dashboard",
+          "url": "d/WhevMTemk/mesos-agents-summary"
+        }
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -1152,11 +1170,11 @@
       }
     },
     {
-      "content": "Number of agents.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Number of Mesos agents.\n\nThis metric is expected to remain steady and dominated by *Connected* and *Active* agents whereas both values are expected to be equal. \n\nWhen unplanned agent disconnects are visible, the next step can be looking at the [Mesos: Agents Summary](d/b7b4c454b/mesos-agents-summary) dashboard and see if by looking at the up-time of all agents the failing nodes can be identified for further inspection.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 76
       },
       "id": 40,
@@ -1191,6 +1209,11 @@
         "options": [
           {
             "selected": false,
+            "text": "1s",
+            "value": "1s"
+          },
+          {
+            "selected": false,
             "text": "1m",
             "value": "1m"
           },
@@ -1215,7 +1238,7 @@
             "value": "30m"
           }
         ],
-        "query": "1m,2m,5m,10m,30m",
+        "query": "1s,1m,2m,5m,10m,30m",
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
@@ -1254,5 +1277,5 @@
   "timezone": "",
   "title": "Mesos: Masters Summary",
   "uid": "WPWgJ3Jik",
-  "version": 5
+  "version": 6
 }

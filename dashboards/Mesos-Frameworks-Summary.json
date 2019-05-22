@@ -78,7 +78,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 1
       },
@@ -160,8 +160,8 @@
       "content": "Shows whether not the framework has an active subscription with the Mesos master.\n\nThis metric should commonly remain steady at 1. If the metric drops to zero, the framework may have restarted and some time of unavailability might be observed afterwards.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 1
       },
       "id": 16,
@@ -180,7 +180,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 10
       },
@@ -258,11 +258,11 @@
       }
     },
     {
-      "content": "For each of the framework’s subscribed roles, whether or not offers for that role are currently suppressed.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "For each of the framework’s subscribed roles, whether or not offers for that role are currently suppressed.\n",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 10
       },
       "id": 29,
@@ -294,7 +294,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 20
       },
@@ -375,11 +375,11 @@
       }
     },
     {
-      "content": "Shows count of tasks in an active state.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Shows count of tasks in an active state.\n\n*task_running* would commonly be the most prominent value in this graph.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 20
       },
       "id": 18,
@@ -397,7 +397,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 29
       },
@@ -474,17 +474,17 @@
       }
     },
     {
-      "content": "Shows count of tasks in a terminal state.\n\nTODO(tillt): Add expectation and interpretation hints. ",
+      "content": "Shows rate of tasks in a terminal state per second, resampled over $rate windows.\n\nThis graph should be dominated by *task_finished*.\n\n*task_lost* is a signal that the hosting agent has been disconnected from the master for a prolongued period - \nfor identifying disconnected agents, check the [Mesos: Agents Summary](d/b7b4c454b/mesos-agents-summary) dashboard.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 29
       },
       "id": 20,
       "links": [],
       "mode": "markdown",
-      "title": "Count of terminal state tasks",
+      "title": "Rate of terminal state tasks",
       "type": "text"
     },
     {
@@ -509,7 +509,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 39
       },
@@ -541,7 +541,7 @@
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{host}}",
+          "legendFormat": "{{framework_name}}",
           "refId": "A"
         }
       ],
@@ -586,11 +586,11 @@
       }
     },
     {
-      "content": "Shows rate of offers per second sent by the leading master.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Shows rate of offers per second sent by the leading master, resampled over $rate windows.\n\nIf operations are pending, but no offer events are observed, the service might be starved for resources.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 39
       },
       "id": 22,
@@ -608,7 +608,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 48
       },
@@ -685,11 +685,11 @@
       }
     },
     {
-      "content": "This panel shows the rate of any kind of event received from the Mesos master.\n\nThis metric should commonly remain mostly flat and non-zero during normal framework operation.\n\nFor batch processing workloads, the rate might increase during load but should drop to its previous value after the operation is done. If operations are pending, but no offer events are observed, the service might be starved for resources. If this metric drops to zero, the service might have lost contact to the Mesos master and might need to be restarted.",
+      "content": "This panel shows the rate of any kind of event received from the Mesos master, resampled over $rate windows.\n\nThis metric should commonly remain mostly flat and non-zero during normal framework operation.\n\nFor batch processing workloads, the rate might increase during load but should drop to its previous value after the operation is done. If operations are pending, but no offer events are observed, the service might be starved for resources. If this metric drops to zero, the service might have lost contact to the Mesos master and might need to be restarted.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 48
       },
       "id": 24,
@@ -707,7 +707,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 57
       },
@@ -787,8 +787,8 @@
       "content": "This panel shows the rate of any kind of call sent by the framework per second.\n\nThis metric should commonly remain mostly flat and non-zero during normal framework operation.\n\nFor batch processing workloads, the rate might increase during load but should drop to its previous value after the operation is done. If operations are pending, but no offer events are observed, the service might be starved for resources. If this metric drops to zero, the service might have lost contact to the Mesos master and might need to be restarted.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 57
       },
       "id": 26,
@@ -812,7 +812,6 @@
       {
         "allValue": ".*",
         "current": {
-          "tags": [],
           "text": "All",
           "value": "$__all"
         },
@@ -839,8 +838,8 @@
         "auto_count": 30,
         "auto_min": "10s",
         "current": {
-          "text": "2m",
-          "value": "2m"
+          "text": "5m",
+          "value": "5m"
         },
         "hide": 0,
         "label": "Rate Interval",
@@ -848,11 +847,6 @@
         "options": [
           {
             "selected": true,
-            "text": "2m",
-            "value": "2m"
-          },
-          {
-            "selected": false,
             "text": "5m",
             "value": "5m"
           },
@@ -877,7 +871,7 @@
             "value": "2h"
           }
         ],
-        "query": "2m,5m,15m,30m,1h,2h",
+        "query": "5m,15m,30m,1h,2h",
         "refresh": 2,
         "skipUrlSync": false,
         "type": "interval"
@@ -917,5 +911,5 @@
   "timezone": "",
   "title": "Mesos: Frameworks Summary",
   "uid": "C3EFGTeiz",
-  "version": 1
+  "version": 2
 }

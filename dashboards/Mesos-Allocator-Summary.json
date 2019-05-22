@@ -50,6 +50,7 @@
   "links": [],
   "panels": [
     {
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -57,6 +58,7 @@
         "y": 0
       },
       "id": 18,
+      "panels": [],
       "title": "Basic: [[percentile]]",
       "type": "row"
     },
@@ -69,7 +71,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 1
       },
@@ -147,11 +149,11 @@
       }
     },
     {
-      "content": "Time spent in allocation algorithm.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Time spent in allocation algorithm.\n\nThe displayed metric shows the time spent for allocations as done by the Mesos master.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 1
       },
       "id": 20,
@@ -169,7 +171,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 10
       },
@@ -246,11 +248,11 @@
       }
     },
     {
-      "content": "Number of times the allocation algorithm has run.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Number of times the allocation algorithm has run.\n\nThe displayed value should continuously increase. A drop in the graph is a signal for the leading Mesos master to have become re-elected. Check the formally leading Mesos master unit log around the time of re-election for more details.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 10
       },
       "id": 21,
@@ -268,7 +270,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 19
       },
@@ -345,11 +347,11 @@
       }
     },
     {
-      "content": "Allocation batch latency.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Allocation batch latency.\n\nThis metric shows the delta between planned and actual allocations - large increases are a sign of the Mesos master allocator component being under increased load.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 19
       },
       "id": 22,
@@ -367,7 +369,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 16,
         "x": 0,
         "y": 28
       },
@@ -443,11 +445,11 @@
       }
     },
     {
-      "content": "Allocator dispatch queue length.\n\nTODO(tillt): Add expectation and interpretation hints.",
+      "content": "Allocator dispatch queue length.\n\nShows the number of dispatches in the allocator event queue - large increases are a sign of the Mesos master allocator component being under increased load which in turn can delay the deployment of new workload.",
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 8,
+        "x": 16,
         "y": 28
       },
       "id": 23,
@@ -471,8 +473,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "max",
-          "value": "max"
+          "text": "count",
+          "value": "count"
         },
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
@@ -526,5 +528,5 @@
   "timezone": "",
   "title": "Mesos: Allocator Summary",
   "uid": "569efeb94",
-  "version": 9
+  "version": 10
 }
