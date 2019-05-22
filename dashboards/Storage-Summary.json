@@ -269,6 +269,39 @@
       "type": "row"
     },
     {
+      "alert": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "F",
+                "1s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "frequency": "60s",
+        "handler": 1,
+        "name": "Volumes alert",
+        "noDataState": "ok",
+        "notifications": []
+      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -338,9 +371,24 @@
           "intervalFactor": 1,
           "legendFormat": "recovery",
           "refId": "E"
+        },
+        {
+          "expr": "ALERTS{alertname=\"Volume RECOVERY\", alertstate=\"firing\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "ALERTING",
+          "refId": "F"
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 0
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Volumes",
@@ -395,6 +443,39 @@
       "type": "text"
     },
     {
+      "alert": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "F",
+                "1s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "frequency": "60s",
+        "handler": 1,
+        "name": "Devices alert",
+        "noDataState": "ok",
+        "notifications": []
+      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -464,9 +545,24 @@
           "intervalFactor": 1,
           "legendFormat": "recovery",
           "refId": "E"
+        },
+        {
+          "expr": "ALERTS{alertname=\"Device RECOVERY\", alertstate=\"firing\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "ALERTING",
+          "refId": "F"
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 0
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Devices",
@@ -507,6 +603,39 @@
       }
     },
     {
+      "alert": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                0
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "F",
+                "1s",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "frequency": "60s",
+        "handler": 1,
+        "name": "Providers alert",
+        "noDataState": "ok",
+        "notifications": []
+      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -576,9 +705,24 @@
           "intervalFactor": 1,
           "legendFormat": "recovery",
           "refId": "E"
+        },
+        {
+          "expr": "ALERTS{alertname=\"Volume provider RECOVERY\", alertstate=\"firing\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "ALERTING",
+          "refId": "F"
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 0
+        }
+      ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Providers",
@@ -1091,5 +1235,5 @@
   "timezone": "",
   "title": "Storage: Summary",
   "uid": "h0QVExYmk",
-  "version": 5
+  "version": 6
 }
