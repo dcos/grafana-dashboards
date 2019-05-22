@@ -383,8 +383,8 @@
       "thresholds": [
         {
           "colorMode": "critical",
-          "fill": true,
-          "line": true,
+          "fill": false,
+          "line": false,
           "op": "gt",
           "value": 0
         }
@@ -557,8 +557,8 @@
       "thresholds": [
         {
           "colorMode": "critical",
-          "fill": true,
-          "line": true,
+          "fill": false,
+          "line": false,
           "op": "gt",
           "value": 0
         }
@@ -717,8 +717,8 @@
       "thresholds": [
         {
           "colorMode": "critical",
-          "fill": true,
-          "line": true,
+          "fill": false,
+          "line": false,
           "op": "gt",
           "value": 0
         }
