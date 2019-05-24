@@ -806,7 +806,7 @@
     ]
   },
   "time": {
-    "from": "now-11h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
