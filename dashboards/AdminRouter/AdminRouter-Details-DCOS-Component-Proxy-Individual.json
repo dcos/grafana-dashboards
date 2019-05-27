@@ -203,7 +203,7 @@
           "targetBlank": false,
           "title": "Show $upstream on this DC/OS Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-responses/adminrouter-details-dc-os-component-proxy-responses"
+          "url": "d/adminrouter-details-upstream-responses/adminrouter-details-dc-os-component-proxy-responses"
         }
       ],
       "nullPointMode": "null",
@@ -311,7 +311,7 @@
           "keepTime": true,
           "title": "Show $upstream on this DC/OS Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-responses/adminrouter-details-dc-os-component-proxy-responses"
+          "url": "d/adminrouter-details-upstream-responses/adminrouter-details-dc-os-component-proxy-responses"
         }
       ],
       "nullPointMode": "null",
@@ -497,7 +497,7 @@
           "keepTime": true,
           "title": "Show $upstream on this DC/OS Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-responses/adminrouter-details-dc-os-component-proxy-responses"
+          "url": "d/adminrouter-details-upstream-responses/adminrouter-details-dc-os-component-proxy-responses"
         }
       ],
       "nullPointMode": "null",

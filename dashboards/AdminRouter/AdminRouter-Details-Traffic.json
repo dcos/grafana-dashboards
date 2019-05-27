@@ -476,7 +476,7 @@
           "keepTime": true,
           "title": "Admin Router: Details Admin Router Server Status",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
+          "url": "d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -629,7 +629,7 @@
           "keepTime": true,
           "title": "Admin Router: Details Admin Router Server Status",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
+          "url": "d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -734,7 +734,7 @@
           "keepTime": true,
           "title": "Admin Router: Details Admin Router Server Status",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
+          "url": "d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -871,7 +871,7 @@
           "keepTime": true,
           "title": "Admin Router: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
+          "url": "d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
       ],
       "nullPointMode": "null",
@@ -1057,7 +1057,7 @@
           "keepTime": true,
           "title": "Admin Router: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
+          "url": "d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
       ],
       "nullPointMode": "null",
@@ -1172,7 +1172,7 @@
           "keepTime": true,
           "title": "Admin Router: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
+          "url": "d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
       ],
       "nullPointMode": "null",
@@ -1310,7 +1310,7 @@
           "keepTime": true,
           "title": "Admin Router: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
+          "url": "d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
       ],
       "nullPointMode": "null",
@@ -1495,7 +1495,7 @@
           "keepTime": true,
           "title": "Admin Router: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
+          "url": "d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
       ],
       "nullPointMode": "null",
@@ -1612,7 +1612,7 @@
           "keepTime": true,
           "title": "Admin Router: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
+          "url": "d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
       ],
       "nullPointMode": "null",
