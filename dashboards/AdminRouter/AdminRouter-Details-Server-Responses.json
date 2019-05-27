@@ -186,7 +186,7 @@
           "keepTime": true,
           "title": "Show Requests over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
+          "url": "d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -369,7 +369,7 @@
           "keepTime": true,
           "title": "Show Requests over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
+          "url": "d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -527,7 +527,7 @@
           "keepTime": true,
           "title": "Show Requests over all DC/OS Master Nodes",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
+          "url": "d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",

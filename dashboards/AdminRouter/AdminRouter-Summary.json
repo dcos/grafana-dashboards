@@ -171,7 +171,7 @@
           "keepTime": true,
           "title": "Admin Router: Details Runtime",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-details-runtime"
+          "url": "d/adminrouter-details-runtime/adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -295,7 +295,7 @@
           "keepTime": true,
           "title": "Admin Router: Details Runtime",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-details-runtime"
+          "url": "d/adminrouter-details-runtime/adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -420,7 +420,7 @@
           "keepTime": true,
           "title": "Admin Router: Details Runtime",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-runtime/adminrouter-adminrouter-details-runtime"
+          "url": "d/adminrouter-details-runtime/adminrouter-adminrouter-details-runtime"
         }
       ],
       "nullPointMode": "null",
@@ -547,7 +547,7 @@
           "keepTime": true,
           "title": "Admin Router: Details Traffic",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-traffic/adminrouter-details-traffic"
+          "url": "d/adminrouter-details-traffic/adminrouter-details-traffic"
         }
       ],
       "nullPointMode": "null",
@@ -677,7 +677,7 @@
           "keepTime": true,
           "title": "Admin Router: Details Admin Router Server Status",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
+          "url": "d/adminrouter-details-server-status/adminrouter-details-adminrouter-server-status"
         }
       ],
       "nullPointMode": "null",
@@ -811,7 +811,7 @@
           "keepTime": true,
           "title": "Admin Router: Details DC/OS Component Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
+          "url": "d/adminrouter-details-upstream-by-node/adminrouter-details-dc-os-component-proxy-overview"
         }
       ],
       "nullPointMode": "null",
@@ -955,7 +955,7 @@
           "keepTime": true,
           "title": "Admin Router: Details DC/OS Service Proxy Overview",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
+          "url": "d/adminrouter-details-service-status/adminrouter-details-dc-os-service-proxy-overview"
         }
       ],
       "nullPointMode": "null",
