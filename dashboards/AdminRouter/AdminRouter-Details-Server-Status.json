@@ -204,7 +204,7 @@
           "targetBlank": false,
           "title": "Show Requests on this Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
+          "url": "d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
         }
       ],
       "nullPointMode": "null",
@@ -312,7 +312,7 @@
           "keepTime": true,
           "title": "Show Requests on this Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
+          "url": "d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
         }
       ],
       "nullPointMode": "null",
@@ -496,7 +496,7 @@
           "keepTime": true,
           "title": "Show Requests on this Master Node",
           "type": "dashboard",
-          "url": "/service/beta-dcos-monitoring/grafana/d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
+          "url": "d/adminrouter-details-server-responses/adminrouter-details-adminrouter-server-responses"
         }
       ],
       "nullPointMode": "null",
