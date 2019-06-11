@@ -338,46 +338,60 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dss_obj_volumes_online",
+          "expr": "dss_obj_devices_online",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "online",
           "refId": "A"
         },
         {
-          "expr": "dss_obj_volumes_pending",
+          "expr": "dss_obj_devices_pending",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "pending",
           "refId": "B"
         },
         {
-          "expr": "dss_obj_volumes_removing",
+          "expr": "dss_obj_devices_removing",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "removing",
           "refId": "C"
         },
         {
-          "expr": "dss_obj_volumes_stale",
+          "expr": "dss_obj_devices_stale",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "stale",
           "refId": "D"
         },
         {
-          "expr": "dss_obj_volumes_recovery",
+          "expr": "dss_obj_devices_recovery",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "recovery",
           "refId": "E"
         },
         {
-          "expr": "ALERTS{alertname=\"Volume RECOVERY\", alertstate=\"firing\"}",
+          "expr": "ALERTS{alertname=\"Device RECOVERY\", alertstate=\"firing\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "ALERTING",
+          "legendFormat": "Device RECOVERY",
           "refId": "F"
+        },
+        {
+          "expr": "dss_obj_devices_missing",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "missing",
+          "refId": "G"
+        },
+        {
+          "expr": "ALERTS{alertname=\"Device MISSING\", alertstate=\"firing\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Device MISSING",
+          "refId": "H"
         }
       ],
       "thresholds": [
@@ -391,7 +405,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Volumes",
+      "title": "Devices",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -472,7 +486,7 @@
         "executionErrorState": "alerting",
         "frequency": "60s",
         "handler": 1,
-        "name": "Devices alert",
+        "name": "Volumes alert",
         "noDataState": "ok",
         "notifications": []
       },
@@ -512,46 +526,60 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dss_obj_devices_online",
+          "expr": "dss_obj_volumes_online",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "online",
           "refId": "A"
         },
         {
-          "expr": "dss_obj_devices_pending",
+          "expr": "dss_obj_volumes_pending",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "pending",
           "refId": "B"
         },
         {
-          "expr": "dss_obj_devices_removing",
+          "expr": "dss_obj_volumes_removing",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "removing",
           "refId": "C"
         },
         {
-          "expr": "dss_obj_devices_stale",
+          "expr": "dss_obj_volumes_stale",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "stale",
           "refId": "D"
         },
         {
-          "expr": "dss_obj_devices_recovery",
+          "expr": "dss_obj_volumes_recovery",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "recovery",
           "refId": "E"
         },
         {
-          "expr": "ALERTS{alertname=\"Device RECOVERY\", alertstate=\"firing\"}",
+          "expr": "ALERTS{alertname=\"Volume RECOVERY\", alertstate=\"firing\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "ALERTING",
+          "legendFormat": "Volume RECOVERY",
           "refId": "F"
+        },
+        {
+          "expr": "dss_obj_volumes_missing",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "missing",
+          "refId": "G"
+        },
+        {
+          "expr": "ALERTS{alertname=\"Volume MISSING\", alertstate=\"firing\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Volume MISSING",
+          "refId": "H"
         }
       ],
       "thresholds": [
@@ -565,7 +593,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Devices",
+      "title": "Volumes",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -710,8 +738,22 @@
           "expr": "ALERTS{alertname=\"Volume provider RECOVERY\", alertstate=\"firing\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "ALERTING",
+          "legendFormat": "Volume provider RECOVERY",
           "refId": "F"
+        },
+        {
+          "expr": "dss_obj_providers_missing",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "missing",
+          "refId": "G"
+        },
+        {
+          "expr": "ALERTS{alertname=\"Volume provider MISSING\", alertstate=\"firing\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Volume provider MISSING",
+          "refId": "H"
         }
       ],
       "thresholds": [
@@ -1235,5 +1277,5 @@
   "timezone": "",
   "title": "Storage: Summary",
   "uid": "h0QVExYmk",
-  "version": 6
+  "version": 7
 }
