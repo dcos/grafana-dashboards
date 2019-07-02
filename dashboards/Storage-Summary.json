@@ -86,7 +86,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": "prometheus",
       "fill": 1,
       "gridPos": {
         "h": 5,
@@ -112,7 +112,13 @@
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "resets",
+          "stack": true,
+          "yaxis": 2
+        }
+      ],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
@@ -120,9 +126,26 @@
         {
           "expr": "dss_sched_uptime",
           "format": "time_series",
+          "instant": false,
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": "this-instance",
           "refId": "A"
+        },
+        {
+          "expr": "dss_sched_latest_uptime",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "since-last-reset",
+          "refId": "C"
+        },
+        {
+          "expr": "sum(resets(dss_sched_uptime{DCOS_SERVICE_NAME=\"storage\"}[7d]))",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "resets",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -149,7 +172,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
@@ -157,7 +180,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         }
       ],
