@@ -124,7 +124,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dss_sched_uptime",
+          "expr": "sum(dss_sched_uptime)",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -132,7 +132,7 @@
           "refId": "A"
         },
         {
-          "expr": "dss_sched_latest_uptime",
+          "expr": "sum(dss_sched_latest_uptime)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "since-last-reset",
