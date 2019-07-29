@@ -338,60 +338,46 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dss_obj_devices_online",
+          "expr": "dss_obj_volumes_online",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "online",
           "refId": "A"
         },
         {
-          "expr": "dss_obj_devices_pending",
+          "expr": "dss_obj_volumes_pending",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "pending",
           "refId": "B"
         },
         {
-          "expr": "dss_obj_devices_removing",
+          "expr": "dss_obj_volumes_removing",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "removing",
           "refId": "C"
         },
         {
-          "expr": "dss_obj_devices_stale",
+          "expr": "dss_obj_volumes_stale",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "stale",
           "refId": "D"
         },
         {
-          "expr": "dss_obj_devices_recovery",
+          "expr": "dss_obj_volumes_recovery",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "recovery",
           "refId": "E"
         },
         {
-          "expr": "ALERTS{alertname=\"Device RECOVERY\", alertstate=\"firing\"}",
+          "expr": "ALERTS{alertname=\"Volume RECOVERY\", alertstate=\"firing\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Device RECOVERY",
+          "legendFormat": "ALERTING",
           "refId": "F"
-        },
-        {
-          "expr": "dss_obj_devices_missing",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "missing",
-          "refId": "G"
-        },
-        {
-          "expr": "ALERTS{alertname=\"Device MISSING\", alertstate=\"firing\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Device MISSING",
-          "refId": "H"
         }
       ],
       "thresholds": [
@@ -405,7 +391,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Devices",
+      "title": "Volumes",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -445,7 +431,7 @@
     {
       "content": "The gauges for `online` objects should should correspond to the configured number of volumes, devices, providers, or plugins, respectively.\n\nObjects in `recovery` state can be recovered with the storage CLI.\n\nIf objects remain in `pending` state for extended periods of time their provisioning did not finish. The dcos-storage service logs, master logs and logs of affected agents can provider additional context or diagnosis.\n\n_NOTE_: Absent metrics do not indicate an error, but no change to the defaults.",
       "gridPos": {
-        "h": 16,
+        "h": 12,
         "w": 12,
         "x": 12,
         "y": 11
@@ -486,7 +472,7 @@
         "executionErrorState": "alerting",
         "frequency": "60s",
         "handler": 1,
-        "name": "Volumes alert",
+        "name": "Devices alert",
         "noDataState": "ok",
         "notifications": []
       },
@@ -526,60 +512,46 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dss_obj_volumes_online",
+          "expr": "dss_obj_devices_online",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "online",
           "refId": "A"
         },
         {
-          "expr": "dss_obj_volumes_pending",
+          "expr": "dss_obj_devices_pending",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "pending",
           "refId": "B"
         },
         {
-          "expr": "dss_obj_volumes_removing",
+          "expr": "dss_obj_devices_removing",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "removing",
           "refId": "C"
         },
         {
-          "expr": "dss_obj_volumes_stale",
+          "expr": "dss_obj_devices_stale",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "stale",
           "refId": "D"
         },
         {
-          "expr": "dss_obj_volumes_recovery",
+          "expr": "dss_obj_devices_recovery",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "recovery",
           "refId": "E"
         },
         {
-          "expr": "ALERTS{alertname=\"Volume RECOVERY\", alertstate=\"firing\"}",
+          "expr": "ALERTS{alertname=\"Device RECOVERY\", alertstate=\"firing\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Volume RECOVERY",
+          "legendFormat": "ALERTING",
           "refId": "F"
-        },
-        {
-          "expr": "dss_obj_volumes_missing",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "missing",
-          "refId": "G"
-        },
-        {
-          "expr": "ALERTS{alertname=\"Volume MISSING\", alertstate=\"firing\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Volume MISSING",
-          "refId": "H"
         }
       ],
       "thresholds": [
@@ -593,7 +565,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Volumes",
+      "title": "Devices",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -738,22 +710,8 @@
           "expr": "ALERTS{alertname=\"Volume provider RECOVERY\", alertstate=\"firing\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "Volume provider RECOVERY",
+          "legendFormat": "ALERTING",
           "refId": "F"
-        },
-        {
-          "expr": "dss_obj_providers_missing",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "missing",
-          "refId": "G"
-        },
-        {
-          "expr": "ALERTS{alertname=\"Volume provider MISSING\", alertstate=\"firing\"}",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "Volume provider MISSING",
-          "refId": "H"
         }
       ],
       "thresholds": [
@@ -810,6 +768,120 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 23
+      },
+      "id": 67,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(csilvm_pvs)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "pvs",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(csilvm_missing_pvs)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "missing pvs",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(csilvm_unexpected_pvs)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "unexpected pvs",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "LVM PVs",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "The `pvs` metrics shows the number of LVM PVs that back active LVM providers. \n\nThe `missing pvs` metric shows the number of LVM PVs that are expected to back an LVM provider but were not found.\n\nThe `unexpected pvs` metric shows the number of LVM PVs that back LVM providers but don't match the provider's configuration.\n",
+      "description": "",
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 23
+      },
+      "id": 68,
+      "links": [],
+      "mode": "markdown",
+      "title": "Gauge for LVM physical volume statistics",
+      "transparent": false,
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
       "fill": 1,
       "gridPos": {
         "h": 5,
@@ -920,318 +992,317 @@
         "y": 32
       },
       "id": 52,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 5,
-            "w": 12,
-            "x": 0,
-            "y": 11
-          },
-          "id": 10,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "rate(dss_sched_events_offers_samples[2m])",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Offer events",
-              "refId": "A"
-            },
-            {
-              "expr": "rate(dss_sched_events_samples[2m])",
-              "format": "time_series",
-              "instant": false,
-              "intervalFactor": 1,
-              "legendFormat": "All scheduler events",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Scheduler event rate",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "content": "This panel shows the rate of any kind of event received from the Mesos master, and the rate of offer events.\n\nThis metric should remain mostly flat and non-zero during normal storage service operation.\n\n\nWhen a storage operation is performed the rate might increase temporarily, but should drop to its previous value after the operation is done. If operations are pending, but no offer events are observed, the service might be starved for resources.\nIf this metric drops to zero, the service might have lost contact to the Mesos master and might need to be restarted, also see the service heartbeat metric.",
-          "gridPos": {
-            "h": 5,
-            "w": 12,
-            "x": 12,
-            "y": 11
-          },
-          "id": 44,
-          "links": [],
-          "mode": "markdown",
-          "title": "Rate of some events from the Mesos master",
-          "type": "text"
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 5,
-            "w": 12,
-            "x": 0,
-            "y": 16
-          },
-          "id": 38,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "dss_sched_acks_qlen",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "DSS ACKs Queue",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "content": "This metric is related to the number of unfinished storage servive operations.\n\nThe metric should be at zero during normal service operation, but might increase temporarily when storage operations are performed.\n\nIf the metric remains non-zero for extended periods of time, the scheduler might have lost contact to the Mesos master, Mesos agents might be unreachable, or CSI plugins on Mesos agents might have become unresponsive.",
-          "gridPos": {
-            "h": 5,
-            "w": 12,
-            "x": 12,
-            "y": 16
-          },
-          "id": 46,
-          "links": [],
-          "mode": "markdown",
-          "title": "Size of the service ACK queue",
-          "type": "text"
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 5,
-            "w": 12,
-            "x": 0,
-            "y": 21
-          },
-          "id": 4,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "mesos_allocator_roles_shares_dominant{role_name=\"dcos-storage\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "dcos-storage",
-              "refId": "A"
-            },
-            {
-              "expr": "mesos_allocator_roles_shares_dominant{role_name=\"dcos-storage/claimed\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "dcos-storage/claimed",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Storage dominant role shares",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "content": "This metric measures the storage service's usage of resources when performing storage operations. Resources to run the storage service itself are not included here.\n\nThe metric should be zero during normal operation, but migtht become non-zero when storage operations are performed.\n\nIf this metric becomes larger than zero for long durations of time, the storage service might not be able to perform storage operations quickly anymore, and might need to be restarted, also see the offer event metric.",
-          "gridPos": {
-            "h": 5,
-            "w": 12,
-            "x": 12,
-            "y": 21
-          },
-          "id": 48,
-          "links": [],
-          "mode": "markdown",
-          "title": "Resource usage of storage service",
-          "type": "text"
-        }
-      ],
+      "panels": [],
       "title": "Operational behavior",
       "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 33
+      },
+      "id": 10,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(dss_sched_events_offers_samples[2m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Offer events",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(dss_sched_events_samples[2m])",
+          "format": "time_series",
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "All scheduler events",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Scheduler event rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "This panel shows the rate of any kind of event received from the Mesos master, and the rate of offer events.\n\nThis metric should remain mostly flat and non-zero during normal storage service operation.\n\n\nWhen a storage operation is performed the rate might increase temporarily, but should drop to its previous value after the operation is done. If operations are pending, but no offer events are observed, the service might be starved for resources.\nIf this metric drops to zero, the service might have lost contact to the Mesos master and might need to be restarted, also see the service heartbeat metric.",
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 33
+      },
+      "id": 44,
+      "links": [],
+      "mode": "markdown",
+      "title": "Rate of some events from the Mesos master",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 38
+      },
+      "id": 38,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "dss_sched_acks_qlen",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "DSS ACKs Queue",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "This metric is related to the number of unfinished storage servive operations.\n\nThe metric should be at zero during normal service operation, but might increase temporarily when storage operations are performed.\n\nIf the metric remains non-zero for extended periods of time, the scheduler might have lost contact to the Mesos master, Mesos agents might be unreachable, or CSI plugins on Mesos agents might have become unresponsive.",
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 38
+      },
+      "id": 46,
+      "links": [],
+      "mode": "markdown",
+      "title": "Size of the service ACK queue",
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "prometheus",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 43
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mesos_allocator_roles_shares_dominant{role_name=\"dcos-storage\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "dcos-storage",
+          "refId": "A"
+        },
+        {
+          "expr": "mesos_allocator_roles_shares_dominant{role_name=\"dcos-storage/claimed\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "dcos-storage/claimed",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Storage dominant role shares",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "This metric measures the storage service's usage of resources when performing storage operations. Resources to run the storage service itself are not included here.\n\nThe metric should be zero during normal operation, but migtht become non-zero when storage operations are performed.\n\nIf this metric becomes larger than zero for long durations of time, the storage service might not be able to perform storage operations quickly anymore, and might need to be restarted, also see the offer event metric.",
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 43
+      },
+      "id": 48,
+      "links": [],
+      "mode": "markdown",
+      "title": "Resource usage of storage service",
+      "type": "text"
     }
   ],
   "refresh": "5s",
@@ -1277,5 +1348,5 @@
   "timezone": "",
   "title": "Storage: Summary",
   "uid": "h0QVExYmk",
-  "version": 7
+  "version": 8
 }
