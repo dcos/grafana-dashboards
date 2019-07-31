@@ -4588,7 +4588,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(dcos_edgelb_haproxy_exporter_csv_parse_failures{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"})by(poolName)",
+              "expr": "sum(dcos_edgelb_haproxy_exporter_csv_parse_failures{poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"})by(poolName)",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -4682,7 +4682,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(dcos_edgelb_haproxy_exporter_total_scrapes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]))by(poolName)",
+              "expr": "sum(irate(dcos_edgelb_haproxy_exporter_total_scrapes{poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]))by(poolName)",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
