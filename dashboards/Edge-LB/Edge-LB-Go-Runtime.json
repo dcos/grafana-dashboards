@@ -53,11 +53,11 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1563886776152,
+  "iteration": 1564653453289,
   "links": [],
   "panels": [
     {
-      "folderId": 1,
+      "folderId": 0,
       "gridPos": {
         "h": 7,
         "w": 24,

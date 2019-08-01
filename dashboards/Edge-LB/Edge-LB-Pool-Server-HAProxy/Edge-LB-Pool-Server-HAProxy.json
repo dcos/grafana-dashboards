@@ -59,11 +59,11 @@
   "gnetId": 2428,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1563376005996,
+  "iteration": 1564653450534,
   "links": [],
   "panels": [
     {
-      "folderId": 1,
+      "folderId": 0,
       "gridPos": {
         "h": 7,
         "w": 24,
@@ -4977,5 +4977,5 @@
   "timezone": "",
   "title": "Edge-LB: Pool Server - HAProxy",
   "uid": "dw7AbjIZk",
-  "version": 10
+  "version": 2
 }
