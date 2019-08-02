@@ -63,7 +63,7 @@
   "links": [],
   "panels": [
     {
-      "folderId": 0,
+      "folderId": null,
       "gridPos": {
         "h": 7,
         "w": 24,
