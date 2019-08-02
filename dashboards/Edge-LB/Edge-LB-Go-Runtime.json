@@ -53,11 +53,11 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1563886776152,
+  "iteration": 1564653453289,
   "links": [],
   "panels": [
     {
-      "folderId": 1,
+      "folderId": null,
       "gridPos": {
         "h": 7,
         "w": 24,
@@ -140,7 +140,7 @@
           "refId": "A"
         },
         {
-          "expr": "irate(dcos_edgelb_process_cpu_seconds_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+          "expr": "irate(dcos_edgelb_process_cpu_seconds_total{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -237,7 +237,7 @@
           "refId": "A"
         },
         {
-          "expr": "time() - dcos_edgelb_process_start_time_seconds{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+          "expr": "time() - dcos_edgelb_process_start_time_seconds{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -334,7 +334,7 @@
           "refId": "A"
         },
         {
-          "expr": "dcos_edgelb_process_resident_memory_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+          "expr": "dcos_edgelb_process_resident_memory_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -431,7 +431,7 @@
           "refId": "A"
         },
         {
-          "expr": "dcos_edgelb_process_virtual_memory_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+          "expr": "dcos_edgelb_process_virtual_memory_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -533,7 +533,7 @@
           "refId": "A"
         },
         {
-          "expr": "dcos_edgelb_process_open_fds{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+          "expr": "dcos_edgelb_process_open_fds{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -549,7 +549,7 @@
           "refId": "C"
         },
         {
-          "expr": "dcos_edgelb_process_max_fds{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+          "expr": "dcos_edgelb_process_max_fds{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{component}} limit@{{poolName}}:{{task_name}}",
@@ -657,7 +657,7 @@
           "refId": "A"
         },
         {
-          "expr": "dcos_edgelb_go_threads{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+          "expr": "dcos_edgelb_go_threads{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -754,7 +754,7 @@
           "refId": "A"
         },
         {
-          "expr": "dcos_edgelb_go_goroutines{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+          "expr": "dcos_edgelb_go_goroutines{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -862,7 +862,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_heap_alloc_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "dcos_edgelb_go_memstats_heap_alloc_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -960,7 +960,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_heap_released_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "dcos_edgelb_go_memstats_heap_released_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1071,7 +1071,7 @@
               "refId": "A"
             },
             {
-              "expr": "irate(dcos_edgelb_go_memstats_mallocs_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "irate(dcos_edgelb_go_memstats_mallocs_total{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1168,7 +1168,7 @@
               "refId": "A"
             },
             {
-              "expr": "irate(dcos_edgelb_go_memstats_frees_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "irate(dcos_edgelb_go_memstats_frees_total{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1266,7 +1266,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_sys_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "dcos_edgelb_go_memstats_sys_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1378,7 +1378,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_heap_objects{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "dcos_edgelb_go_memstats_heap_objects{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1476,7 +1476,7 @@
               "refId": "A"
             },
             {
-              "expr": "irate(dcos_edgelb_go_memstats_lookups_total{component=\"lbmgr\",poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "irate(dcos_edgelb_go_memstats_lookups_total{component=\"lbmgr\", component=~\"$component\",poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{component}}@{{poolName}}:{{task_name}}",
@@ -1586,7 +1586,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_heap_inuse_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "dcos_edgelb_go_memstats_heap_inuse_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1684,7 +1684,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_heap_idle_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"} ",
+              "expr": "dcos_edgelb_go_memstats_heap_idle_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"} ",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1782,7 +1782,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_stack_inuse_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "dcos_edgelb_go_memstats_stack_inuse_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1893,7 +1893,7 @@
               "refId": "A"
             },
             {
-              "expr": "irate(dcos_edgelb_go_gc_duration_seconds_sum{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "irate(dcos_edgelb_go_gc_duration_seconds_sum{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -1990,7 +1990,7 @@
               "refId": "A"
             },
             {
-              "expr": "irate(dcos_edgelb_go_gc_duration_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "irate(dcos_edgelb_go_gc_duration_seconds_count{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",task_name=~\"$poolServer\"}[5m])",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -2087,7 +2087,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_gc_cpu_fraction{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "dcos_edgelb_go_memstats_gc_cpu_fraction{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -2184,7 +2184,7 @@
               "refId": "A"
             },
             {
-              "expr": "dcos_edgelb_go_memstats_gc_sys_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "dcos_edgelb_go_memstats_gc_sys_bytes{component=\"lbmgr\", component=~\"$component\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
               "format": "time_series",
               "hide": false,
               "interval": "",
