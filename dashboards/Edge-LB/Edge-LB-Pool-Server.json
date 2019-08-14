@@ -128,7 +128,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(dcos_edgelb_reload_requests_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName)",
+          "expr": "sum(irate(dcos_edgelb_reload_requests_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{poolName}}",
@@ -475,7 +475,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(dcos_edgelb_awsfetch_updated{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName,task_name)",
+              "expr": "sum(irate(dcos_edgelb_awsfetch_updated_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName,task_name)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -914,7 +914,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(dcos_edgelb_ipsfetch_updated{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName,task_name)",
+              "expr": "sum(irate(dcos_edgelb_ipsfetch_updated_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName,task_name)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -1352,7 +1352,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(dcos_edgelb_reload_requests_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "irate(dcos_edgelb_reload_requests_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{poolName}}:{{task_name}}",
@@ -1436,7 +1436,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(dcos_edgelb_reloads_throtled_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "irate(dcos_edgelb_reloads_throttled_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{poolName}}:{{task_name}}",
@@ -1520,7 +1520,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(dcos_edgelb_failed_requests_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "irate(dcos_edgelb_failed_requests_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{poolName}}:{{task_name}}",
