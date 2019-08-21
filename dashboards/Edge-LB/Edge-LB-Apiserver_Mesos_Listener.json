@@ -223,7 +223,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dcos_edgelb_state_objects_count{component=\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}",
+          "expr": "dcos_edgelb_state_objects{component=\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "[{{kind}}] {{dcos_cluster_name}}:{{applicationPath}}",
@@ -406,7 +406,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(dcos_edgelb_mesos_stream_events_count{component=~\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])",
+          "expr": "irate(dcos_edgelb_mesos_stream_events_total{component=~\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "[{{kind}}] {{dcos_cluster_name}}:{{applicationPath}}",
@@ -490,7 +490,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dcos_edgelb_mesos_listener_reconnects{component=~\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}",
+          "expr": "dcos_edgelb_mesos_reconnects_total{component=~\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "[{{kind}}] {{dcos_cluster_name}}:{{applicationPath}}",
