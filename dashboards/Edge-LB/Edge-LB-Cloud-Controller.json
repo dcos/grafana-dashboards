@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1567531701947,
+  "iteration": 1567762970525,
   "links": [],
   "panels": [
     {
@@ -84,7 +84,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 7
       },
       "id": 28,
       "panels": [],
@@ -102,7 +102,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 8
       },
       "id": 8,
       "legend": {
@@ -186,7 +186,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 6
+        "y": 8
       },
       "id": 24,
       "legend": {
@@ -271,7 +271,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 17
       },
       "id": 12,
       "legend": {
@@ -367,7 +367,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 26
       },
       "id": 14,
       "panels": [],
@@ -385,7 +385,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 25
+        "y": 27
       },
       "id": 18,
       "legend": {
@@ -470,7 +470,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 25
+        "y": 27
       },
       "id": 16,
       "legend": {
@@ -556,7 +556,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 36
       },
       "id": 20,
       "legend": {
@@ -641,7 +641,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 34
+        "y": 36
       },
       "id": 22,
       "legend": {
@@ -667,7 +667,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100.0 - (\r\nsum(rate(dcos_edgelb_grpc_server_handling_seconds_bucket{component=~\"cloud-controller\", applicationPath=~\"$applicationPath\", dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"UpdateMetadata\", le=\"1\"}[5m])) by (grpc_service)\r\n / \r\nsum(rate(dcos_edgelb_grpc_server_handling_seconds_count{component=~\"cloud-controller\", applicationPath=~\"$applicationPath\", dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"UpdateMetadata\"}[5m])) by (grpc_service)\r\n) * 100.0",
+          "expr": "sum(rate(dcos_edgelb_grpc_server_handling_seconds_bucket{component=~\"cloud-controller\", applicationPath=~\"$applicationPath\", dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"UpdateMetadata\", le=\"1\"}[5m])) by (grpc_service) \r\n - \r\nsum(rate(dcos_edgelb_grpc_server_handling_seconds_count{component=~\"cloud-controller\", applicationPath=~\"$applicationPath\", dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"UpdateMetadata\"}[5m])) by (grpc_service)\r\n",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -678,7 +678,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Percentage of Slow Unary Queries (>1s)",
+      "title": "Slow Unary Queries (>1s)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -694,11 +694,11 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -721,7 +721,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 45
       },
       "id": 4,
       "panels": [],
@@ -740,7 +740,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 44
+        "y": 46
       },
       "id": 2,
       "interval": "",
@@ -825,7 +825,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 44
+        "y": 46
       },
       "id": 6,
       "interval": "",
@@ -884,11 +884,11 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "ops",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -916,7 +916,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 53
+        "y": 55
       },
       "id": 30,
       "legend": {
@@ -1116,5 +1116,5 @@
   "timezone": "",
   "title": "Edge-LB: Cloud Controller",
   "uid": "dUK7xrOWk",
-  "version": 5
+  "version": 4
 }
