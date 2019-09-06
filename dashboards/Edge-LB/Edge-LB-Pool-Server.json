@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1565261892981,
+  "iteration": 1567761959715,
   "links": [],
   "panels": [
     {
@@ -448,7 +448,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 38
+            "y": 27
           },
           "id": 49,
           "legend": {
@@ -534,7 +534,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 48
+            "y": 37
           },
           "id": 36,
           "legend": {
@@ -618,7 +618,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 48
+            "y": 37
           },
           "id": 37,
           "legend": {
@@ -703,7 +703,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 57
+            "y": 46
           },
           "id": 38,
           "legend": {
@@ -788,7 +788,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 57
+            "y": 46
           },
           "id": 39,
           "legend": {
@@ -887,7 +887,7 @@
             "h": 10,
             "w": 24,
             "x": 0,
-            "y": 9
+            "y": 28
           },
           "id": 40,
           "legend": {
@@ -973,7 +973,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 19
+            "y": 38
           },
           "id": 50,
           "legend": {
@@ -1057,7 +1057,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 19
+            "y": 38
           },
           "id": 51,
           "legend": {
@@ -1142,7 +1142,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 28
+            "y": 47
           },
           "id": 52,
           "legend": {
@@ -1227,7 +1227,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 28
+            "y": 47
           },
           "id": 53,
           "legend": {
@@ -1326,7 +1326,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 28
+            "y": 29
           },
           "id": 32,
           "legend": {
@@ -1410,7 +1410,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 28
+            "y": 29
           },
           "id": 33,
           "legend": {
@@ -1494,7 +1494,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 38
           },
           "id": 34,
           "legend": {
@@ -1578,7 +1578,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 38
           },
           "id": 35,
           "legend": {
@@ -1676,7 +1676,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 37
+            "y": 30
           },
           "id": 15,
           "legend": {
@@ -1760,7 +1760,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 37
+            "y": 30
           },
           "id": 18,
           "legend": {
@@ -1845,7 +1845,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 46
+            "y": 39
           },
           "id": 19,
           "legend": {
@@ -1931,7 +1931,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 46
+            "y": 39
           },
           "id": 20,
           "legend": {
@@ -2016,7 +2016,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 55
+            "y": 48
           },
           "id": 21,
           "legend": {
@@ -2101,7 +2101,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 55
+            "y": 48
           },
           "id": 22,
           "legend": {
@@ -2127,7 +2127,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "100 - (sum(rate(dcos_edgelb_grpc_client_handling_seconds_bucket{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\",le=\"1\"}[5m]))by(poolName,task_name) / sum(rate(dcos_edgelb_grpc_client_handling_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\"}[5m]))by(poolName,task_name))*100",
+              "expr": "sum(rate(dcos_edgelb_grpc_client_handling_seconds_bucket{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\",le=\"1\"}[5m]))by(poolName,task_name) - sum(rate(dcos_edgelb_grpc_client_handling_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\"}[5m]))by(poolName,task_name)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -2154,7 +2154,7 @@
           },
           "yaxes": [
             {
-              "format": "percent",
+              "format": "ops",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -2187,7 +2187,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 64
+            "y": 57
           },
           "id": 24,
           "legend": {
@@ -2289,7 +2289,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 38
+            "y": 31
           },
           "id": 6,
           "legend": {
@@ -2387,7 +2387,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 38
+            "y": 31
           },
           "id": 11,
           "legend": {
@@ -2478,7 +2478,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 47
+            "y": 40
           },
           "id": 10,
           "legend": {
@@ -2569,7 +2569,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 47
+            "y": 40
           },
           "id": 13,
           "legend": {
@@ -2660,7 +2660,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 56
+            "y": 49
           },
           "id": 12,
           "legend": {
@@ -2751,7 +2751,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 56
+            "y": 49
           },
           "id": 8,
           "legend": {
@@ -2976,5 +2976,5 @@
   "timezone": "",
   "title": "Edge-LB: Pool Server",
   "uid": "W35VnsHWk",
-  "version": 4
+  "version": 2
 }
