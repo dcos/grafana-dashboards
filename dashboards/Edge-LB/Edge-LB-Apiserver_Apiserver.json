@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1567761959715,
+  "iteration": 1567761892409,
   "links": [],
   "panels": [
     {
@@ -64,7 +64,7 @@
         "y": 0
       },
       "headings": true,
-      "id": 26,
+      "id": 2,
       "limit": null,
       "links": [],
       "query": "",
@@ -86,7 +86,7 @@
         "x": 0,
         "y": 7
       },
-      "id": 42,
+      "id": 9,
       "panels": [],
       "title": "Overview",
       "type": "row"
@@ -104,7 +104,7 @@
         "x": 0,
         "y": 8
       },
-      "id": 46,
+      "id": 25,
       "legend": {
         "avg": false,
         "current": false,
@@ -128,17 +128,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(dcos_edgelb_reload_requests_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName)",
+          "expr": "dcos_edgelb_pools_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{poolName}}",
+          "legendFormat": "[{{kind}}] {{dcos_cluster_name}}:{{applicationPath}}",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HaProxy reloads rate",
+      "title": "Pools count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -154,7 +154,8 @@
       },
       "yaxes": [
         {
-          "format": "ops",
+          "decimals": null,
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -188,7 +189,7 @@
         "x": 12,
         "y": 8
       },
-      "id": 43,
+      "id": 26,
       "legend": {
         "avg": false,
         "current": false,
@@ -212,17 +213,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(dcos_edgelb_metadata_updates_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",kind=\"update\"}[5m]))by(poolName,task_name)",
+          "expr": "dcos_edgelb_pool_templates_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{poolName}}:{{task_name}}",
+          "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Metadata updates",
+      "title": "Pool templates count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -238,7 +239,7 @@
       },
       "yaxes": [
         {
-          "format": "ops",
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -272,7 +273,7 @@
         "x": 0,
         "y": 17
       },
-      "id": 45,
+      "id": 4,
       "legend": {
         "avg": false,
         "current": false,
@@ -296,17 +297,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(dcos_edgelb_grpc_reconnects_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]))by(poolName,task_name)",
+          "expr": "sum(irate(dcos_edgelb_http_request_duration_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", handler=~\"$apiHandler\"}[5m])) by (dcos_cluster_name, applicationPath)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{poolName}}:{{task_name}}",
-          "refId": "B"
+          "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "gRPC connection reconnects",
+      "title": "HTTP API requests rate",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -322,7 +323,7 @@
       },
       "yaxes": [
         {
-          "format": "ops",
+          "format": "reqps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -356,7 +357,7 @@
         "x": 12,
         "y": 17
       },
-      "id": 44,
+      "id": 13,
       "legend": {
         "avg": false,
         "current": false,
@@ -380,17 +381,17 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(dcos_edgelb_metadata_updates_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",kind=\"failed\"}[5m]))by(poolName,task_name)",
+          "expr": "sum(dcos_edgelb_http_requests_inflight{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", handler=~\"$apiHandler\"}) by (dcos_cluster_name, applicationPath)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{poolName}}:{{task_name}}",
-          "refId": "B"
+          "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Failed metadata updates",
+      "title": "HTTP API requests in-flight",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -406,7 +407,259 @@
       },
       "yaxes": [
         {
-          "format": "ops",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 26
+      },
+      "id": 38,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(dcos_edgelb_zkrequests_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(dcos_cluster_name,applicationPath)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "ZooKeeper operations rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 26
+      },
+      "id": 33,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(dcos_edgelb_filerequests_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(dcos_cluster_name,applicationPath)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Filesystem operations rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 35
+      },
+      "id": 28,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(dcos_edgelb_state_operations_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(dcos_cluster_name,applicationPath)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Apiserver state operations",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "reqps",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -433,9 +686,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 44
       },
-      "id": 30,
+      "id": 11,
       "panels": [
         {
           "aliasColors": {},
@@ -445,13 +698,98 @@
           "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
           "gridPos": {
-            "h": 10,
-            "w": 24,
+            "h": 9,
+            "w": 12,
             "x": 0,
-            "y": 27
+            "y": 45
           },
-          "id": 49,
+          "id": 15,
           "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(irate(dcos_edgelb_http_request_duration_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", handler=~\"$apiHandler\"}[5m])) by (code)",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{code}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "HTTP responses codes",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "reqps",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 45
+          },
+          "id": 16,
+          "legend": {
+            "alignAsTable": true,
             "avg": false,
             "current": false,
             "max": false,
@@ -475,187 +813,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(dcos_edgelb_awsfetch_updated_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName,task_name)",
+              "expr": "sum(irate(dcos_edgelb_http_request_duration_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", handler=~\"$apiHandler\"}[5m])) by (handler)",
               "format": "time_series",
-              "hide": false,
               "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
+              "legendFormat": "{{handler}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "AWS data change rate",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 37
-          },
-          "id": 36,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(irate(dcos_edgelb_awsrequests_time_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]))by(poolName,task_name)",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Query rate by pool server",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "reqps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 37
-          },
-          "id": 37,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(irate(dcos_edgelb_awsrequests_time_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]))by(host,query_status)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "[{{query_status}}] {{host}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Query rate by node and status",
+          "title": "API endpoint requests rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -703,14 +871,16 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 46
+            "y": 54
           },
-          "id": 38,
+          "id": 17,
           "legend": {
+            "alignAsTable": true,
             "avg": false,
             "current": false,
             "max": false,
             "min": false,
+            "rightSide": true,
             "show": true,
             "total": false,
             "values": false
@@ -729,103 +899,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(dcos_edgelb_awsrequests_time_seconds_bucket{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",le=\"+Inf\"}[5m]))by(host) - sum(irate(dcos_edgelb_awsrequests_time_seconds_bucket{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",le=\"1\"}[5m]))by(host)",
+              "expr": "sum(dcos_edgelb_http_request_duration_seconds_sum{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", handler=~\"$apiHandler\"})by(handler) / sum(dcos_edgelb_http_request_duration_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", handler=~\"$apiHandler\"})by(handler)",
               "format": "time_series",
-              "hide": false,
               "intervalFactor": 1,
-              "legendFormat": "{{host}}",
+              "legendFormat": "{{handler}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "AWS queries taking longer than 1s",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "reqps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 46
-          },
-          "id": 39,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(dcos_edgelb_awsrequests_time_seconds_sum{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}) by (host) / sum(dcos_edgelb_awsrequests_time_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}) by (host)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{host}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "AWS query average time",
+          "title": "API endpoint average response time",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -861,21 +945,7 @@
             "align": false,
             "alignLevel": null
           }
-        }
-      ],
-      "title": "AWS queries",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 27
-      },
-      "id": 48,
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -884,13 +954,14 @@
           "datasource": "${DS_PROMETHEUS}",
           "fill": 1,
           "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 28
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 54
           },
-          "id": 40,
+          "id": 18,
           "legend": {
+            "alignAsTable": true,
             "avg": false,
             "current": false,
             "max": false,
@@ -914,18 +985,116 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(dcos_edgelb_ipsfetch_updated_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])) by (poolName,task_name)",
+              "expr": "sum(irate(dcos_edgelb_http_request_duration_seconds_bucket{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", handler=~\"$apiHandler\",le=\"1\"}[5m])) by (handler) - sum(irate(dcos_edgelb_http_request_duration_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", handler=~\"$apiHandler\"}[5m])) by (handler)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
+              "legendFormat": "{{handler}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "IP data change rate",
+          "title": "API endpoint requests taking longer than 1s",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "HTTP API requests",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 45
+      },
+      "id": 20,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 46
+          },
+          "id": 42,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(dcos_edgelb_grpc_server_handled_total{component=\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"SendMetadata\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "[{{grpc_code}}] {{dcos_cluster_name}}:{{applicationPath}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Metadata updates rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -972,94 +1141,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 0,
-            "y": 38
-          },
-          "id": 50,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(irate(dcos_edgelb_ipsrequests_time_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]))by(poolName,task_name)",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Query rate by pool server",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "reqps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 12,
-            "y": 38
+            "y": 46
           },
-          "id": 51,
+          "id": 43,
           "legend": {
             "avg": false,
             "current": false,
@@ -1079,192 +1164,21 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "spaceLength": 10,
-          "stack": false,
+          "stack": true,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(dcos_edgelb_ipsrequests_time_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]))by(host,query_status)",
+              "expr": "dcos_edgelb_grpc_server_handling_seconds_sum{component=\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"SendMetadata\"} /dcos_edgelb_grpc_server_handling_seconds_count{component=\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"SendMetadata\"} ",
               "format": "time_series",
-              "hide": false,
               "intervalFactor": 1,
-              "legendFormat": "[{{query_status}}] {{host}}",
+              "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Query rate by node and status",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "reqps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 47
-          },
-          "id": 52,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(irate(dcos_edgelb_ipsrequests_time_seconds_bucket{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",le=\"+Inf\"}[5m]))by(host) - sum(irate(dcos_edgelb_ipsrequests_time_seconds_bucket{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",le=\"1\"}[5m]))by(host)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{host}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "IP queries taking longer than 1s",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "reqps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 47
-          },
-          "id": 53,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum(dcos_edgelb_ipsrequests_time_seconds_sum{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}) by (host) / sum(dcos_edgelb_ipsrequests_time_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}) by (host)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{host}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "IP queries average time",
+          "title": "Average metadata updates call duration",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -1300,9 +1214,177 @@
             "align": false,
             "alignLevel": null
           }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 55
+          },
+          "id": 44,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(irate(dcos_edgelb_grpc_server_handling_seconds_bucket{component=\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"SendMetadata\",le=\"1\"}[5m])) by (dcos_cluster_name,applicationPath) - sum(irate(dcos_edgelb_grpc_server_handling_seconds_count{component=\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"SendMetadata\"}[5m])) by (dcos_cluster_name,applicationPath)",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Metadata updates taking longer than 1s",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 55
+          },
+          "id": 45,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": true,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "irate(dcos_edgelb_grpc_server_msg_sent_total{component=\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\", grpc_method=\"ConfigStream\"}[5m])",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Pool data messages streamed to clients rate",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
         }
       ],
-      "title": "IP information queries",
+      "title": "gRPC server",
       "type": "row"
     },
     {
@@ -1311,9 +1393,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 46
       },
-      "id": 28,
+      "id": 22,
       "panels": [
         {
           "aliasColors": {},
@@ -1326,9 +1408,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 29
+            "y": 83
           },
-          "id": 32,
+          "id": 31,
           "legend": {
             "avg": false,
             "current": false,
@@ -1352,17 +1434,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(dcos_edgelb_reload_requests_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
+              "expr": "sum(irate(dcos_edgelb_filerequests_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(type)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
+              "legendFormat": "{{type}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Reloads rate",
+          "title": "Filesystem operations rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -1378,7 +1460,7 @@
           },
           "yaxes": [
             {
-              "format": "ops",
+              "format": "reqps",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -1410,175 +1492,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 29
-          },
-          "id": 33,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "irate(dcos_edgelb_reloads_throttled_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Throttled reloads rate",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 38
-          },
-          "id": 34,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "irate(dcos_edgelb_failed_requests_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m])",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Failed reloads rate",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 38
+            "y": 83
           },
           "id": 35,
           "legend": {
@@ -1604,17 +1518,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "dcos_edgelb_received_config_size_bytes{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "sum(irate(dcos_edgelb_zkrequests_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(type)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
+              "legendFormat": "{{type}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Received config size",
+          "title": "ZooKeeper operations rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -1630,7 +1544,7 @@
           },
           "yaxes": [
             {
-              "format": "bytes",
+              "format": "reqps",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -1643,28 +1557,14 @@
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": false
+              "show": true
             }
           ],
           "yaxis": {
             "align": false,
             "alignLevel": null
           }
-        }
-      ],
-      "title": "Haproxy Reloads",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 29
-      },
-      "id": 17,
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -1676,9 +1576,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 30
+            "y": 92
           },
-          "id": 15,
+          "id": 32,
           "legend": {
             "avg": false,
             "current": false,
@@ -1698,21 +1598,21 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "spaceLength": 10,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(dcos_edgelb_grpc_client_started_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\", grpc_method=~\"$grpcMethod\"}[5m])",
+              "expr": "sum(irate(dcos_edgelb_filerequests_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",status=\"fail\"}[5m]))by(type)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "[{{grpc_method}}] {{poolName}}:{{task_name}}",
+              "legendFormat": "{{type}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "gRPC client method call rate",
+          "title": "Filesystem operations errors rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -1728,7 +1628,7 @@
           },
           "yaxes": [
             {
-              "format": "ops",
+              "format": "reqps",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -1760,9 +1660,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 30
+            "y": 92
           },
-          "id": 18,
+          "id": 36,
           "legend": {
             "avg": false,
             "current": false,
@@ -1786,18 +1686,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(dcos_edgelb_grpc_client_handled_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=~\"$grpcMethod\"}[5m])) by (grpc_code, poolName,task_name)",
+              "expr": "sum(irate(dcos_edgelb_zkrequests_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",status=\"fail\"}[5m]))by(type)",
               "format": "time_series",
-              "hide": false,
               "intervalFactor": 1,
-              "legendFormat": "[{{grpc_code}}] {{poolName}}:{{task_name}}",
+              "legendFormat": "{{type}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "gRPC call status",
+          "title": "ZooKeeper operations errors rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -1813,7 +1712,7 @@
           },
           "yaxes": [
             {
-              "format": "ops",
+              "format": "reqps",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -1845,180 +1744,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 39
+            "y": 101
           },
-          "id": 19,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "irate(dcos_edgelb_grpc_client_msg_sent_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"StreamLBConfig\"}[5m])",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "gRPC stream messages rate - sent by the client",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 39
-          },
-          "id": 20,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "irate(dcos_edgelb_grpc_client_msg_received_total{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"StreamLBConfig\"}[5m])",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "gRPC stream messages rate - received by the client",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 48
-          },
-          "id": 21,
+          "id": 34,
           "legend": {
             "avg": false,
             "current": false,
@@ -2042,18 +1770,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "rate(dcos_edgelb_grpc_client_handling_seconds_sum{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\"}[5m]) / rate(dcos_edgelb_grpc_client_handling_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\"}[5m])",
+              "expr": "sum(dcos_edgelb_filerequests_time_seconds_sum{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"})by(type) / sum(dcos_edgelb_filerequests_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"})by(type)",
               "format": "time_series",
-              "hide": false,
               "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
+              "legendFormat": "{{type}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "gRPC unary call average duration",
+          "title": "Filesystem operations average duration",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2101,9 +1828,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 48
+            "y": 101
           },
-          "id": 22,
+          "id": 37,
           "legend": {
             "avg": false,
             "current": false,
@@ -2127,18 +1854,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(dcos_edgelb_grpc_client_handling_seconds_bucket{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\",le=\"1\"}[5m]))by(poolName,task_name) - sum(rate(dcos_edgelb_grpc_client_handling_seconds_count{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\"}[5m]))by(poolName,task_name)",
+              "expr": "sum(dcos_edgelb_zkrequests_time_seconds_sum{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"})by(type) / sum(dcos_edgelb_zkrequests_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"})by(type)",
               "format": "time_series",
-              "hide": false,
               "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
-              "refId": "D"
+              "legendFormat": "{{type}}",
+              "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "gRPC unary messages taking longer than 1s",
+          "title": "ZooKeeper operations average duration",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2154,7 +1880,7 @@
           },
           "yaxes": [
             {
-              "format": "ops",
+              "format": "s",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -2181,24 +1907,20 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": "${DS_PROMETHEUS}",
-          "description": "This graph presents the rate of requests that were completed within the given time. E.g. the 0.1s graph contains all the requests that happened in less and 0.05s and 0.05s-0.1s, 0.25s graph contains all the requests for 0.1s graph plus the requests between 0.1s and 0.25s, etc...",
-          "fill": 0,
+          "fill": 1,
           "gridPos": {
             "h": 9,
-            "w": 24,
+            "w": 12,
             "x": 0,
-            "y": 57
+            "y": 110
           },
-          "id": 24,
+          "id": 39,
           "legend": {
-            "alignAsTable": true,
             "avg": false,
             "current": false,
             "max": false,
             "min": false,
-            "rightSide": true,
             "show": true,
-            "sideWidth": 150,
             "total": false,
             "values": false
           },
@@ -2206,7 +1928,7 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "percentage": true,
+          "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -2216,18 +1938,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(rate(dcos_edgelb_grpc_client_handling_seconds_bucket{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\",grpc_method=\"UpdateMetadata\"}[5m]))by(le) ",
+              "expr": "sum(irate(dcos_edgelb_filerequests_time_seconds_bucket{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",le=\"1\"}[5m])) by (type) - sum(irate(dcos_edgelb_filerequests_time_seconds_bucket{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])) by (type)",
               "format": "time_series",
-              "hide": false,
               "intervalFactor": 1,
-              "legendFormat": "{{le}}s",
-              "refId": "D"
+              "legendFormat": "{{type}}",
+              "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "gRPC unary message time breakdown",
+          "title": "Filesystem operations taking longer than 1s",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2247,7 +1968,91 @@
               "label": null,
               "logBase": 1,
               "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
               "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "fill": 1,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 110
+          },
+          "id": 40,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "sum(irate(dcos_edgelb_zkrequests_time_seconds_bucket{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",le=\"1\"}[5m])) by (type) - sum(irate(dcos_edgelb_zkrequests_time_seconds_bucket{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])) by (type)",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{type}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "ZooKeeper operations taking longer than 1s",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percent",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
               "show": true
             },
             {
@@ -2265,7 +2070,7 @@
           }
         }
       ],
-      "title": "gRPC",
+      "title": "Persistence layer",
       "type": "row"
     },
     {
@@ -2274,9 +2079,9 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 47
       },
-      "id": 4,
+      "id": 24,
       "panels": [
         {
           "aliasColors": {},
@@ -2289,9 +2094,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 31
+            "y": 120
           },
-          "id": 6,
+          "id": 27,
           "legend": {
             "avg": false,
             "current": false,
@@ -2315,31 +2120,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(dcos_edgelb_healthcheck_called{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]) ",
+              "expr": "sum(irate(dcos_edgelb_state_operations_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(type)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "[called] {{poolName}}:{{task_name}}",
+              "legendFormat": "{{type}}",
               "refId": "A"
-            },
-            {
-              "expr": "irate(dcos_edgelb_healthcheck_failed{component=\"lbmgr\",poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]) ",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[failed] {{poolName}}:{{task_name}}",
-              "refId": "B"
-            },
-            {
-              "expr": "irate(dcos_edgelb_healthcheck_successful{component=\"lbmgr\",poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}[5m]) ",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[successfull] {{poolName}}:{{task_name}}",
-              "refId": "C"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Healthchecks rate",
+          "title": "Apiserver state operations rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2355,11 +2146,11 @@
           },
           "yaxes": [
             {
-              "format": "ops",
+              "format": "reqps",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": true
             },
             {
@@ -2387,9 +2178,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 31
+            "y": 120
           },
-          "id": 11,
+          "id": 29,
           "legend": {
             "avg": false,
             "current": false,
@@ -2413,24 +2204,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "dcos_edgelb_healthcheck_time_total_mean{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "sum(dcos_edgelb_state_operations_time_seconds_sum{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"})by(type) / sum(dcos_edgelb_state_operations_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"})by(type)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "[mean] {{poolName}}:{{task_name}}",
+              "legendFormat": "{{type}}",
               "refId": "A"
-            },
-            {
-              "expr": "dcos_edgelb_healthcheck_time_total_stddev{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[stddev] {{poolName}}:{{task_name}}",
-              "refId": "B"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Socket i/o time total",
+          "title": "Apiserver state operations average duration",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2446,11 +2230,11 @@
           },
           "yaxes": [
             {
-              "format": "ms",
+              "format": "s",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": true
             },
             {
@@ -2478,9 +2262,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 40
+            "y": 129
           },
-          "id": 10,
+          "id": 30,
           "legend": {
             "avg": false,
             "current": false,
@@ -2504,24 +2288,17 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "dcos_edgelb_healthcheck_time_dial_mean{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
+              "expr": "sum(irate(dcos_edgelb_state_operations_time_seconds_bucket{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",le=\"1\"}[5m]))by(type) - sum(irate(dcos_edgelb_state_operations_time_seconds_count{component=~\"apiserver\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(type)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "[mean] {{poolName}}:{{task_name}}",
+              "legendFormat": "{{type}}",
               "refId": "A"
-            },
-            {
-              "expr": "dcos_edgelb_healthcheck_time_dial_stddev{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[stddev] {{poolName}}:{{task_name}}",
-              "refId": "B"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Socket dial time",
+          "title": "Apiserver state operations taking longer than 1s",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2537,277 +2314,11 @@
           },
           "yaxes": [
             {
-              "format": "ms",
+              "format": "percent",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 40
-          },
-          "id": 13,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "dcos_edgelb_healthcheck_time_write_mean{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[mean] {{poolName}}:{{task_name}}",
-              "refId": "A"
-            },
-            {
-              "expr": "dcos_edgelb_healthcheck_time_write_stddev{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[stddev] {{poolName}}:{{task_name}}",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Socket write time",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ms",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 49
-          },
-          "id": 12,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "dcos_edgelb_healthcheck_time_read_mean{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[mean] {{poolName}}:{{task_name}}",
-              "refId": "A"
-            },
-            {
-              "expr": "dcos_edgelb_healthcheck_time_read_stddev{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[stddev] {{poolName}}:{{task_name}}",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Socket read time",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ms",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 49
-          },
-          "id": 8,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "dcos_edgelb_healthcheck_haproxy_reply_size{component=\"lbmgr\", poolName=~\"$poolName\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",task_name=~\"$poolServer\"}",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "{{poolName}}:{{task_name}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Haproxy reply size",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "bytes",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
+              "min": "0",
               "show": true
             },
             {
@@ -2825,7 +2336,7 @@
           }
         }
       ],
-      "title": "Healtchecking",
+      "title": "Apiserver state operations",
       "type": "row"
     }
   ],
@@ -2847,7 +2358,7 @@
         "multi": true,
         "name": "dcos_cluster_name",
         "options": [],
-        "query": "label_values(dcos_cluster_name)",
+        "query": "label_values(dcos_cluster_name) ",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2868,7 +2379,7 @@
         "multi": true,
         "name": "applicationPath",
         "options": [],
-        "query": "label_values(applicationPath)",
+        "query": "label_values(applicationPath) ",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2885,32 +2396,11 @@
         "datasource": "${DS_PROMETHEUS}",
         "hide": 0,
         "includeAll": true,
-        "label": "Pool name",
+        "label": "API handler",
         "multi": true,
-        "name": "poolName",
+        "name": "apiHandler",
         "options": [],
-        "query": "label_values(poolName)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {},
-        "datasource": "${DS_PROMETHEUS}",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Pool Server",
-        "multi": true,
-        "name": "poolServer",
-        "options": [],
-        "query": "label_values(dcos_edgelb_go_info{poolName=~\"$poolName\", applicationPath=~\"$applicationPath\",dcos_cluster_name=\"$dcos_cluster_name\",component=\"lbmgr\"}, task_name)",
+        "query": "label_values(dcos_edgelb_http_request_duration_seconds_count, handler)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -2935,7 +2425,7 @@
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -2974,7 +2464,7 @@
     ]
   },
   "timezone": "",
-  "title": "Edge-LB: Pool Server",
-  "uid": "W35VnsHWk",
+  "title": "Edge-LB: Apiserver - Apiserver process",
+  "uid": "xUjCzjDhz",
   "version": 2
 }
