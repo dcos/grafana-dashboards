@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1567761892409,
+  "iteration": 1568016167105,
   "links": [],
   "panels": [
     {
@@ -1278,7 +1278,7 @@
           },
           "yaxes": [
             {
-              "format": "percent",
+              "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -1408,7 +1408,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 83
+            "y": 47
           },
           "id": 31,
           "legend": {
@@ -1492,7 +1492,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 83
+            "y": 47
           },
           "id": 35,
           "legend": {
@@ -1576,7 +1576,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 92
+            "y": 56
           },
           "id": 32,
           "legend": {
@@ -1660,7 +1660,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 92
+            "y": 56
           },
           "id": 36,
           "legend": {
@@ -1744,7 +1744,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 101
+            "y": 65
           },
           "id": 34,
           "legend": {
@@ -1828,7 +1828,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 101
+            "y": 65
           },
           "id": 37,
           "legend": {
@@ -1912,7 +1912,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 110
+            "y": 74
           },
           "id": 39,
           "legend": {
@@ -1996,7 +1996,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 110
+            "y": 74
           },
           "id": 40,
           "legend": {
@@ -2048,7 +2048,7 @@
           },
           "yaxes": [
             {
-              "format": "percent",
+              "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -2094,7 +2094,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 120
+            "y": 48
           },
           "id": 27,
           "legend": {
@@ -2146,7 +2146,7 @@
           },
           "yaxes": [
             {
-              "format": "reqps",
+              "format": "ops",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -2178,7 +2178,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 120
+            "y": 48
           },
           "id": 29,
           "legend": {
@@ -2262,7 +2262,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 129
+            "y": 57
           },
           "id": 30,
           "legend": {
@@ -2314,7 +2314,7 @@
           },
           "yaxes": [
             {
-              "format": "percent",
+              "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
