@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1568017264704,
+  "iteration": 1568017247611,
   "links": [],
   "panels": [
     {
@@ -100,7 +100,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 24,
+        "w": 12,
         "x": 0,
         "y": 8
       },
@@ -128,8 +128,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "dcos_edgelb_clients_connected{component=~\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}",
+          "expr": "sum(dcos_edgelb_tracked_templates_count{component=~\"dcos-template\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"})by(dcos_cluster_name,applicationPath)",
           "format": "time_series",
+          "hide": false,
           "intervalFactor": 1,
           "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
           "refId": "A"
@@ -138,7 +139,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Clients connected",
+      "title": "Defined templates count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -176,12 +177,182 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 16,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(dcos_edgelb_config_change_notifications_total{component=~\"dcos-template\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(dcos_cluster_name,applicationPath)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Templates configuration change rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "id": 17,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(irate(dcos_edgelb_template_change_notifications_total{component=~\"dcos-template\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])  )by(dcos_cluster_name,applicationPath)",
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Template contents change rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 26
       },
       "id": 11,
       "panels": [
@@ -196,7 +367,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 18
+            "y": 27
           },
           "id": 6,
           "legend": {
@@ -222,17 +393,18 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "dcos_edgelb_state_objects{component=\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}",
+              "expr": "sum(dcos_edgelb_template_rendering_time_seconds_sum{component=\"dcos-template\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"} / dcos_edgelb_template_rendering_time_seconds_count{component=\"dcos-template\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"})by(dcos_cluster_name,applicationPath,status)",
               "format": "time_series",
+              "interval": "",
               "intervalFactor": 1,
-              "legendFormat": "[{{kind}}] {{dcos_cluster_name}}:{{applicationPath}}",
+              "legendFormat": "[{{status}}] {{dcos_cluster_name}}:{{applicationPath}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Internal state objects count",
+          "title": "Average template rendering time",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -248,7 +420,7 @@
           },
           "yaxes": [
             {
-              "format": "short",
+              "format": "s",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -275,15 +447,14 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": "${DS_PROMETHEUS}",
-          "description": "The graph presents how often the internal state of mesos-listener is updated due to changes in the state of the cluster",
           "fill": 1,
           "gridPos": {
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 18
+            "y": 27
           },
-          "id": 7,
+          "id": 18,
           "legend": {
             "avg": false,
             "current": false,
@@ -307,18 +478,18 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(dcos_edgelb_state_updates_total{component=\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])",
+              "expr": "sum(irate(dcos_edgelb_template_rendering_time_seconds_count{component=\"dcos-template\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m]))by(dcos_cluster_name,applicationPath,status)",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
-              "legendFormat": "{{dcos_cluster_name}}:{{applicationPath}}",
+              "legendFormat": "[{{status}}] {{dcos_cluster_name}}:{{applicationPath}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Internal state change rate",
+          "title": "Template rendering rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -354,21 +525,7 @@
             "align": false,
             "alignLevel": null
           }
-        }
-      ],
-      "title": "Internal state",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 18
-      },
-      "id": 15,
-      "panels": [
+        },
         {
           "aliasColors": {},
           "bars": false,
@@ -380,9 +537,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 19
+            "y": 36
           },
-          "id": 13,
+          "id": 20,
           "legend": {
             "avg": false,
             "current": false,
@@ -402,105 +559,21 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "spaceLength": 10,
-          "stack": false,
+          "stack": true,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(dcos_edgelb_mesos_stream_events_total{component=~\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])",
+              "expr": "sum(irate(dcos_edgelb_template_rendering_time_seconds_bucket{component=\"dcos-template\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\",le=\"1\"}[5m])) by (dcos_cluster_name,applicationPath,status) - sum(irate(dcos_edgelb_template_rendering_time_seconds_count{component=\"dcos-template\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])) by (dcos_cluster_name,applicationPath,status)",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "[{{kind}}] {{dcos_cluster_name}}:{{applicationPath}}",
+              "legendFormat": "[{{status}}] {{dcos_cluster_name}}:{{applicationPath}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Mesos streaming API events",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 19
-          },
-          "id": 12,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "irate(dcos_edgelb_mesos_reconnects_total{component=~\"mesos-listener\",applicationPath=~\"$applicationPath\",dcos_cluster_name=~\"$dcos_cluster_name\"}[5m])",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "[{{kind}}] {{dcos_cluster_name}}:{{applicationPath}}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeShift": null,
-          "title": "Mesos streaming API reconnects",
+          "title": "Template renderings taking longer than 1s",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -538,7 +611,7 @@
           }
         }
       ],
-      "title": "Mesos streaming API",
+      "title": "Template rendering",
       "type": "row"
     }
   ],
@@ -624,7 +697,7 @@
     ]
   },
   "timezone": "",
-  "title": "Edge-LB: Apiserver - Mesos Listener",
-  "uid": "xUjCXjDWz",
+  "title": "Edge-LB: Apiserver - Dcos-template",
+  "uid": "g56HSpcZz",
   "version": 4
 }
