@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1568016167105,
+  "iteration": 1568017245806,
   "links": [],
   "panels": [
     {
@@ -2466,5 +2466,5 @@
   "timezone": "",
   "title": "Edge-LB: Apiserver - Apiserver process",
   "uid": "xUjCzjDhz",
-  "version": 2
+  "version": 3
 }

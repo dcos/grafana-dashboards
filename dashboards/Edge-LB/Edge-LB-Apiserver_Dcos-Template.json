@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1568014359500,
+  "iteration": 1568017247611,
   "links": [],
   "panels": [
     {
@@ -615,6 +615,7 @@
       "type": "row"
     }
   ],
+  "refresh": "1m",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -698,5 +699,5 @@
   "timezone": "",
   "title": "Edge-LB: Apiserver - Dcos-template",
   "uid": "g56HSpcZz",
-  "version": 3
+  "version": 4
 }
