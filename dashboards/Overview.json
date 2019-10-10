@@ -391,7 +391,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(mesos_slave_gpus_percent{dcos_cluster_name=\"$clustername\"})",
+          "expr": "sum(mesos_master_gpus_percent{dcos_cluster_name=\"$clustername\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Allocated",
