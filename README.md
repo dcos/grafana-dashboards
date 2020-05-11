@@ -18,7 +18,8 @@ Currently, we maintain the following branches:
 - 1.12.x (DC/OS 1.12)
 - 1.13.x (DC/OS 1.13)
 - 2.0.x (DC/OS 2.0)
-- master (DC/OS 2.1-dev)
+- 2.1.x (DC/OS 2.1)
+- master (DC/OS 2.2-dev)
 
 
 Please make changes to the master branch first, and then backport changes to the corresponding branches if needed.
