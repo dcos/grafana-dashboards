@@ -484,14 +484,14 @@
           "refId": "A"
         },
         {
-          "expr": "count(count by(task_name) (cpus_limit{dcos_cluster_name=\"$clustername\"}))",
+          "expr": "count(count by(task_name) (cpus_soft_limit{dcos_cluster_name=\"$clustername\"}))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Tasks",
           "refId": "B"
         },
         {
-          "expr": "count(count by(container_id) (cpus_limit{dcos_cluster_name=\"$clustername\"}))",
+          "expr": "count(count by(container_id) (cpus_soft_limit{dcos_cluster_name=\"$clustername\"}))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Containers",

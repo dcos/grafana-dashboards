@@ -271,11 +271,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cpus_limit{service_name=\"$cluster_name\",executor_name=\"etcd\"}",
+          "expr": "cpus_soft_limit{service_name=\"$cluster_name\",executor_name=\"etcd\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU Limit ({{executor_name}} {{container_id}})",
+          "legendFormat": "CPU Request ({{executor_name}} {{container_id}})",
           "refId": "A"
         },
         {
@@ -367,11 +367,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mem_limit_bytes{service_name=~\"$cluster_name\", executor_name=\"etcd\"})",
+          "expr": "sum(mem_soft_limit_bytes{service_name=~\"$cluster_name\", executor_name=\"etcd\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Memory Limit",
+          "legendFormat": "Memory Request",
           "refId": "A"
         },
         {
@@ -643,11 +643,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cpus_limit{service_name=\"$cluster_name\",executor_name=\"kube-control-plane\"}",
+          "expr": "cpus_soft_limit{service_name=\"$cluster_name\",executor_name=\"kube-control-plane\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU Limit ({{executor_name}} {{container_id}})",
+          "legendFormat": "CPU Request ({{executor_name}} {{container_id}})",
           "refId": "A"
         },
         {
@@ -910,11 +910,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mem_limit_bytes{service_name=~\"$cluster_name\",executor_name=\"kube-control-plane\"})",
+          "expr": "sum(mem_soft_limit_bytes{service_name=~\"$cluster_name\",executor_name=\"kube-control-plane\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Memory Limit",
+          "legendFormat": "Memory Request",
           "refId": "A"
         },
         {
@@ -1440,11 +1440,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cpus_limit{service_name=\"$cluster_name\",executor_name=\"kube-node\"}",
+          "expr": "cpus_soft_limit{service_name=\"$cluster_name\",executor_name=\"kube-node\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU Limit ({{executor_name}} {{container_id}})",
+          "legendFormat": "CPU Request ({{executor_name}} {{container_id}})",
           "refId": "A"
         },
         {
@@ -1620,11 +1620,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mem_limit_bytes{service_name=~\"$cluster_name\",executor_name=\"kube-node\"})",
+          "expr": "sum(mem_soft_limit_bytes{service_name=~\"$cluster_name\",executor_name=\"kube-node\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Memory Limit",
+          "legendFormat": "Memory Request",
           "refId": "A"
         },
         {
@@ -1896,11 +1896,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cpus_limit{service_name=\"$cluster_name\",executor_name=\"kube-node-public\"}",
+          "expr": "cpus_soft_limit{service_name=\"$cluster_name\",executor_name=\"kube-node-public\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU Limit ({{executor_name}} {{container_id}})",
+          "legendFormat": "CPU Request ({{executor_name}} {{container_id}})",
           "refId": "A"
         },
         {
@@ -2076,11 +2076,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(mem_limit_bytes{service_name=~\"$cluster_name\",executor_name=\"kube-node-public\"})",
+          "expr": "sum(mem_soft_limit_bytes{service_name=~\"$cluster_name\",executor_name=\"kube-node-public\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Memory Limit",
+          "legendFormat": "Memory Request",
           "refId": "A"
         },
         {
