@@ -111,12 +111,12 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "cpus_limit{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}",
+          "expr": "cpus_soft_limit{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}",
           "format": "time_series",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "CPU Limit ({{container_id}})",
+          "legendFormat": "CPU Request ({{container_id}})",
           "refId": "A"
         },
         {
@@ -346,11 +346,11 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "mem_limit_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}",
+          "expr": "mem_soft_limit_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Memory Limit ({{container_id}})",
+          "legendFormat": "Memory Request ({{container_id}})",
           "refId": "A"
         },
         {
@@ -403,7 +403,7 @@
       }
     },
     {
-      "content": "Memory size limit and memory used by container.\n\nContainers exceeding their memory limit may get OOM killed.",
+      "content": "Memory size request and memory used by container.\n\nContainers exceeding their memory request may get OOM killed.",
       "gridPos": {
         "h": 9,
         "w": 8,
