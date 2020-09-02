@@ -1,0 +1,9 @@
+name: ID Linter
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check if dashboards have no ID
+        run: jq '[.id, input_filename, input_line_number]' $(find . -type f -name '*.json')  -c | grep -v null && exit 1 || echo OK
