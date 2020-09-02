@@ -384,7 +384,7 @@
           "refId": "A"
         },
         {
-          "expr": "sum(mem_total_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"})",
+          "expr": "sum(mem_rss_bytes{service_name=~\"$service\", task_name=~\"$task_name\", instance=~\"$instance\", container_id=~\"$container_id\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
